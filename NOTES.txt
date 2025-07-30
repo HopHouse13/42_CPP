@@ -1,0 +1,17 @@
+NAMESPACE
+ensemble de varibles & fonctions qui se trouve dans le meme scoop.
+(c'est comme une struct amelioree)
+
+POur les variables globales, il faut declarer + initialiser sur la meme ligne.
+Pour declarer une string il faut comme type : const char *[name_de_la_variable].
+
+-operateur "resolution de portee"-
+Pour faire appel a une varible d'une namespace.
+
+ENTREE/SORTIE
+Pour affiche dans la sortie std ou recuperer dans l'entree srd,
+il faut utiliser "std" dans la namespace <iostream>.
+Pour la sortie std(printf) : "std::cout" << [le truc] 
+Pour l'entree std(scanf) : "std::cint" >> [le truc]
+
+std::endl sert a avoir une retour a la ligne
