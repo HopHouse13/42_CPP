@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Erika.class.hpp                                    :+:      :+:    :+:   */
+/*   main_erika.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 16:36:05 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/01 16:29:25 by pbret            ###   ########.fr       */
+/*   Created: 2025/07/31 16:34:20 by pbret             #+#    #+#             */
+/*   Updated: 2025/08/01 16:25:48 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERIKA_CLASS_H
-# define ERIKA_CLASS_H
+#include "Erika.class.hpp"
 
-#include <iostream> // gestion entree/sortie (i -> in, o -> out, stream -> flux)
-# include <string> // gestion des string
-
-class Erika
+int	main(void)
 {
-	public:
+	Erika	adri('A', 23, 0.69f, "hello la commu");
 	
-		Erika(char alix1, int alix2 ,float alix3, std::string alix4);
-		~Erika(void);
-		char		seb1;
-		int			seb2;
-		float		seb3;
-		char		*seb4;
-		void	ft_write(void);
-};
-
-#endif 
+	adri.ft_write();
+	return (0);
+}
