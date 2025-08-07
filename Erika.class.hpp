@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:36:05 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/01 16:29:25 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/07 19:13:37 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class Erika
 		char		seb1;
 		int			seb2;
 		float		seb3;
-		char		*seb4;
-		void	ft_write(void);
+		std::string	seb4; // string
+		void	ft_write(void) const;
 };
 
-#endif 
+#endif
