@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Erika.class_instance.cpp                           :+:      :+:    :+:   */
+/*   Flo.class_instance.cpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Erika.class.hpp"
+#include "Robot.class.hpp"
 
-// constructeur
-Erika::Erika(char alix1, int alix2, float alix3, std::string alix4) : seb1(alix1), seb2(alix2), seb3(alix3), seb4(alix4)
+Robot::Robot(int buste, int tete, int bras, int jambes) : buste(buste), _tete(tete), _bras(bras), _jambes(jambes)
 {
-	std::cout << "conctructor called" << std::endl;
-	seb4 = "PIKACHU";
-	return ;
-}
-// destructeur
-Erika::~Erika(void)
-{
-	std::cout << "destructor called" << std::endl;
+	std::cout << "constructeur called" << std::endl;
 	return ;
 }
 
-void	Erika::ft_write(void) const
+Robot::~Robot()
 {
-	std::cout << this->seb1 << std::endl;
-	std::cout << this->seb2 << std::endl;
-	std::cout << this->seb3 << std::endl;
-	std::cout << this->seb4 << std::endl;
+	std::cout << "destructeur called" << std::endl;
 	return ;
 }
+
+void	Robot::write() const
+{
+	std::cout << this->buste << std::endl;
+	std::cout << this->_tete << std::endl;
+	std::cout << this->_bras << std::endl;
+	std::cout << this->_jambes << std::endl;
+}
+
+// void	Robot::setRobot(int buste, int tete, int bras, int jambres)
+// {
+// 	if (this->buste >= 0)
+// 		Robot::buste =
+// }

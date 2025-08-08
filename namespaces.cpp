@@ -2,18 +2,18 @@
 
 int	bonjour = 42;
 
-namespace test
+namespace escargot
 {
 	int	bonjour = 666;
 	const char *bonsoir = "bg";
 }
 
-namespace paul = test;
+namespace paul = escargot;
 
 int	main(void)
 {
 	printf("bonjour_global [%d]\n", ::bonjour);
-	printf("bonjour::test [%d]\n", test::bonjour);
+	printf("bonjour::escargot [%d]\n", escargot::bonjour);
 	printf("bonjour::paul [%d]\n", paul::bonjour);
 	printf("bonsoir::paul [%s]\n", paul::bonsoir);
 

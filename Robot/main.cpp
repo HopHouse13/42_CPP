@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_erika.cpp                                     :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 16:34:20 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/07 19:07:39 by pbret            ###   ########.fr       */
+/*   Created: 2025/08/08 19:01:05 by pbret             #+#    #+#             */
+/*   Updated: 2025/08/08 19:15:40 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Erika.class.hpp"
+#include "Robot.class.hpp"
 
 int	main(void)
 {
-	Erika	adri('A', 23, 0.69f, "hello la commu");
+	Robot	robert(1, 2, 3, 4);
 	
-	adri.ft_write();
+	robert.write();
 	return (0);
 }

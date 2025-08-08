@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Erika.class.hpp                                    :+:      :+:    :+:   */
+/*   Robot.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:36:05 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/07 19:13:37 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/08 19:19:29 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERIKA_CLASS_H
-# define ERIKA_CLASS_H
+#ifndef ROBOT_CLASS_H
+# define ROBOT_CLASS_H
 
-#include <iostream> // gestion entree/sortie (i -> in, o -> out, stream -> flux)
-# include <string> // gestion des string
+#include <iostream>
 
-class Erika
+class	Robot
 {
-	public:
-	
-		Erika(char alix1, int alix2 ,float alix3, std::string alix4);
-		~Erika(void);
-		char		seb1;
-		int			seb2;
-		float		seb3;
-		std::string	seb4; // string
-		void	ft_write(void) const;
+	public :
+		Robot(int buste, int tete, int bras, int jambes);
+		~Robot();
+		int		buste;
+		void	write() const;
+		void		setRobot(int buste, int tete, int bras, int jambes);
+		
+	private :
+		int		_bras;
+		int 	_jambes;
+		int 	_tete;
 };
 
 #endif
