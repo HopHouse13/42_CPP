@@ -25,3 +25,18 @@ EXIT : quitte le programme
 
 
 Le programme affiche rien et se ferme si autre commande.
+
+CLASS CONSTACT
+
+- firstName (prenom)
+- lastName
+- nickName
+- phoneNumber
+- darknestSecret
+
+	---
+
+cin
+setw -> pour mettre les espaces
+modulo 8 -> pour gerer les index
+iomanip

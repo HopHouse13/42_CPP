@@ -1,51 +1,45 @@
-GREEN	= \033[1;32m
-RED		= \033[0;31m
-BLUE	= \033[0;34m
-YELLOW	= \033[1;33m
-CYAN	= \033[0;36m
-RESET	= \033[0m
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
+#    Updated: 2025/08/12 19:12:41 by pbret            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME		= 	megaphone
+NAME		= funPhoneBook
+SRCS_DIR	= srcs
+OBJ_DIR 	= obj_$(NAME)
+SRCS		= srcs/main.cpp \
+			srcs/Contact.class.cpp \
+			srcs/PhoneBook.class.cpp
 
-CPP			= 	c++
+OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+CC			= c++
+RM			= rm -rf
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 -ggdb -I$(SRCS_DIR) #-Wconversion -MMD 
 
-FLAGS		= 	-Wall -Werror -Wextra -std=c++98 -g3 -MMD #-Wconversion
+$(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
+			@mkdir -p $(@D)
+			@$(CC) -g $(CFLAGS) -c $< -o $@
+			
+all:		$(NAME)
 
-SRC_FILES	=	megaphone
-
-SRC_DIR		= 	./
-
-OBJ_DIR		= 	./obj/
-
-SRC			= 	$(addprefix $(SRC_DIR), $(addsuffix .cpp, $(SRC_FILES)))
-
-OBJ			= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-
-DEP			= 	$(OBJ:.o=.d)
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
-	@mkdir -p $(OBJ_DIR)
-	@$(CPP) $(FLAGS) -c $< -o $@
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@echo "$(BLUE)Compiling $(NAME)...$(RESET)"
-	@$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)Executable $(NAME) created$(RESET)"
+$(NAME):	$(OBJS)
+			@$(CC) $(OBJS) -o $(NAME) -g 
+			@echo "\033[32m""Compilation of $(NAME) completed!""\033[0m"
 
 clean:
-	@echo "$(RED)Deleting object files...$(RESET)"
-	@rm -rf $(OBJ_DIR)
-	@echo "$(GREEN)Done$(RESET)"
+			@$(RM) $(OBJ_DIR)
+			@echo "\033[36m""Directory $(OBJ_DIR) delected.""\033[0m"
 
-fclean: clean
-	@echo "$(RED)Deleting $(NAME) executable...$(RESET)"
-	@rm -f $(NAME)
-	@echo "$(GREEN)Done$(RESET)"
+fclean:		clean
+			@$(RM) $(NAME)
+			@echo "\033[36m""Directory $(NAME) delected.""\033[0m"
 
-re: fclean all
+re:			fclean 	all
 
 .PHONY: all clean fclean re
-
--include $(DEP)
