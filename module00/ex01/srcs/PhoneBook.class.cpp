@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/12 20:23:53 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/13 17:53:10 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "constructor PhoneBook called" << std::endl;
+	// std::cout << "constructor PhoneBook called" << std::endl;
 }
 	
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "destructor PhoneBook called" << std::endl;
+	// std::cout << "destructor PhoneBook called" << std::endl;
 }
 
-void	PhoneBook::program_rules()
+void	PhoneBook::programRules(void)
 {	
 	std::cout	<< "\033[93m"
 				<< std::setfill('-') << std::setw(34) << "" << std::setfill(' ') << std::endl
@@ -33,4 +33,32 @@ void	PhoneBook::program_rules()
 				<< "|" << std::left << std::setw(10) << "\"EXIT\"" << "Close the FunPhoneBook" << "|" << std::endl
 				<< std::setfill('-') << std::setw(34) << "" << std::setfill(' ') << std::endl
 				<< "\033[0m";
+}
+
+bool	PhoneBook::exitDoor(void)
+{
+	std::string confirmation;
+	
+	std::cout << GOLD << "Are you sure you want to close FunPhoneBook and delete all contacts?" << std::endl;
+	while(true)
+	{
+		std::cout	<< GOLD << "Confirm exit [y/n]" << std::endl
+					<< GREEN "> ";
+		std::cin	>> confirmation;
+		if (confirmation == "y" || confirmation == "Y")
+		{
+			PhoneBook::messExit();
+			return(true);
+		}
+		else if (confirmation == "n" || confirmation == "N")
+			return(false);
+		else
+			std::cout << GOLD << "Invalid input. Please type 'y' or 'n'." << std::endl;
+	}
+}
+
+void	PhoneBook::messExit(void)
+{
+	std::cout	<< "Thank you for using FunPhoneBook!" << std::endl
+				<< "See you soon 😉" << RESET << std::endl;
 }
