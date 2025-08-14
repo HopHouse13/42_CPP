@@ -6,13 +6,13 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 09:11:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 18:27:21 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.class.hpp"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : _nbC(0)
 {
 	// std::cout << "constructor PhoneBook called" << std::endl;
 }
@@ -35,18 +35,30 @@ void	PhoneBook::programRules(void)
 				<< "\033[0m";
 }
 
-bool	PhoneBook::exitDoor(void)
+void	PhoneBook::addCmd(void)
+{
+/* 	if (8 contact) -> supp le older
+	{
+
+	}
+	else */
+	{
+		std::cout << "Demmarons l'ajout d'un nouveau contacte." << std::endl;
+		this->_repertory[_nbC].addContact();
+		this->_nbC++;
+	}
+}
+
+bool	PhoneBook::exitCmd(void)
 {
 	std::string confirmation;
 	
-	std::cout << GOLD << "Are you sure you want to close FunPhoneBook and delete all contacts?" << std::endl;
+	std::cout << GOLD << "Close FunPhoneBook and delete all contacts?" << std::endl;
 	while(true)
 	{
-		std::cout	<< GOLD << "Confirm exit [y/n]" << std::endl
+		std::cout	<< "Confirm exit [y/n]" << std::endl
 					<< WHITE "> ";
-		if (!std::getline(std::cin, confirmation))
-			return (true);
-		if (confirmation == "y" || confirmation == "Y")
+		if (!std::getline(std::cin, confirmation) || (confirmation == "y" || confirmation == "Y"))
 			return (true);
 		else if (confirmation == "n" || confirmation == "N")
 			return (false);

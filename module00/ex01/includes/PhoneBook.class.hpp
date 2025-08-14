@@ -6,10 +6,11 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 09:11:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 18:25:44 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./Contact.class.hpp"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -32,12 +33,15 @@
 class PhoneBook
 {
 	private :
-	
+				Contact	_repertory[8];
+				int		_nbC;
 	public :
 				PhoneBook(void);
 				~PhoneBook(void);
-				void	programRules(void);
-				bool	exitDoor(void);
-				void	exitMess(void);
+
+				void		programRules(void);
+				void		addCmd(void);
+				bool		exitCmd(void);
+				static void	exitMess(void);
 				std::string	cmd;
 };

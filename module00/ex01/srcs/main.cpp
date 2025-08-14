@@ -6,11 +6,10 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:22:53 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 09:14:08 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 15:16:06 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Contact.class.hpp"
 #include "../includes/PhoneBook.class.hpp"
 
 /* 	- rules du programme
@@ -26,24 +25,16 @@ int	main()
 	while (true)
 	{
 		std::cout << WHITE << "> ";
-		if (!std::getline(std::cin, fpb.cmd))
+		if (!std::getline(std::cin, fpb.cmd)
+			|| (fpb.cmd == "EXIT" && fpb.exitCmd()))
 		{
-			std::cout << std::endl;
 			fpb.exitMess();
 			break ;
 		}
 		if (fpb.cmd == "ADD")
-			std::cout << "1";
+			fpb.addCmd();
 		else if (fpb.cmd == "SEARCH")
 			std::cout << "2";
-		else if (fpb.cmd == "EXIT")
-		{
-			if (fpb.exitDoor())
-			{	
-				fpb.exitMess();
-				break;
-			}
-		}
 		else
 			fpb.programRules();
 	}
