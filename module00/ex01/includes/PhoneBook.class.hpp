@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/13 17:42:18 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 09:11:56 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ class PhoneBook
 				~PhoneBook(void);
 				void	programRules(void);
 				bool	exitDoor(void);
-				void	messExit(void);
+				void	exitMess(void);
 				std::string	cmd;
 };

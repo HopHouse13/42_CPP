@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:10 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 09:11:56 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@ bool	PhoneBook::exitDoor(void)
 	while(true)
 	{
 		std::cout	<< GOLD << "Confirm exit [y/n]" << std::endl
-					<< GREEN "> ";
-		std::cin	>> confirmation;
+					<< WHITE "> ";
+		if (!std::getline(std::cin, confirmation))
+			return (true);
 		if (confirmation == "y" || confirmation == "Y")
-		{
-			PhoneBook::messExit();
-			return(true);
-		}
+			return (true);
 		else if (confirmation == "n" || confirmation == "N")
-			return(false);
+			return (false);
 		else
 			std::cout << GOLD << "Invalid input. Please type 'y' or 'n'." << std::endl;
 	}
 }
 
-void	PhoneBook::messExit(void)
+void	PhoneBook::exitMess(void)
 {
-	std::cout	<< "Thank you for using FunPhoneBook!" << std::endl
+	std::cout	<< GOLD << "Thank you for using FunPhoneBook!" << std::endl
 				<< "See you soon 😉" << RESET << std::endl;
 }

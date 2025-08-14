@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:22:53 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:34 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/14 09:14:08 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 int	main()
 {
 	PhoneBook	fpb;
-	
+
 	fpb.programRules();
 	while (true)
 	{
-		std::cout << GREEN << "> ";
+		std::cout << WHITE << "> ";
 		if (!std::getline(std::cin, fpb.cmd))
 		{
 			std::cout << std::endl;
-			fpb.messExit();
+			fpb.exitMess();
 			break ;
 		}
 		if (fpb.cmd == "ADD")
@@ -39,7 +39,10 @@ int	main()
 		else if (fpb.cmd == "EXIT")
 		{
 			if (fpb.exitDoor())
+			{	
+				fpb.exitMess();
 				break;
+			}
 		}
 		else
 			fpb.programRules();
