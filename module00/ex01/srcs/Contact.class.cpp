@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 18:33:15 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/15 12:39:37 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 				std::string _nickName;
 				std::string	_phoneNumber;
 				std::string	_darknestSecret; */
-Contact::Contact(void)
+Contact::Contact(void)// : _idx(0)
 {
 	std::cout << "constructor Contact called" << std::endl;
 	_field[0] = "First name";
@@ -26,7 +26,7 @@ Contact::Contact(void)
 	_field[3] = "Phone number";
 	_field[4] = "Darkest secret";
 	
-	for(int i = 0; i <= 4; i++)
+	for(int i = 0; i < 5; i++)
 		_value[i] = "";
 }
 
@@ -35,18 +35,22 @@ Contact::~Contact(void)
 	std::cout << "desstructor Contact called" << std::endl;
 }
 
+std::string	Contact::getField(int idx) const
+{
+	return (this->_field[idx]);
+}
+
+std::string	Contact::getValue(int idx) const
+{
+	return (this->_value[idx]);
+}
+
 void	Contact::addContact(void)
 {
-/* 	for(int i = 0; i <= 4; i++)
-		std::cout << _field[i] << std::endl; */
-	for(int i = 0; i <= 4; i++)
+	for(int i = 0; i < 5; i++)
 	{
 		std::cout << "- " << _field[i] << " : ";
 		if(!std::getline(std::cin, _value[i]))
 			break ;
 	}
-/* 	std::cout << "Contact saved" << std::endl;
-	for(int i = 0; i <= 4; i++)
-		std::cout << _field[i] << ": " << _value[i] << std::endl; */
-
 }

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 18:27:21 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/15 14:03:27 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,58 @@ PhoneBook::~PhoneBook(void)
 	// std::cout << "destructor PhoneBook called" << std::endl;
 }
 
-void	PhoneBook::programRules(void)
+void	PhoneBook::programRules(void) const
 {	
 	std::cout	<< "\033[93m"
-				<< std::setfill('-') << std::setw(34) << "" << std::setfill(' ') << std::endl
-				<< "|" << std::left << std::setw(6) << "" << "FUNPHONEBOOK MENU" << std::right << std::setw(10) << "|" << std::endl
-				<< std::setfill('-') << std::setw(34) << "" << std::setfill(' ') << std::endl
-				<< "|" << std::left << std::setw(10) << "\"ADD\"" << "Add a new contact" << std::right << std::setw(6) << "|" << std::endl
-				<< "|" << std::left << std::setw(10) << "\"SEARCH\"" << "Display saved contacts" << "|" << std::endl
-				<< "|" << std::left << std::setw(10) << "\"EXIT\"" << "Close the FunPhoneBook" << "|" << std::endl
-				<< std::setfill('-') << std::setw(34) << "" << std::setfill(' ') << std::endl
+				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
+				<< "|" << std::left << std::setw(13) << "" << "FUNPHONEBOOK MENU" << std::right << std::setw(14) << "|" << std::endl
+				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
+				<< "|" << std::left << std::setw(13) << "\"ADD\"" << "Add a new contact" << std::right << std::setw(14) << "|" << std::endl
+				<< "|" << std::left << std::setw(13) << "\"SEARCH\"" << "Display saved contacts" << std::right << std::setw(9) << "|" << std::endl
+				<< "|" << std::left << std::setw(13) << "\"EXIT\"" << "Close the FunPhoneBook" << std::right << std::setw(9) << "|" << std::endl
+				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
 				<< "\033[0m";
 }
 
 void	PhoneBook::addCmd(void)
 {
-/* 	if (8 contact) -> supp le older
+/* 	if (8 contact) -> remplace le older
 	{
 
 	}
 	else */
 	{
 		std::cout << "Demmarons l'ajout d'un nouveau contacte." << std::endl;
-		this->_repertory[_nbC].addContact();
+		this->_contact[_nbC].addContact();
 		this->_nbC++;
 	}
 }
 
-bool	PhoneBook::exitCmd(void)
+void	PhoneBook::displayRepertory(void) const
+{
+	std::cout	<< "\033[93m" 
+				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
+				<< "|" << std::right << std::setw(10) << "Index" << "|";
+	for (int i = 0; i < 3; i++)
+		std::cout << std::right << std::setw(10) << _contact[i].getField(i) << "|";
+	for(int i = 0; i < 8 && i < this->_nbC; i++)
+	{
+		std::cout << std::endl;
+		if (i == 0)
+			std::cout << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl;
+		std::cout << "|" << std::right << std::setw(10) << i << "|";
+		for(int y = 0; y < 3; y++)	
+			std::cout << std::right << std::setw(10) << _contact[i].getValue(y) << "|";
+	}
+	std::cout << std::endl << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl;
+}
+
+void	PhoneBook::searchCmd(void) const
+{
+	PhoneBook::displayRepertory();
+}
+
+bool	PhoneBook::exitCmd(void) const
 {
 	std::string confirmation;
 	

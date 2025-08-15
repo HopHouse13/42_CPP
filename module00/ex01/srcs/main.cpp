@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:22:53 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 15:16:06 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/15 10:10:52 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main()
 		if (fpb.cmd == "ADD")
 			fpb.addCmd();
 		else if (fpb.cmd == "SEARCH")
-			std::cout << "2";
+			fpb.searchCmd();
 		else
 			fpb.programRules();
 	}

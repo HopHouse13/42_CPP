@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 18:25:44 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/15 13:00:19 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@
 class PhoneBook
 {
 	private :
-				Contact	_repertory[8];
+				Contact	_contact[8];
 				int		_nbC;
 	public :
 				PhoneBook(void);
 				~PhoneBook(void);
 
-				void		programRules(void);
+				void		programRules(void) const;
 				void		addCmd(void);
-				bool		exitCmd(void);
+				void 		searchCmd(void) const;
+				void		displayRepertory(void) const;
+				bool		exitCmd(void) const;
 				static void	exitMess(void);
 				std::string	cmd;
 };

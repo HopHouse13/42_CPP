@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:09 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/14 17:37:54 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/15 12:38:07 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,13 @@ class Contact
 	private :
 				std::string	_field[5];
 				std::string	_value[5];
-				/* std::string	_firstName;
-				std::string	_lastName;
-				std::string _nickName;
-				std::string	_phoneNumber;
-				std::string	_darknestSecret; */
 
 	public :
-
 				Contact(void);
 				~Contact(void);
 
-				void	addContact(void);
+				void		addContact(void);
+				std::string	getField(int idx) const;
+				std::string	getValue(int idx) const;
 		
 };
