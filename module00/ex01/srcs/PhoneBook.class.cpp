@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/15 14:03:27 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/18 20:33:51 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,106 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::programRules(void) const
 {	
-	std::cout	<< "\033[93m"
+	std::cout	<< GOLD << std::endl
 				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
-				<< "|" << std::left << std::setw(13) << "" << "FUNPHONEBOOK MENU" << std::right << std::setw(14) << "|" << std::endl
+				<< "|" << BOLD << std::left << std::setw(13) << "" << "FUNPHONEBOOK MENU" << RESET << GOLD << std::right << std::setw(14) << "|" << std::endl
 				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
-				<< "|" << std::left << std::setw(13) << "\"ADD\"" << "Add a new contact" << std::right << std::setw(14) << "|" << std::endl
-				<< "|" << std::left << std::setw(13) << "\"SEARCH\"" << "Display saved contacts" << std::right << std::setw(9) << "|" << std::endl
-				<< "|" << std::left << std::setw(13) << "\"EXIT\"" << "Close the FunPhoneBook" << std::right << std::setw(9) << "|" << std::endl
-				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
-				<< "\033[0m";
+				<< "|" << std::right << std::setw(12) << "ADD" << " | " << "Add a new contact" << std::right << std::setw(12) << "|" << std::endl
+				<< "|" << std::right << std::setw(12) << "SEARCH" << " | " << "Display a saved contact" << std::right << std::setw(6) << "|" << std::endl
+				<< "|" << std::right << std::setw(12) << "EXIT" << " | " << "Close the FunPhoneBook" << std::right << std::setw(7) << "|" << std::endl
+				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl << std::endl
+				<< RESET;
 }
 
-void	PhoneBook::addCmd(void)
+bool	PhoneBook::addCmd(void)
 {
-/* 	if (8 contact) -> remplace le older
+	std::string confirmation = "";
+	
+	if (this->_nbC >= 8)
 	{
-
+		std::cout	<< GOLD << "Warning: the phonebook is full." << std::endl
+					<< "The contact [" << this->_contact[this->_nbC % 8].getValue(0) << "] will be replaced." << std::endl;
+		while (true)
+		{
+			std::cout	<< "Confirm replace [y/n]" << std::endl
+						<< WHITE "> ";
+			if (!std::getline(std::cin, confirmation))
+			{
+				std::cout << std::endl;
+				return (false);
+			}
+			else if (confirmation == "n" || confirmation == "N")
+			{
+				std::cout << GOLD << "No worries! The contact was not added." << std::endl;
+				return (true);
+			}
+			else if (confirmation == "y" || confirmation == "Y")
+			{
+				this->_contact[this->_nbC % 8].addContact();
+				this->_nbC++;
+				return (true);
+			}
+			else
+				std::cout << GOLD << "Invalid input. Please type 'y' or 'n'." << std::endl;
+		}
 	}
-	else */
+	else
 	{
-		std::cout << "Demmarons l'ajout d'un nouveau contacte." << std::endl;
+		std::cout << GOLD << "Let's start adding a new contact!" << std::endl;
 		this->_contact[_nbC].addContact();
 		this->_nbC++;
+		return (true);
 	}
+}
+
+// "static_cast<unsigned char>" est la pour s'assurer que isdigit prendra bien une valeur ASCII positive.
+bool	PhoneBook::searchCmd(void) const
+{
+	std::string		idx = "";
+	
+	if (this->_nbC == 0)
+		std::cout << GOLD << "FunPhoneBook is empty currently." << std::endl;
+	else if (this->_nbC == 1)
+	{
+		std::cout 	<< GOLD << "Here's just one contact in the FunPhoneBook :" << std::endl;
+		PhoneBook::displayContact(0);
+	}
+	else if (this->_nbC > 1)
+	{
+		PhoneBook::displayRepertory();
+		std::cout << GOLD << "Which contact do you want to check out?" << std::endl;
+		while (true)
+		{
+			std::cout 	<< "Enter the index of the contact :" << std::endl
+						<< WHITE "> ";
+			if (!std::getline(std::cin, idx))
+			{
+				std::cout << std::endl;
+				return (false);
+			}
+			else if (idx.length() == 1
+					&& std::isdigit(static_cast<unsigned char>(idx[0]))
+					&& (static_cast<int>(idx[0]) - '0') < this->_nbC)
+				{
+					PhoneBook::displayContact(static_cast<int>(idx[0]) - '0');
+					break ;
+				}
+				
+			else
+				std::cout 	<< GOLD << "Oops! That’s not a valid index." << std::endl
+							<< "Please enter a valid index." << std::endl;
+		}
+	}	
+	return (true);
 }
 
 void	PhoneBook::displayRepertory(void) const
 {
-	std::cout	<< "\033[93m" 
+	std::cout	<< GOLD << std::endl
 				<< " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl
 				<< "|" << std::right << std::setw(10) << "Index" << "|";
 	for (int i = 0; i < 3; i++)
-		std::cout << std::right << std::setw(10) << _contact[i].getField(i) << "|";
+		std::cout << std::right << std::setw(10) << this->_contact[i].getField(i) << "|";
 	for(int i = 0; i < 8 && i < this->_nbC; i++)
 	{
 		std::cout << std::endl;
@@ -65,34 +133,49 @@ void	PhoneBook::displayRepertory(void) const
 		for(int y = 0; y < 3; y++)	
 			std::cout << std::right << std::setw(10) << _contact[i].getValue(y) << "|";
 	}
-	std::cout << std::endl << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl;
+	std::cout << std::endl << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl << std::endl;
 }
 
-void	PhoneBook::searchCmd(void) const
+void	PhoneBook::displayContact(int idx) const
 {
-	PhoneBook::displayRepertory();
+	std::cout	<< std::endl
+				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(0) << "\t" << RESET << this->_contact[idx].getValue(0) << std::endl
+				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(1) << "\t" << RESET << this->_contact[idx].getValue(1) << std::endl
+				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(2) << "\t" << RESET << this->_contact[idx].getValue(2) << std::endl
+				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(3) << "\t" << RESET << this->_contact[idx].getValue(3) << std::endl
+				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(4) << "\t" << RESET << this->_contact[idx].getValue(4) << std::endl;
 }
 
 bool	PhoneBook::exitCmd(void) const
 {
-	std::string confirmation;
+	std::string confirmation = "";
 	
 	std::cout << GOLD << "Close FunPhoneBook and delete all contacts?" << std::endl;
 	while(true)
 	{
 		std::cout	<< "Confirm exit [y/n]" << std::endl
 					<< WHITE "> ";
-		if (!std::getline(std::cin, confirmation) || (confirmation == "y" || confirmation == "Y"))
-			return (true);
-		else if (confirmation == "n" || confirmation == "N")
+		if (!std::getline(std::cin, confirmation))
+		{
+			std::cout << std::endl;
 			return (false);
+		}
+		else if (confirmation == "y" || confirmation == "Y")
+			return (false);
+		else if (confirmation == "n" || confirmation == "N")
+			return (true);
 		else
 			std::cout << GOLD << "Invalid input. Please type 'y' or 'n'." << std::endl;
 	}
 }
 
-void	PhoneBook::exitMess(void)
+void	PhoneBook::exitMess(void) const
 {
 	std::cout	<< GOLD << "Thank you for using FunPhoneBook!" << std::endl
 				<< "See you soon 😉" << RESET << std::endl;
 }
+
+
+/* todo
+- parsing inputs ADD
+- gestion +10 caracteres*/

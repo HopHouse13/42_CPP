@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:22:53 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/15 10:10:52 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/18 18:07:09 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,26 @@ int	main()
 {
 	PhoneBook	fpb;
 
-	fpb.programRules();
 	while (true)
 	{
+		fpb.programRules();
 		std::cout << WHITE << "> ";
 		if (!std::getline(std::cin, fpb.cmd)
-			|| (fpb.cmd == "EXIT" && fpb.exitCmd()))
-		{
-			fpb.exitMess();
+			|| (fpb.cmd == "EXIT" && !fpb.exitCmd()))
 			break ;
+		else if (fpb.cmd == "ADD")
+		{	
+			if (!fpb.addCmd())
+				break ;
 		}
-		if (fpb.cmd == "ADD")
-			fpb.addCmd();
 		else if (fpb.cmd == "SEARCH")
-			fpb.searchCmd();
+		{	
+			if (!fpb.searchCmd())
+				break ;
+		}
 		else
-			fpb.programRules();
+			std::cout << GOLD << "Invalid input. try again." << std::endl;
 	}
+	fpb.exitMess();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/15 13:00:19 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/18 19:53:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iomanip>
 #include <string>
 #include <cstdlib>  // exit
+#include <cctype>	// isdigit
 
 #define BLINK	"\033[5m"
 #define BOLD	"\033[1m"
@@ -40,10 +41,12 @@ class PhoneBook
 				~PhoneBook(void);
 
 				void		programRules(void) const;
-				void		addCmd(void);
-				void 		searchCmd(void) const;
-				void		displayRepertory(void) const;
+				bool		addCmd(void);
+				bool 		searchCmd(void) const;
 				bool		exitCmd(void) const;
-				static void	exitMess(void);
+				void		displayRepertory(void) const;
+				void		displayContact(int idx) const;
+
+				void		exitMess(void) const;
 				std::string	cmd;
 };
