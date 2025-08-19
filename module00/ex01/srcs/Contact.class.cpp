@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/18 20:28:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/19 02:02:59 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ std::string	Contact::getValue(int idx) const
 	return (this->_value[idx]);
 }
 
-void	Contact::addContact(void)
+bool	Contact::addContact(void)
 {
 	std::cout << std::endl;
 	for(int i = 0; i < 5; i++)
 	{
 		std::cout <<GOLD << std::right << std::setw(15) << _field[i] << RESET << "\t";
 		if(!std::getline(std::cin, _value[i]))
-			break ;
+		{
+			std::cout << std::endl;
+			return (false);
+		}
 	}
+	return (true);
 }

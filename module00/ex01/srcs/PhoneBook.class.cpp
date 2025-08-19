@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/18 20:33:51 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/19 01:55:28 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ bool	PhoneBook::addCmd(void)
 			}
 			else if (confirmation == "y" || confirmation == "Y")
 			{
-				this->_contact[this->_nbC % 8].addContact();
+				if (!this->_contact[this->_nbC % 8].addContact())
+					return (false);
 				this->_nbC++;
 				return (true);
 			}
@@ -70,7 +71,8 @@ bool	PhoneBook::addCmd(void)
 	else
 	{
 		std::cout << GOLD << "Let's start adding a new contact!" << std::endl;
-		this->_contact[_nbC].addContact();
+		if (!this->_contact[_nbC].addContact())
+			return (false);
 		this->_nbC++;
 		return (true);
 	}
@@ -138,12 +140,9 @@ void	PhoneBook::displayRepertory(void) const
 
 void	PhoneBook::displayContact(int idx) const
 {
-	std::cout	<< std::endl
-				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(0) << "\t" << RESET << this->_contact[idx].getValue(0) << std::endl
-				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(1) << "\t" << RESET << this->_contact[idx].getValue(1) << std::endl
-				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(2) << "\t" << RESET << this->_contact[idx].getValue(2) << std::endl
-				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(3) << "\t" << RESET << this->_contact[idx].getValue(3) << std::endl
-				<< GOLD << std::right << std::setw(15) << this->_contact[idx].getField(4) << "\t" << RESET << this->_contact[idx].getValue(4) << std::endl;
+	std::cout	<< std::endl;
+	for(int i = 0; i < 5; i++)
+		std::cout << GOLD << std::right << std::setw(15) << this->_contact[idx].getField(i) << "\t" << RESET << this->_contact[idx].getValue(i) << std::endl;
 }
 
 bool	PhoneBook::exitCmd(void) const
@@ -155,12 +154,7 @@ bool	PhoneBook::exitCmd(void) const
 	{
 		std::cout	<< "Confirm exit [y/n]" << std::endl
 					<< WHITE "> ";
-		if (!std::getline(std::cin, confirmation))
-		{
-			std::cout << std::endl;
-			return (false);
-		}
-		else if (confirmation == "y" || confirmation == "Y")
+		if (!std::getline(std::cin, confirmation) || (confirmation == "y" || confirmation == "Y"))
 			return (false);
 		else if (confirmation == "n" || confirmation == "N")
 			return (true);
@@ -171,7 +165,7 @@ bool	PhoneBook::exitCmd(void) const
 
 void	PhoneBook::exitMess(void) const
 {
-	std::cout	<< GOLD << "Thank you for using FunPhoneBook!" << std::endl
+	std::cout	<< std::endl << GOLD << "Thank you for using FunPhoneBook!" << std::endl
 				<< "See you soon 😉" << RESET << std::endl;
 }
 
