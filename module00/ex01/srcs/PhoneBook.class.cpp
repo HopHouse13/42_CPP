@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/19 01:55:28 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/19 14:29:23 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	PhoneBook::addCmd(void)
 // "static_cast<unsigned char>" est la pour s'assurer que isdigit prendra bien une valeur ASCII positive.
 bool	PhoneBook::searchCmd(void) const
 {
-	std::string		idx = "";
+	std::string	idx = "";
 	
 	if (this->_nbC == 0)
 		std::cout << GOLD << "FunPhoneBook is empty currently." << std::endl;
@@ -126,14 +126,14 @@ void	PhoneBook::displayRepertory(void) const
 				<< "|" << std::right << std::setw(10) << "Index" << "|";
 	for (int i = 0; i < 3; i++)
 		std::cout << std::right << std::setw(10) << this->_contact[i].getField(i) << "|";
-	for(int i = 0; i < 8 && i < this->_nbC; i++)
+	for (int i = 0; i < 8 && i < this->_nbC; i++)
 	{
 		std::cout << std::endl;
 		if (i == 0)
 			std::cout << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl;
 		std::cout << "|" << std::right << std::setw(10) << i << "|";
-		for(int y = 0; y < 3; y++)	
-			std::cout << std::right << std::setw(10) << _contact[i].getValue(y) << "|";
+		for (int y = 0; y < 3; y++)	
+			std::cout << RESET << std::right << std::setw(10) << _contact[i].getFormattedValue(_contact[i].getValue(y)) << GOLD << "|";
 	}
 	std::cout << std::endl << " " << std::setfill('-') << std::setw(43) << "" << std::setfill(' ') << std::endl << std::endl;
 }
@@ -141,7 +141,7 @@ void	PhoneBook::displayRepertory(void) const
 void	PhoneBook::displayContact(int idx) const
 {
 	std::cout	<< std::endl;
-	for(int i = 0; i < 5; i++)
+	for (int i = 0; i < 5; i++)
 		std::cout << GOLD << std::right << std::setw(15) << this->_contact[idx].getField(i) << "\t" << RESET << this->_contact[idx].getValue(i) << std::endl;
 }
 
@@ -150,7 +150,7 @@ bool	PhoneBook::exitCmd(void) const
 	std::string confirmation = "";
 	
 	std::cout << GOLD << "Close FunPhoneBook and delete all contacts?" << std::endl;
-	while(true)
+	while (true)
 	{
 		std::cout	<< "Confirm exit [y/n]" << std::endl
 					<< WHITE "> ";
@@ -172,4 +172,4 @@ void	PhoneBook::exitMess(void) const
 
 /* todo
 - parsing inputs ADD
-- gestion +10 caracteres*/
+*/
