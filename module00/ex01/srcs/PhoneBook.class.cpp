@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/20 02:54:03 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/20 16:58:52 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	PhoneBook::addCmd(void)
 			}
 			else if (confirmation == "n" || confirmation == "N")
 			{
-				std::cout << GOLD << "No worries! The contact was not added." << std::endl;
+				std::cout << GOLD << std::endl << "No worries! The contact was not added." << std::endl;
 				return (true);
 			}
 			else if (confirmation == "y" || confirmation == "Y")
@@ -73,7 +73,10 @@ bool	PhoneBook::addCmd(void)
 	}
 	else
 	{
-		std::cout << GOLD << "Let's start adding a new contact!" << std::endl;
+		std::cout	<< GOLD << "Let's start adding a new contact!" << std::endl << std::endl
+					<< "Please make sure all fields are filled in." << std::endl
+					<< "First and last name can only contain letters and '-'." << std::endl
+					<< "Phone number can only contain digits and '+'." << std::endl;
 		if (!this->_contact[_nbC].addContact())
 			return (false);
 		this->_nbC++;
@@ -171,8 +174,3 @@ void	PhoneBook::exitMess(void) const
 	std::cout	<< std::endl << GOLD << "Thank you for using FunPhoneBook!" << std::endl
 				<< "See you soon 😉" << RESET << std::endl;
 }
-
-
-/* todo
-- parsing inputs ADD
-*/

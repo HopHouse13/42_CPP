@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:22:53 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/20 03:02:22 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/20 17:02:02 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	main()
 	{
 		fpb.programRules();
 		std::cout << WHITE << "> ";
-		if (!std::getline(std::cin, fpb.cmd) || fpb.cmd == "EXIT")
+		if (!std::getline(std::cin, fpb.cmd))
+			break ;
+		if (fpb.cmd == "EXIT")
 		{
 			if (fpb.exitCmd())
 				continue ;
