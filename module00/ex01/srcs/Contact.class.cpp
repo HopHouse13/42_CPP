@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/19 17:21:03 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/20 02:54:25 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ Contact::Contact(void)// : _idx(0)
 	
 	for (int i = 0; i < 5; i++)
 		_value[i] = "";
+	return ;
 }
 
 Contact::~Contact(void)
 {
 	//std::cout << "desstructor Contact called" << std::endl;
+	return ;
 }
 
 std::string	Contact::getField(int idx) const
@@ -42,10 +44,18 @@ std::string	Contact::getValue(int idx) const
 
 bool	Contact::addContact(void)
 {
+	bool	flag = false;
+	
 	std::cout << std::endl;
 	for (int i = 0; i < 5; i++)
 	{
-		std::cout << GOLD << std::right << std::setw(15) << _field[i] << RESET << "\t";
+		if (flag == false)
+			std::cout << GOLD << std::right << std::setw(15) << _field[i] << RESET << "    ";
+		else if (flag == true)
+		{	
+			std::cout << GOLD << std::right << std::setw(15) << _field[i] << RESET << " ⚠️  ";
+			flag = false;
+		}
 		if (!std::getline(std::cin, this->_value[i]))
 		{
 			std::cout << std::endl;
@@ -54,20 +64,9 @@ bool	Contact::addContact(void)
 		else if (!this->isFull(this->_value[i])
 				|| ((i == 0 || i == 1) && !this->areAlphas(this->_value[i]))
 				|| (i == 3 && !this->areDigitsPlus(this->_value[i])))
-		{	
-			while (true)
-			{
-				std::cout << GOLD << "⚠️" << std::right << std::setw(14) << _field[i] << "\t" << RESET;
-				if (!std::getline(std::cin, this->_value[i]))
-				{
-					std::cout << std::endl;
-					return (false);
-				}
-				else if (this->isFull(this->_value[i])
-						&& (((i == 0 || i == 1) && this->areAlphas(this->_value[i]))
-						|| (i == 3 && this->areDigitsPlus(this->_value[i]))))
-					break ;
-			}
+		{
+			flag = true;
+			i--;
 		}
 	}
 	return (true);
@@ -94,7 +93,7 @@ bool	Contact::areAlphas(std::string str) const
 bool	Contact::areDigitsPlus(std::string str) const
 {
 	for (int i = 0; str[i]; i++)
-		if (!std::isdigit(static_cast<unsigned char>(str[i])) && str[i] != '+')
+		if (!std::isdigit(static_cast<unsigned char>(str[i])) && str[i] != '+' && str[i] != ' ')
 			return (false);
 	return (true);
 }
@@ -102,6 +101,7 @@ bool	Contact::areDigitsPlus(std::string str) const
 bool	Contact::isFull(std::string str) const
 {
 	bool	flag = false;
+	
 	for (int i = 0; str[i]; i++)
 		if (str[i] != ' ')
 			flag = true;

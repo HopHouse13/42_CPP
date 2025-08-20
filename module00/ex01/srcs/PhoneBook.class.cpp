@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/19 14:29:23 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/20 02:54:03 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 PhoneBook::PhoneBook(void) : _nbC(0)
 {
 	// std::cout << "constructor PhoneBook called" << std::endl;
+	return ;
 }
 	
 PhoneBook::~PhoneBook(void)
 {
+	PhoneBook::exitMess();
 	// std::cout << "destructor PhoneBook called" << std::endl;
+	return ;
 }
 
 void	PhoneBook::programRules(void) const
@@ -142,7 +145,7 @@ void	PhoneBook::displayContact(int idx) const
 {
 	std::cout	<< std::endl;
 	for (int i = 0; i < 5; i++)
-		std::cout << GOLD << std::right << std::setw(15) << this->_contact[idx].getField(i) << "\t" << RESET << this->_contact[idx].getValue(i) << std::endl;
+		std::cout << GOLD << std::right << std::setw(15) << this->_contact[idx].getField(i) << "    " << RESET << this->_contact[idx].getValue(i) << std::endl;
 }
 
 bool	PhoneBook::exitCmd(void) const
