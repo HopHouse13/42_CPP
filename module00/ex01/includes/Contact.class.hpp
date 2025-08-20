@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:09 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/19 15:29:47 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/19 17:05:17 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ class Contact
 				std::string	getFormattedValue(std::string str) const;
 				bool		areAlphas(std::string str) const;
 				bool		areDigitsPlus(std::string str) const;
+				bool		isFull(std::string str) const;
+
 };	

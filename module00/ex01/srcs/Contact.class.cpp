@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/19 17:00:09 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/19 17:21:03 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ bool	Contact::addContact(void)
 			std::cout << std::endl;
 			return (false);
 		}
-		else if (((i == 0 || i == 1) && !this->areAlphas(this->_value[i]))
+		else if (!this->isFull(this->_value[i])
+				|| ((i == 0 || i == 1) && !this->areAlphas(this->_value[i]))
 				|| (i == 3 && !this->areDigitsPlus(this->_value[i])))
 		{	
 			while (true)
@@ -62,16 +63,11 @@ bool	Contact::addContact(void)
 					std::cout << std::endl;
 					return (false);
 				}
-				else if (((i == 0 || i == 1) && this->areAlphas(this->_value[i]))
-						|| (i == 3 && this->areDigitsPlus(this->_value[i])))
+				else if (this->isFull(this->_value[i])
+						&& (((i == 0 || i == 1) && this->areAlphas(this->_value[i]))
+						|| (i == 3 && this->areDigitsPlus(this->_value[i]))))
 					break ;
 			}
-			// std::cout << "⚠️   	";
-			// if (i == 0 || i == 1)
-			// 	std::cout << GOLD << std::right << std::setw(15) << "⚠️ " << _field[i] << " doit contenir uniquement des lettres et '-'." << std::endl;
-			// if (i == 3)
-			// 	std::cout << GOLD << std::right << std::setw(15) << "⚠️ " << _field[i] << " doit contenir uniquement des chiffre et '+'." << std::endl;
-			// i--;
 		}
 	}
 	return (true);
@@ -101,4 +97,13 @@ bool	Contact::areDigitsPlus(std::string str) const
 		if (!std::isdigit(static_cast<unsigned char>(str[i])) && str[i] != '+')
 			return (false);
 	return (true);
+}
+
+bool	Contact::isFull(std::string str) const
+{
+	bool	flag = false;
+	for (int i = 0; str[i]; i++)
+		if (str[i] != ' ')
+			flag = true;
+	return (flag);
 }
