@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/18 19:53:23 by pbret            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:29:50 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@
 class PhoneBook
 {
 	private :
-				Contact	_contact[8];
-				int		_nbC;
+				Contact		_contact[8];
+				int			_nbC;
+				void		displayRepertory(void) const;
+				void		displayContact(int idx) const;
+				void		exitMess(void) const;
 	public :
 				PhoneBook(void);
 				~PhoneBook(void);
@@ -44,9 +47,5 @@ class PhoneBook
 				bool		addCmd(void);
 				bool 		searchCmd(void) const;
 				bool		exitCmd(void) const;
-				void		displayRepertory(void) const;
-				void		displayContact(int idx) const;
-
-				void		exitMess(void) const;
 				std::string	cmd;
 };
