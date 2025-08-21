@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/20 16:58:52 by pab              ###   ########.fr       */
+/*   Updated: 2025/08/21 17:34:24 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	PhoneBook::addCmd(void)
 	if (this->_nbC >= 8)
 	{
 		std::cout	<< GOLD << "Warning: the phonebook is full." << std::endl
-					<< "The contact [" << this->_contact[this->_nbC % 8].getValue(0) << "] will be replaced." << std::endl;
+					<< "The contact " << "[" << RESET << this->_contact[this->_nbC % 8].getValue(0) << GOLD << "] will be replaced." << std::endl;
 		while (true)
 		{
 			std::cout	<< "Confirm replace [y/n]" << std::endl
