@@ -37,6 +37,7 @@ public:
 	int		checkAmount( void ) const; // ne serre a rien
 	void	displayStatus( void ) const; //ok
 
+	static void	_displayTimestamp( void ); // ok
 
 private:
 
@@ -45,7 +46,6 @@ private:
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
 
-	static void	_displayTimestamp( void ); // ok
 
 	int				_accountIndex;
 	int				_amount;

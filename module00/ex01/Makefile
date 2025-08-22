@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
+#    By: pab <pab@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/08/12 19:12:41 by pbret            ###   ########.fr        #
+#    Updated: 2025/08/22 12:01:40 by pab              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= funPhoneBook
-SRCS_DIR	= srcs
+SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= srcs/main.cpp \
-			srcs/Contact.class.cpp \
-			srcs/PhoneBook.class.cpp
+SRCS		= sources/main.cpp \
+			sources/Contact.class.cpp \
+			sources/PhoneBook.class.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
