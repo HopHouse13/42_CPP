@@ -25,6 +25,7 @@ Account::~Account( void )
 
 }
 // [YYYYMMDD_HHMMSS]
+// Pour afficher horodatage pour chaque event
 void	Account::_displayTimestamp( void )
 {
 	std::time_t wildTime = std::time(NULL);
