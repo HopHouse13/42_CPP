@@ -27,32 +27,31 @@ public:
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void ); // ok
+	static void	displayAccountsInfos( void ); // displays details of all accounts
 
-	Account( int initial_deposit ); // ok
-	~Account( void ); // ok
+	Account( int initial_deposit ); // constructor
+	~Account( void ); // destructor
 
-	void	makeDeposit( int deposit ); // ok
-	bool	makeWithdrawal( int withdrawal ); // ok
-	int		checkAmount( void ) const; // ne serre a rien
-	void	displayStatus( void ) const; //ok
+	void	makeDeposit( int deposit ); // make a deposit
+	bool	makeWithdrawal( int withdrawal ); // make a withdrawal
+	int		checkAmount( void ) const;
+	void	displayStatus( void ) const; // displays details of this specific account
 
-	static void	_displayTimestamp( void ); // ok
+	static void	_displayTimestamp( void ); // displays a timestamp
 
 private:
 
-	static int	_nbAccounts;
-	static int	_totalAmount;
-	static int	_totalNbDeposits;
-	static int	_totalNbWithdrawals;
+	static int	_nbAccounts; // total number of accounts
+	static int	_totalAmount; // total amount across all accounts
+	static int	_totalNbDeposits; // total number of deposits
+	static int	_totalNbWithdrawals; // total number of withdrawals
 
+	int				_accountIndex; // account index
+	int				_amount; // account balance
+	int				_nbDeposits; // number of deposits for this account
+	int				_nbWithdrawals; // number of withdrawals for this account
 
-	int				_accountIndex;
-	int				_amount;
-	int				_nbDeposits;
-	int				_nbWithdrawals;
-
-	Account( void );
+	Account( void ); // default constructor (private)
 
 };
 
