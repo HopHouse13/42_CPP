@@ -6,11 +6,11 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/04 19:34:26 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/07 14:22:42 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= greatJob
+NAME		= GreatJob
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= tests.cpp \
 			Account.cpp

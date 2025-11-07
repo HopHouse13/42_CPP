@@ -1,6 +1,6 @@
 // ************************************************************************** //
 //                                                                            //
-//                Account.hpp for GlobalBanksters United                      //
+//                Account.hpp for GlobalBanksters United                //
 //                Created on  : Thu Nov 20 19:43:15 1989                      //
 //                Last update : Wed Jan 04 14:54:06 1992                      //
 //                Made by : Brad "Buddy" McLane <bm@gbu.com>                  //
@@ -27,31 +27,32 @@ public:
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void ); // displays details of all accounts
+	static void	displayAccountsInfos( void );
 
-	Account( int initial_deposit ); // constructor
-	~Account( void ); // destructor
+	Account( int initial_deposit );
+	~Account( void );
 
-	void	makeDeposit( int deposit ); // make a deposit
-	bool	makeWithdrawal( int withdrawal ); // make a withdrawal
+	void	makeDeposit( int deposit );
+	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
-	void	displayStatus( void ) const; // displays details of this specific account
+	void	displayStatus( void ) const;
 
-	static void	_displayTimestamp( void ); // displays a timestamp
 
 private:
 
-	static int	_nbAccounts; // total number of accounts
-	static int	_totalAmount; // total amount across all accounts
-	static int	_totalNbDeposits; // total number of deposits
-	static int	_totalNbWithdrawals; // total number of withdrawals
+	static int	_nbAccounts;
+	static int	_totalAmount;
+	static int	_totalNbDeposits;
+	static int	_totalNbWithdrawals;
 
-	int				_accountIndex; // account index
-	int				_amount; // account balance
-	int				_nbDeposits; // number of deposits for this account
-	int				_nbWithdrawals; // number of withdrawals for this account
+	static void	_displayTimestamp( void );
 
-	Account( void ); // default constructor (private)
+	int				_accountIndex;
+	int				_amount;
+	int				_nbDeposits;
+	int				_nbWithdrawals;
+
+	Account( void );
 
 };
 

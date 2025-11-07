@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/pbret/Documents/projets/42_CPP/module00/ex02",
-      "program": "/home/pbret/Documents/projets/42_CPP/module00/ex02/build/Debug/outDebug",
+      "cwd": "/home/pbret/Documents/projets/42_CPP/bonjour/Robot",
+      "program": "/home/pbret/Documents/projets/42_CPP/bonjour/Robot/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

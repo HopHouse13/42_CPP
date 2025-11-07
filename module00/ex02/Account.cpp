@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 16:48:24 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/04 19:34:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/07 17:28:07 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 	else
 	{
 		Account::_totalNbWithdrawals++;
+		Account::_totalAmount -= withdrawal;
 		this->_nbWithdrawals++;
 		this->_amount -= withdrawal;
 		std::cout	<< ";withdrawal:" << withdrawal

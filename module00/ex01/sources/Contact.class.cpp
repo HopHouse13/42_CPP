@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/20 17:06:08 by pab              ###   ########.fr       */
+/*   Updated: 2025/11/07 14:57:33 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/PhoneBook.class.hpp"
+#include "PhoneBook.class.hpp"
 
 Contact::Contact(void)// : _idx(0)
 {
