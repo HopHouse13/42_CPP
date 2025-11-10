@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:09 by pbret             #+#    #+#             */
-/*   Updated: 2025/08/20 17:31:26 by pab              ###   ########.fr       */
+/*   Updated: 2025/11/10 19:43:58 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Contact
 				std::string	_field[5];
 				std::string	_value[5];
 				bool		areAlphas(std::string str) const;
+				bool		areAlNum(std::string str) const;
 				bool		areDigitsPlus(std::string str) const;
 				bool		isFull(std::string str) const;
 

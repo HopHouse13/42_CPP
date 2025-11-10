@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/07 14:57:33 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/10 19:43:36 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ bool	Contact::addContact(void)
 		}
 		else if (!this->isFull(this->_value[i])
 				|| ((i == 0 || i == 1) && !this->areAlphas(this->_value[i]))
+				|| ((i == 2 || i == 4) && !this->areAlNum(this->_value[i]))
 				|| (i == 3 && !this->areDigitsPlus(this->_value[i])))
 		{
 			flag = true;
@@ -86,6 +87,14 @@ bool	Contact::areAlphas(std::string str) const
 {
 	for (int i = 0; str[i]; i++)
 		if (!std::isalpha(static_cast<unsigned char>(str[i])) && str[i] != '-')
+			return (false);
+	return (true);
+}
+
+bool	Contact::areAlNum(std::string str) const
+{
+	for (int i = 0; str[i]; i++)
+		if (!std::isalnum(static_cast<unsigned char>(str[i])) && str[i] != '-')
 			return (false);
 	return (true);
 }
