@@ -6,16 +6,16 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/07 14:22:50 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/10 15:55:43 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= FunPhoneBook
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= sources/main.cpp \
-			sources/Contact.class.cpp \
-			sources/PhoneBook.class.cpp
+SRCS		= main.cpp \
+			Contact.class.cpp \
+			PhoneBook.class.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
