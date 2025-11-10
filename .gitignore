@@ -1,1 +1,13 @@
-.vscode
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+
+*~
+*.swp
+*.swo
+
+.vscode/
