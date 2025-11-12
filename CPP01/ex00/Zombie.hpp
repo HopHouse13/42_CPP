@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:01:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/11 19:01:14 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/12 14:42:03 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ class	Zombie
 {
 	public:
 		Zombie(std::string name);
+		~Zombie();
 		void announce(void);
 
 	private:

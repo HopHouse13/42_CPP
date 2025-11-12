@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 16:22:28 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/12 16:33:02 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main()
+// Constructeur
+Zombie::Zombie()
 {
-	// Heap: annonce hors scoop de la fonction d'initialisation
-	Zombie	*z;
-
-	z = newZombie("z1Solo");
-	z->announce();
-	delete z; // lors de la suppression de l'instance, le destructeur de la class est appele
-
-	// Stack: annonce dans le scoop d'une fonction
-	randomChump("z2Solo");
-	return (0);
+}
+Zombie::Zombie(std::string name) : _name(name)
+{
 }
 
+// Destructeur
+Zombie::~Zombie()
+{
+	std::cout << "Démantèlement de l'individu nommée " << _name << std::endl;
+}
+
+void	Zombie::announce(void)
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	return ;
+}
+
+void	Zombie::setName(std::string name)
+{
+	this->_name = name;
+}

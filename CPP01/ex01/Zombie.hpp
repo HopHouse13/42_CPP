@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 16:22:28 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/11 17:01:44 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/12 19:15:34 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <string>
+#include <iostream>
+#include <climits>
 
-int	main()
+class	Zombie
 {
-	// Heap: annonce hors scoop de la fonction d'initialisation
-	Zombie	*z;
+	public:
+		Zombie();
+		Zombie(std::string name);
+		~Zombie();
+		void	announce(void);
+		void	setName(std::string name);
+	private:
+		std::string _name;
+};
 
-	z = newZombie("z1Solo");
-	z->announce();
-	delete z; // lors de la suppression de l'instance, le destructeur de la class est appele
-
-	// Stack: annonce dans le scoop d'une fonction
-	randomChump("z2Solo");
-	return (0);
-}
-
+Zombie* newZombie(std::string name);
+void	randomChump(std::string name);
+Zombie*	zombieHorde(int N, std::string name);

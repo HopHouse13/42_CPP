@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 16:22:28 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/12 14:44:35 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/12 15:46:34 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main()
+void	randomChump(std::string name)
 {
-	// Heap: annonce hors scoop de la fonction d'initialisation
-	Zombie	*z;
+	Zombie	z(name);
 
-	z = newZombie("z1Solo");
-	z->announce();
-	delete z; // lors de la suppression de l'instance, le destructeur de la class est appele
-
-	// Stack: annonce dans le scoop d'une fonction
-	randomChump("z2Solo");
-	return (0);
+	z.announce(); // lorsque la fonction ou l'instance a ete declaree se termine, le destructeur de la class est appele.
 }
-
