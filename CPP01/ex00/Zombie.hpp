@@ -6,9 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:01:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 14:42:03 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/13 18:21:35 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <string>
 #include <iostream>
@@ -18,11 +21,13 @@ class	Zombie
 	public:
 		Zombie(std::string name);
 		~Zombie();
-		void announce(void);
+		void	announce(void);
 
 	private:
-		std::string _name;
+		std::string	_name;
 };
 
-Zombie* newZombie(std::string name);
+Zombie*	newZombie(std::string name);
 void	randomChump(std::string name);
+
+#endif

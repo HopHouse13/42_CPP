@@ -6,22 +6,28 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 14:09:21 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/13 19:44:44 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanA.hpp"
 
 int	main()
 {
-	// Heap: annonce hors scoop de la fonction d'initialisation
-	Zombie	*z;
+	// Humain A est oublige d'avoir une arme -> il doit prendre une REF en 2eme arg
+	Weapon club = Weapon("crude spiked club");
+	HumanA bob("Bob", club); // club est une instance de type Weapon ok mais le constructeur HumanA prends une REF. Je comprends pas
 
-	z = newZombie("z1Solo");
-	z->announce();
-	delete z; // lors de la suppression de l'instance, le destructeur de la class est appele
+	bob.attack();
+	club.setType("some other type of club");
+	bob.attack();
 
-	// Stack: annonce dans le scoop d'une fonction
-	randomChump("z2Solo");
-	return (0);
+	//Weapon club = Weapon("crude spiked club");
+	//HumanB jim("Jim");
+
+	//jim.setWeapon(club);
+	//jim.attack();
+	//club.setType("some other type of club");
+	//jim.attack();
+	return 0;
 }

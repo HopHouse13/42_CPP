@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 14:36:58 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/13 19:42:37 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-using namespace std;
-// Constructeur
-Zombie::Zombie(std::string name) : _name(name)
+#include "Weapon.hpp"
+
+Weapon::Weapon(std::string type) : _type(type)
 {
 	return ;
 }
 
-// Destructeur
-Zombie::~Zombie()
+//Weapon::Weapon(std::string type) // y a t il une dif? ^
+//{
+//	this->setType(type); // why this-> on parle du type de l'instance?
+//	return ;
+//}
+
+Weapon::~Weapon(void)
 {
-	cout << "Démantèlement de l'individu nommée " << _name << endl;
+	return ;
 }
 
-void	Zombie::announce(void)
+const std::string &Weapon::getType(void)
 {
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
+	return (this->_type);
+}
+
+void	Weapon::setType(std::string type)
+{
+	this->_type = type;
 }

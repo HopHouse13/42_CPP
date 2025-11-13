@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 14:36:58 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:39 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/13 19:14:55 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-using namespace std;
-// Constructeur
-Zombie::Zombie(std::string name) : _name(name)
-{
-	return ;
-}
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-// Destructeur
-Zombie::~Zombie()
-{
-	cout << "Démantèlement de l'individu nommée " << _name << endl;
-}
+#include "Weapon.hpp"
+#include <string>
 
-void	Zombie::announce(void)
+class	HumanA
 {
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
-}
+	public:
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA(void);
+		void		attack(void);
+
+	private:
+		Weapon		&_Weapon;
+		std::string	_name;
+};
+#endif

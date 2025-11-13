@@ -6,9 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:09 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/10 19:43:58 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/13 18:16:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CONTACT_CLASS_HPP
+# define CONTACT_CLASS_HPP
 
 #include <string>
 #include <iostream>
@@ -32,3 +35,5 @@ class Contact
 				std::string	getValue(int idx) const;
 				std::string	getFormattedValue(std::string str) const;
 };
+
+#endif
