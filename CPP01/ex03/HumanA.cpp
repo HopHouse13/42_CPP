@@ -6,23 +6,21 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 19:14:58 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:06:47 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _Weapon(weapon)
+HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon)
 {
-	return ;
 }
 
 HumanA::~HumanA(void)
 {
-	return ;
 }	
 
 void	HumanA::attack()
 {
-	std::cout << _name << " attacks with their " << _Weapon.getType() << std::endl;
+	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
 }

@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 16:11:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/14 16:35:30 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/14 18:24:52 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-#include "Weapon.hpp"
-#include <string>
-
-class	HumanA
+int	main()
 {
-	public:
-		HumanA(std::string name, Weapon &weapon);
-		~HumanA(void);
-		void		attack(void);
 
-	private:	
-		std::string	_name;
-		Weapon		&_weapon;
-};
-#endif
+}

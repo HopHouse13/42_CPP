@@ -6,28 +6,34 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 19:44:44 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/14 18:21:55 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main()
 {
-	// Humain A est oublige d'avoir une arme -> il doit prendre une REF en 2eme arg
-	Weapon club = Weapon("crude spiked club");
-	HumanA bob("Bob", club); // club est une instance de type Weapon ok mais le constructeur HumanA prends une REF. Je comprends pas
+	Weapon Weapon1 = Weapon("a baseball bat");
+	HumanA bob("Bob", Weapon1);
 
 	bob.attack();
-	club.setType("some other type of club");
+	Weapon1.setType("an iron bar");
 	bob.attack();
+	
+	
+	Weapon Weapon2 = Weapon("a toothbrush");
+	HumanB jim("Jim");
 
-	//Weapon club = Weapon("crude spiked club");
-	//HumanB jim("Jim");
-
-	//jim.setWeapon(club);
-	//jim.attack();
-	//club.setType("some other type of club");
-	//jim.attack();
-	return 0;
+	jim.attack();
+	jim.setWeapon(Weapon2);
+	jim.attack();
+	Weapon2.setType("a broom");
+	jim.attack();
+	return (0);
 }
+
+//Weapon club1("weapon1"); //Stack
+//Weapon club2 = Weapon("weapon2"); //Stack
+//Weapon *club3 = new Weapon("weapon3"); //Heap

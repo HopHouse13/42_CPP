@@ -6,17 +6,14 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/14 18:24:22 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/14 18:24:44 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= violence
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= main.cpp \
-			Weapon.cpp \
-			HumanA.cpp \
-			HumanB.cpp
+SRCS		= main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++

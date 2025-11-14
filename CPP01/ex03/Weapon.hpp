@@ -6,9 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:11:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 19:31:07 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/14 14:55:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
 #include <string>
 #include <iostream>
@@ -24,3 +27,5 @@ class Weapon
 	private:
 		std::string	_type;
 };
+
+#endif
