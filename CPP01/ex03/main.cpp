@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/14 18:21:55 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/17 13:55:17 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ int	main()
 	bob.attack();
 	Weapon1.setType("an iron bar");
 	bob.attack();
-	
-	
+
+	std::cout << std::endl;
+
 	Weapon Weapon2 = Weapon("a toothbrush");
 	HumanB jim("Jim");
 
 	jim.attack();
 	jim.setWeapon(Weapon2);
 	jim.attack();
-	Weapon2.setType("a broom");
+	Weapon2.setType("a broom"); //balai
 	jim.attack();
 	return (0);
 }

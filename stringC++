@@ -1,0 +1,98 @@
+LISTE COMPLETE DES MÉTHODES std::string (C++)
+
+─────────────────────────────────────────────
+1. CONSTRUCTEURS
+─────────────────────────────────────────────
+string()                                → chaîne vide
+string(const char* s)                   → depuis une chaîne C
+string(const string& other)             → copie
+string(string&& other)                  → move constructor
+string(size_t n, char c)                → répète le caractère c n fois
+string(const char* s, size_t n)         → copie les n premiers caractères
+string(iterator first, iterator last)   → depuis un intervalle
+
+─────────────────────────────────────────────
+2. CAPACITÉ
+─────────────────────────────────────────────
+size(), length()     → taille actuelle
+max_size()           → taille maximale théorique
+capacity()           → capacité mémoire réservée
+reserve(n)           → réserve au moins n caractères
+shrink_to_fit()      → libère la mémoire inutile
+empty()              → true si la string est vide
+resize(n)            → modifie la taille à n
+
+─────────────────────────────────────────────
+3. ACCES AUX CARACTERES
+─────────────────────────────────────────────
+operator[]           → accès direct (non sécurisé)
+at(i)                → accès sécurisé (exception)
+front()              → 1er caractère
+back()               → dernier caractère
+data()               → char* interne (non null-terminated)
+c_str()              → const char* null-terminated
+
+─────────────────────────────────────────────
+4. MODIFICATION
+─────────────────────────────────────────────
+clear()              → vide la string
+push_back(c)         → ajoute un caractère
+pop_back()           → supprime le dernier caractère
+append(str)          → ajoute à la fin
+operator+=           → concatène
+insert(pos, str)     → insère
+erase(pos, len)      → supprime
+replace(pos, len, s) → remplace
+swap(other)          → échange le contenu
+
+─────────────────────────────────────────────
+5. RECHERCHE
+─────────────────────────────────────────────
+find(str)                     → recherche depuis le début
+rfind(str)                    → recherche depuis la fin
+find_first_of(chars)
+find_last_of(chars)
+find_first_not_of(chars)
+find_last_not_of(chars)
+
+Toutes renvoient un index ou string::npos
+
+─────────────────────────────────────────────
+6. EXTRACTION
+─────────────────────────────────────────────
+substr(pos, len)   → renvoie une sous-chaîne copiée
+
+─────────────────────────────────────────────
+7. COMPARAISON
+─────────────────────────────────────────────
+compare(str)       → <0 / =0 / >0 selon le résultat
+Opérateurs : == != < > <= >=
+
+─────────────────────────────────────────────
+8. ITERATEURS
+─────────────────────────────────────────────
+begin(), end()
+rbegin(), rend()
+cbegin(), cend()
+crbegin(), crend()
+
+─────────────────────────────────────────────
+9. CONVERSIONS NUMERIQUES (dans <string>)
+─────────────────────────────────────────────
+stoi(str)              → string → int
+stol(str)              → long
+stoll(str)             → long long
+stof(str)              → float
+stod(str)              → double
+stold(str)             → long double
+to_string(value)       → nombre → string
+
+─────────────────────────────────────────────
+RÉSUMÉ EXPRESS
+─────────────────────────────────────────────
+Taille       : size(), empty(), capacity()
+Accès        : operator[], at(), c_str()
+Modification : append(), erase(), replace()
+Recherche    : find(), rfind(), substr()
+Conversion   : stoi(), to_string()
+

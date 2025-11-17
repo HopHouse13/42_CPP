@@ -1,0 +1,30 @@
+
+--------------
+
+prog (ac, av)
+3 args	-> if != 3 -> dead
+
+args: 	-> fileName
+		-> s1
+		-> s2
+
+ouverture du fichier <fileName> -> copie dans une new_file <fileName>.replace
+Dans cette copie: Totalite de l'ocurrence s1 est remplacee par la totalite de s2
+
+std::string.replace intedit
+
+cas:
+
+- s1 vide: copie de fileName dans newFile
+- s2 vide: remplace s1 rien -> suppression de s1.
+- fileName ne s'ouvre pas (droit)
+- fileName est un dossier
+- fileName est vide
+
+
+ouverture mode lecture  le fileName
+boucle (jusqua la fin de la lecture du fileName)
+-> lecture en cherchant s1
+-> si s1 trouve : 	- copie de tout ce qui il ya avant
+					- copie de s2 sur newFile
+					- mise de l'index a la fin de s1 dansfileName.

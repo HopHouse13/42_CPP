@@ -1,0 +1,16 @@
+I am a line.
+This line should be here.
+Line line line.
+
+s1 = "line ";
+s2 = "dada";
+
+I am line.
+This dadashould be here.
+Line dadaline.
+
+std::string str = "Hello"
+std::string str2 = "Pierre"
+
+str += str2;
+str = "HelloPierre"
