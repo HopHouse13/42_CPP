@@ -6,22 +6,20 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/18 16:47:56 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/18 14:52:12 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Zombies
+NAME		= Harl
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
-			Zombie.class.cpp \
-			newZombie.cpp \
-			randomChump.cpp
+			Harl.class.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -std=c++98 -Iincludes #-I$(SRCS_DIR) -Wconversion -MMD -ggdb
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 #-Iincludes -I$(SRCS_DIR) -Wconversion -MMD -ggdb
 
 $(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
 			@mkdir -p $(@D)

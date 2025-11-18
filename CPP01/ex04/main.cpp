@@ -6,14 +6,14 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/17 19:54:07 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/18 17:03:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 
-void	remplace(std::string *line, size_t *idx, std::string *s1, std::string *s2)
+void	remplace(std::string *line, size_t *idx, const std::string *s1, const std::string *s2)
 {
 	line->erase(*idx, s1->length());
 	line->insert(*idx, *s2);
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	if (ac == 4)
 	{
 		err = handleRemplace(av);
-		if (err== 0)
+		if (err == 0)
 			std::cout << "The program executed successfully";
 		else if (err == 2)
 			std::cout << "Unable to open the input parameter file";
@@ -87,5 +87,5 @@ int	main(int ac, char **av)
 	
 }
 
-
+// est ce que j'enleve la secu si le fichier de dest existe deja? je peux l'ecraser.
 // Que faire quand le file d'entree est une dossier???

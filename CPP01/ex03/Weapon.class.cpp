@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 19:50:21 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 16:14:35 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.class.hpp"
+#include "Weapon.class.hpp"
 
-int	main()
+Weapon::Weapon(std::string const &type) : _type(type)
 {
-	Zombie	*zHorde;
-	int		nbZombie = 1;
+	return ;
+}
 
-	if (nbZombie > 0)
-	{
-		zHorde = zombieHorde(nbZombie, "zHorde"); // ft qui alloue le tableau de zombie
+Weapon::~Weapon(void)
+{
+	return ;
+}
 
-		for (int i = 0; i < nbZombie; i++)
-			zHorde[i].announce(); // on parcourt le tab de zombie pour les annoncer
+const std::string &Weapon::getType(void) const
+{
+	return (this->_type);
+}
 
-		delete [] zHorde; // "free" le tab
-	}
-	else
-		std::cout << "invalid value" << std::endl;
-	return (0);
+void	Weapon::setType(std::string type)
+{
+	this->_type = type;
 }

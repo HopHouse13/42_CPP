@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 19:50:21 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 13:14:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.class.hpp"
 
-int	main()
+// Constructeur
+Zombie::Zombie()
 {
-	Zombie	*zHorde;
-	int		nbZombie = 1;
+}
+Zombie::Zombie(std::string name) : _name(name)
+{
+}
 
-	if (nbZombie > 0)
-	{
-		zHorde = zombieHorde(nbZombie, "zHorde"); // ft qui alloue le tableau de zombie
+// Destructeur
+Zombie::~Zombie()
+{
+	std::cout << "Démantèlement de l'individu nommée " << _name << std::endl;
+}
 
-		for (int i = 0; i < nbZombie; i++)
-			zHorde[i].announce(); // on parcourt le tab de zombie pour les annoncer
+void	Zombie::announce(void)
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	return ;
+}
 
-		delete [] zHorde; // "free" le tab
-	}
-	else
-		std::cout << "invalid value" << std::endl;
-	return (0);
+void	Zombie::setName(std::string name)
+{
+	this->_name = name;
 }

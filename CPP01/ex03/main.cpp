@@ -6,12 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/17 13:55:17 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/18 17:05:24 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "HumanA.class.hpp"
+#include "HumanB.class.hpp"
 
 int	main()
 {

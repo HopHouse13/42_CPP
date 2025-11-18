@@ -6,18 +6,18 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:50:17 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 16:40:59 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/18 19:49:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Zombie.class.hpp"
 
 Zombie*	zombieHorde(int N, std::string name)
 {
-	Zombie	*zHorde;
+	Zombie	*zHorde; // ptr du futur tab de zombie
 
-	zHorde = new Zombie[N];
+	zHorde = new Zombie[N]; // allocation du tab
 	for (int i = 0; i < N; i++)
-		zHorde[i].setName(name);
-	return (zHorde);
+		zHorde[i].setName(name); // set le name pour chaque zombie
+	return (zHorde); // retour ptr du tab
 }

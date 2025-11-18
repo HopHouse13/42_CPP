@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 19:50:21 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:39 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 16:27:42 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.class.hpp"
+#ifndef HUMANB_CLASS_HPP
+# define HUMANB_CLASS_HPP
 
-int	main()
+#include "Weapon.class.hpp"
+#include <string>
+
+class	HumanB
 {
-	Zombie	*zHorde;
-	int		nbZombie = 1;
+	public:
+		HumanB(std::string name);
+		~HumanB(void);
+		void	attack(void);
+		void	setWeapon(Weapon &weapon);
 
-	if (nbZombie > 0)
-	{
-		zHorde = zombieHorde(nbZombie, "zHorde"); // ft qui alloue le tableau de zombie
+	private:
+		std::string	_name;
+		Weapon		*_weapon;
+};
 
-		for (int i = 0; i < nbZombie; i++)
-			zHorde[i].announce(); // on parcourt le tab de zombie pour les annoncer
 
-		delete [] zHorde; // "free" le tab
-	}
-	else
-		std::cout << "invalid value" << std::endl;
-	return (0);
-}
+#endif

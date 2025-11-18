@@ -6,24 +6,25 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/08/12 14:53:03 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/18 16:00:44 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= megaphone
-SRCS_DIR	= srcs
+NAME		= HarlFilter
+SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= srcs/megaphone.cpp
+SRCS		= main.cpp \
+			Harl.class.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -std=c++98 -ggdb -I$(SRCS_DIR) #-Wconversion -MMD 
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 #-Iincludes -I$(SRCS_DIR) -Wconversion -MMD -ggdb
 
 $(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
 			@mkdir -p $(@D)
 			@$(CC) -g $(CFLAGS) -c $< -o $@
-			
+
 all:		$(NAME)
 
 $(NAME):	$(OBJS)

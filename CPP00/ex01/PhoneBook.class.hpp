@@ -6,9 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:19:46 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/10 14:31:29 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/18 13:17:30 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PHONEBOOK_CLASS_HPP
+# define PHONEBOOK_CLASS_HPP
 
 #include "Contact.class.hpp"
 #include <iostream>
@@ -49,3 +52,5 @@ class PhoneBook
 				bool		exitCmd(void) const;
 				std::string	cmd;
 };
+
+#endif

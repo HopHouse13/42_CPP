@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/13 14:36:58 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 17:08:44 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-using namespace std;
-// Constructeur
-Zombie::Zombie(std::string name) : _name(name)
+#include "HumanA.class.hpp"
+
+HumanA::HumanA(std::string const &name, Weapon const& weapon) : _name(name), _weapon(weapon)
 {
-	return ;
 }
 
-// Destructeur
-Zombie::~Zombie()
+HumanA::~HumanA(void)
 {
-	cout << "Démantèlement de l'individu nommée " << _name << endl;
-}
+}	
 
-void	Zombie::announce(void)
+void	HumanA::attack()
 {
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
+	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
 }

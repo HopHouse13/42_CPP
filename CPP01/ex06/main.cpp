@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 19:50:21 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/18 13:34:20 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 18:52:50 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.class.hpp"
+#include "Harl.class.hpp"
 
-int	main()
+int	main(int ac, char **av)
 {
-	Zombie	*zHorde;
-	int		nbZombie = 1;
 
-	if (nbZombie > 0)
+	if (ac == 2)
 	{
-		zHorde = zombieHorde(nbZombie, "zHorde"); // ft qui alloue le tableau de zombie
+		Harl	Harl;
 
-		for (int i = 0; i < nbZombie; i++)
-			zHorde[i].announce(); // on parcourt le tab de zombie pour les annoncer
-
-		delete [] zHorde; // "free" le tab
+		Harl.complain(av[1]);
 	}
 	else
-		std::cout << "invalid value" << std::endl;
+	{
+		std::cout 	<< "The command format is invalid:"
+					<< " Please enter the command in the format <./HarlFilter> <level>"
+					<< std::endl;
+		return (1);
+	}
 	return (0);
 }

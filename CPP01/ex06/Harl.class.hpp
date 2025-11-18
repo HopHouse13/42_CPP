@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Harl.class.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/12 16:33:02 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/18 12:51:52 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/18 15:50:34 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HARL_CLASS_HPP
+# define HARL_CLASS_HPP
 
-// Constructeur
-Zombie::Zombie()
-{
-}
-Zombie::Zombie(std::string name) : _name(name)
-{
-}
+#include <string>
+#include <iostream>
 
-// Destructeur
-Zombie::~Zombie()
+class	Harl
 {
-	std::cout << "Démantèlement de l'individu nommée " << _name << std::endl;
-}
+	public:
+		void	complain(std::string level);
 
-void	Zombie::announce(void)
-{
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
-}
+	private:
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
+};
 
-void	Zombie::setName(std::string name)
-{
-	this->_name = name;
-}
+#endif
