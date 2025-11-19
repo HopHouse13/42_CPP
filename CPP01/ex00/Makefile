@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/18 16:47:56 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/19 13:51:19 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= Zombies
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
-			Zombie.class.cpp \
+			Zombie.cpp \
 			newZombie.cpp \
 			randomChump.cpp
 

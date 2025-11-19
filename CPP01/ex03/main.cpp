@@ -6,12 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 17:05:24 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:13:15 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.class.hpp"
-#include "HumanB.class.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main()
 {
@@ -22,8 +22,8 @@ int	main()
 	Weapon1.setType("an iron bar");
 	bob.attack();
 
-	std::cout << std::endl;
-
+	std::cout << "-----------" << std::endl;
+	
 	Weapon Weapon2 = Weapon("a toothbrush");
 	HumanB jim("Jim");
 

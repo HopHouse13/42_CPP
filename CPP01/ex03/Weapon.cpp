@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.class.cpp                                   :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:05:23 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 16:47:35 by pbret            ###   ########.fr       */
+/*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
+/*   Updated: 2025/11/19 15:05:44 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.class.hpp"
-// Constructeur
-Zombie::Zombie(std::string name) : _name(name)
+#include "Weapon.hpp"
+
+Weapon::Weapon(std::string const &type) : _type(type)
 {
 	return ;
 }
 
-// Destructeur
-Zombie::~Zombie()
+Weapon::~Weapon(void)
 {
-	std::cout << "Démantèlement de l'individu nommée " << _name << std::endl;
+	return ;
 }
 
-void	Zombie::announce(void)
+const std::string &Weapon::getType(void) const
 {
-	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	return ;
+	return (this->_type);
+}
+
+void	Weapon::setType(std::string type)
+{
+	this->_type = type;
 }

@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/18 16:00:44 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/19 15:27:04 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= HarlFilter
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
-			Harl.class.cpp
+			Harl.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++

@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/18 16:43:58 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/19 14:00:47 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= Zombies
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
-			Zombie.class.cpp \
+			Zombie.cpp \
 			zombieHorde.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -29,7 +29,7 @@ $(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(OBJS) -o $(NAME) -g 
+			@$(CC) $(OBJS) -o $(NAME) -g 	
 			@echo "\033[32m""Compilation of $(NAME) completed!""\033[0m"
 
 clean:

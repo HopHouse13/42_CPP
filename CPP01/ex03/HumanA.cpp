@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.class.cpp                                   :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 16:30:15 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:06:40 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.class.hpp"
+#include "HumanA.hpp"
 
-HumanB::HumanB(std::string name) : _name(name) , _weapon(nullptr)
+HumanA::HumanA(std::string const &name, Weapon const& weapon) : _name(name), _weapon(weapon)
 {
 }
 
-HumanB::~HumanB(void)
+HumanA::~HumanA(void)
 {
-}
+}	
 
-void	HumanB::attack()
+void	HumanA::attack()
 {
-	if (_weapon != nullptr)
-		std::cout << _name << " attacks with " << _weapon->getType() << std::endl;
-	else
-		std::cout << _name << " attacks with his bare hands.. good luck." << std::endl; //mains nues
-}
-
-void	HumanB::setWeapon(Weapon &weapon)
-{
-	_weapon = &weapon;
+	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
 }

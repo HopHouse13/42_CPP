@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.class.cpp                                   :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 16:14:35 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:06:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.class.hpp"
+#include "HumanB.hpp"
 
-Weapon::Weapon(std::string const &type) : _type(type)
+HumanB::HumanB(std::string name) : _name(name) , _weapon(nullptr)
 {
-	return ;
 }
 
-Weapon::~Weapon(void)
+HumanB::~HumanB(void)
 {
-	return ;
 }
 
-const std::string &Weapon::getType(void) const
+void	HumanB::attack()
 {
-	return (this->_type);
+	if (_weapon != nullptr)
+		std::cout << _name << " attacks with " << _weapon->getType() << std::endl;
+	else
+		std::cout << _name << " attacks with his bare hands.. good luck." << std::endl; //mains nues
 }
 
-void	Weapon::setType(std::string type)
+void	HumanB::setWeapon(Weapon &weapon)
 {
-	this->_type = type;
+	_weapon = &weapon;
 }

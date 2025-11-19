@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 17:03:23 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:24:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	remplace(std::string *line, size_t *idx, const std::string *s1, const std::string *s2)
 {
-	line->erase(*idx, s1->length());
-	line->insert(*idx, *s2);
-	*idx += s2->length();
+	line->erase(*idx, s1->length());							// Dans <line>, supp. a partir de la position <idx> pour la longueur de s1
+	line->insert(*idx, *s2);									// Dans <line>, insere s2 a partir de la position <idx> (elle est tjs a la mm pos)
+	*idx += s2->length();										// <idx> avant a la position le nombre de char de s2 -> <idx> de line est le char juste apres l'insersion
 }
 
 int	handleRemplace(char **av)
@@ -26,7 +26,7 @@ int	handleRemplace(char **av)
 	std::string		s1 = av[2];
 	std::string		s2 = av[3];
 
-	std::ifstream	oldFile(fileName.c_str());					// c_str renvoit un const char *
+	std::ifstream	oldFile(fileName.c_str());					// c_str renvoit un const char * car <std::ifstream> prend un const char *
 	if (!oldFile)												// check si oldFile s'est bien ouvert(check en realite si l'objet oldFine existe)
 		return (2);
 
@@ -43,7 +43,7 @@ int	handleRemplace(char **av)
 	if (!newFile)												// check si newFile s'est correctement ouvert. 
 		return (4);
 
-	size_t	idx;
+	size_t		idx;
 	std::string	line;
 	while(getline(oldFile, line))
 	{

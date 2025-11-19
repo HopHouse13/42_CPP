@@ -6,12 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:51:52 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/18 13:52:34 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:26:44 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_CLASS_HPP
-# define HARL_CLASS_HPP
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <string>
 #include <iostream>
