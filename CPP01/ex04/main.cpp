@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:16:21 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/19 15:24:12 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 18:13:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,19 @@ int	handleRemplace(char **av)
 	std::string		s1 = av[2];
 	std::string		s2 = av[3];
 
-	std::ifstream	oldFile(fileName.c_str());					// c_str renvoit un const char * car <std::ifstream> prend un const char *
-	if (!oldFile)												// check si oldFile s'est bien ouvert(check en realite si l'objet oldFine existe)
+	if (s1.empty())												// check si le fichier est vide
 		return (2);
 
-	std::string		newF(fileName + ".remplace");
-
-	std::ifstream	checkNameFile(newF.c_str());
-	if (checkNameFile.is_open())								// check si le nouveau fichier n'existe pas deja.
-	{
-		checkNameFile.close();
+	std::ifstream	oldFile(fileName.c_str());					// c_str renvoit un const char * car <std::ifstream> prend un const char *
+	if (!oldFile.is_open())										// check si oldFile s'est bien ouvert(check en realite si l'objet oldFine existe)
 		return (3);
-	}
+	//Check fichier d'entree si il est vide
+	//Interdire filename/s1 vide
+	
+	std::string		newF(fileName + ".replace");
 
 	std::ofstream	newFile(newF.c_str());
-	if (!newFile)												// check si newFile s'est correctement ouvert. 
+	if (!newFile.is_open())										// check si newFile s'est correctement ouvert. 
 		return (4);
 
 	size_t		idx;
@@ -70,9 +68,9 @@ int	main(int ac, char **av)
 		if (err == 0)
 			std::cout << "The program executed successfully";
 		else if (err == 2)
-			std::cout << "Unable to open the input parameter file";
+			std::cout << "s1 is empty";
 		else if (err == 3)
-			std::cout << "The file <nameFile>.replace already exists";
+			std::cout << "Unable to open the input parameter file";
 		else if (err == 4)
 			std::cout << "Unable to open the new file";
 		else
@@ -81,7 +79,7 @@ int	main(int ac, char **av)
 		return (err);
 	}
 	std::cout 	<< "The command format is invalid:"
-				<< " Please enter the command in the format <./exec> <fileName> <s1> <s2>"
+				<< " Please enter the command in the format: ./replace <fileName> <s1> <s2>"
 				<< std::endl;
 	return (err);
 	

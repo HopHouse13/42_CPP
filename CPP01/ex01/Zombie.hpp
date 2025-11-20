@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:01:44 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/19 14:10:19 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 16:36:22 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ class	Zombie
 		std::string _name;
 };
 
-Zombie* newZombie(std::string name);
-void	randomChump(std::string name);
 Zombie*	zombieHorde(int N, std::string name);
 
 #endif

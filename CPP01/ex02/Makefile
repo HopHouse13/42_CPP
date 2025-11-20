@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/11/13 16:14:56 by pbret            ###   ########.fr        #
+#    Updated: 2025/11/19 16:27:56 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS		= main.cpp
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
 RM			= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -std=c++98 -Iincludes #-I$(SRCS_DIR) -Wconversion -MMD -ggdb
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 #-Iincludes -I$(SRCS_DIR) -Wconversion -MMD -ggdb
 
 $(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
 			@mkdir -p $(@D)

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:52:13 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/19 15:26:31 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 17:25:09 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 void	Harl::debug(void)
 {
-	std::cout	<< "DEBUG" << std::endl;
+	std::cout	<< "msg DEBUG" << std::endl;
 }
 
 void	Harl::info(void)
 {
-	std::cout	<< "INFO" << std::endl;
+	std::cout	<< "msg INFO" << std::endl;
 	
 }
 
 void	Harl::warning(void)
 {
-		std::cout	<< "WARNING" << std::endl;
+		std::cout	<< "msg WARNING" << std::endl;
 }
 
 void	Harl::error(void)
 {
-		std::cout	<< "ERROR" << std::endl;
+		std::cout	<< "msg ERROR" << std::endl;
 }
 
 void	Harl::complain(std::string level)
 {
-	void		(Harl::*ft[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	lvl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int			idx = -1;
 	
@@ -44,7 +43,7 @@ void	Harl::complain(std::string level)
 		if (level == lvl[i])
 			idx = i;
 	}
-	
+
 	switch (idx)
 	{
 		case 0:

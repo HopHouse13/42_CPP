@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:11:35 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/19 15:05:44 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/19 16:42:00 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ const std::string &Weapon::getType(void) const
 	return (this->_type);
 }
 
-void	Weapon::setType(std::string type)
+void	Weapon::setType(std::string type)	
 {
 	this->_type = type;
 }
