@@ -1,0 +1,7 @@
+
+-voir la forme canonique de Coplien
+
+•	Constructeur par défaut
+•	Constructeur de recopie
+•	Opérateur d’affectation
+•	Destructeur
