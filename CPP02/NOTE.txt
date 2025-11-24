@@ -2,6 +2,6 @@
 -voir la forme canonique de Coplien
 
 •	Constructeur par défaut
-•	Constructeur de recopie
-•	Opérateur d’affectation
+•	Constructeur de recopie : crée un nouvel objet à partir d'un autre.
+•	Opérateur d’affectation : copie le contenu d’un objet dans un autre existant.
 •	Destructeur

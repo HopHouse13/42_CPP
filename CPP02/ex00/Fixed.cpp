@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:33 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/24 17:41:39 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/24 17:41:43 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	Fixed::setRawBits(int const raw)
 	std::cout << "setRawBits member function called" << std::endl;
 	this->_rawNb = raw;
 }
-
