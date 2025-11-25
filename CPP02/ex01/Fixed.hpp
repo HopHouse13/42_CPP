@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/24 19:11:44 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/25 19:07:52 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class	Fixed
 {
 	public :
-		Fixed();//1) Sinon le compilateur utilise le sien
-		Fixed(coust int value); // converi en virgule fixe.
-		Fixed(coust float value); // converi en virgule fixe.
-		Fixed(const Fixed &other); // 3) Copie de la reference other
-		Fixed & operator=(const Fixed & rhs);//4) que faire si Fixed b = Fixed a
-		~Fixed();//2) Sinon le compilateur utilise le sien
+		Fixed();								// 1) Sinon le compilateur utilise le sien
+		Fixed(const int value);					// converi en virgule fixe.
+		Fixed(const float value);				// converi en virgule fixe.
+		Fixed(const Fixed &other);				// 3) Copie de la reference other
+		Fixed& operator=(const Fixed& rhs);		// 4) que faire si Fixed b = Fixed a
+		~Fixed();								// 2) Sinon le compilateur utilise le sien
 
-		int		getRawBits() const;
-		void	setRawBits(int const raw);
-		int		toInt() const;
-		float	toFloat() const;
+		int			getRawBits() const;
+		void		setRawBits(int const raw);
+		int			toInt() const;
+		float		toFloat() const;
 
 	private:
-		int	 				_rawNb; // nombre a virgule 
-		int const static 	_bits = 8; // contient la partie decimale en bits (8) (pas sur de tout ca)
+		int					_rawNb;				// nombre a virgule 
+		int const static	_bits = 8;			// contient la partie decimale en bits (8) (pas sur de tout ca)
 };
 
-// truc & operator<<(truc &)
+std::ostream&	operator<<(std::ostream& os, Fixed const& rhs);
+
 
 #endif 

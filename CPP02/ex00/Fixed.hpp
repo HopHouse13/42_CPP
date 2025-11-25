@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/24 16:15:34 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/25 13:49:20 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,46 +26,8 @@ class	Fixed
 		void	setRawBits(int const raw);
 
 	private:
-		int	 				_rawNb; // nombre a virgule 
+		int	 				_nb; // nombre a virgule 
 		int const static 	_bits = 8; // contient la partie decimale en bits (8) (pas sur de tout ca)
 };
-
-
-//class Human
-//{
-//	private:
-//		int _age;
-//	public:
-//		Human();
-//		Human(int age);
-//		Human(const Human &copy);
-//		Human &operator=(const Human &rhs);
-//		~Human();
-//};
-
-//Human::Human() : _age(0)
-//{
-//}
-
-//Human::Human(int age) : _age(age)
-//{
-//}
-
-//Human::Human(const Human &copy) : _age(copy._age)
-//{
-//}
-
-//Human &Human::operator=(const Human &rhs)
-//{
-//	if (this != &rhs)
-//	{
-//		_age = rhs._age;
-//	}
-//	return (*this);
-//}
-
-//Human::~Human()
-//{
-//}
 
 #endif 
