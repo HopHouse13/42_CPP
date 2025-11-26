@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:33 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/26 16:17:34 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/26 20:05:56 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ Fixed::Fixed(const Fixed& copy)
 	*this = copy;													// appel de l'operateur de surcharge '='.
 }
 
+/// Overload ///
 
-/// Membres functions ///
-
-Fixed& Fixed::operator=(const Fixed& rhs)							// opérateur d'affectation : copie un Fixed dans l'instance courante. prend un objet de type Fixed en REF
+Fixed&	Fixed::operator=(const Fixed& rhs)							// opérateur d'affectation : copie un Fixed dans l'instance courante. prend un objet de type Fixed en REF
 {
 	if (this != &rhs)												// protection contre l'auto-affectation ex : a = a
 	{
@@ -55,6 +54,139 @@ Fixed& Fixed::operator=(const Fixed& rhs)							// opérateur d'affectation : co
 	}
 	return (*this);													// retourne l'objet courant pour permettre ca : a = b = c
 }
+
+bool	Fixed::operator>(const Fixed& rhs)
+{
+	if (this->_rawNb > rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+bool	Fixed::operator<(const Fixed& rhs)
+{
+	if (this->_rawNb < rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+bool	Fixed::operator>=(const Fixed& rhs)
+{
+	if (this->_rawNb >= rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+bool	Fixed::operator<=(const Fixed& rhs)
+{
+	if (this->_rawNb <= rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+bool	Fixed::operator==(const Fixed& rhs)
+{
+	if (this->_rawNb == rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+bool	Fixed::operator!=(const Fixed& rhs)
+{
+	if (this->_rawNb != rhs._rawNb)
+		return (1);
+	return (0);
+}
+
+Fixed	Fixed::operator+(Fixed& rhs)
+{
+	Fixed result(this->toFloat() + rhs.toFloat());		// besoin de rpasser en float (et pas en rawNb) pour faire l'operation 
+	return (result);									// car nous faisons une nouvelle instance avec le constructeur(float) qui re convertit en rawNb
+}
+
+Fixed	Fixed::operator-(Fixed& rhs)
+{
+	Fixed result(this->toFloat() - rhs.toFloat());
+	return (result);
+}
+
+Fixed	Fixed::operator*(Fixed& rhs)
+{
+	Fixed result(this->toFloat() * rhs.toFloat());
+	return (result);
+}
+
+Fixed	Fixed::operator/(Fixed& rhs)
+{
+	Fixed result(this->toFloat() / rhs.toFloat());
+	return (result);
+}
+
+Fixed	Fixed::operator++(int) // Post
+{
+	Fixed	result = *this; // pas sur de ca -> result = *this;
+	this->_rawNb++;
+	return (result);
+}
+
+Fixed&	Fixed::operator++() // Pre
+{
+	this->_rawNb++;
+	return (*this); // pas sur de ca
+}
+
+Fixed	Fixed::operator--(int) // Post
+{
+	Fixed result = *this;
+	this->_rawNb--;
+	return (result);
+}
+
+Fixed&	Fixed::operator--() // Pre
+{
+	this->_rawNb--;
+	return (*this);
+}
+
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
+{
+	if (a == b)
+	{
+		std::cout << "The two objects have equal values: return the first object" << std::endl;
+		return(a);
+	}
+	else if (a < b)
+		return (a);
+	return(b);
+}
+
+Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
+{
+	if (&a == &b) // besoin d'une explication
+	{
+		std::cout << "The two objects have equal values: return the first object" << std::endl;
+		return(a);
+	}
+	else if (&a < &b)
+		return (a);
+	return(b);
+}
+
+Fixed&	Fixed::max(Fixed& a, Fixed& b)
+{
+	if (a > b)
+		return(a);
+	return(b);
+}
+
+Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
+{
+	if (&a > &b)
+		return(a);
+	return(b);
+}
+
+
+/// Membres functions ///
 
 int	Fixed::getRawBits(void) const									// accesseur de l'attribut _rawNb
 {

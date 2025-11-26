@@ -6,29 +6,48 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:23:40 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/26 15:58:42 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/26 18:23:57 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main( void ) {
-Fixed a;					// Default constructor
-Fixed const b( 10 );		// Int constructor
-Fixed const c( 42.42f );	// Float constructor called
-Fixed const d( b );			// Copy constructor
-a = Fixed( 1234.4321f );	// Copy assignment operator
+int	main (void)
+{
+	Fixed	paul(5);
+	Fixed	alix(6);
+	Fixed	max(20);
 
-std::cout << "a is " << a << std::endl;
-std::cout << "b is " << b << std::endl;
-std::cout << "c is " << c << std::endl;
-std::cout << "d is " << d << std::endl;
-std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-return (0);
+	std::cout << "PAUL: " << paul.toInt() << std::endl;
+	std::cout << "ALIX: " << alix.toInt() << std::endl;
+	std::cout << "MAX: " << max.toInt() << std::endl;
+	
+	std::cout << "PAUL > MAX: " << (paul > max) << std::endl;
+	std::cout << "PAUL < MAX: " << (paul < max) << std::endl;
+	std::cout << "PAUL >= ALIX: " << (paul >= alix) << std::endl;
+	std::cout << "PAUL <= ALIX: " << (paul <= alix) << std::endl;
+	std::cout << "PAUL == ALIX: " << (paul == alix) << std::endl;
+	std::cout << "PAUL != ALIX: " << (paul != alix) << std::endl;
+
+	std::cout << "PAUL: " << paul << std::endl;
+	paul++;
+	std::cout << "PAUL: " << paul << std::endl;
+	paul--;
+	std::cout << "PAUL: " << paul << std::endl;
+	return (0);
 }
+//int main( void ) {
+//Fixed a;
+//Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+//std::cout << a << std::endl;
+//std::cout << ++a << std::endl;
+//std::cout << a << std::endl;
+//std::cout << a++ << std::endl;
+//std::cout << a << std::endl;
+//std::cout << b << std::endl;
+//std::cout << Fixed::max( a, b ) << std::endl;
+//return (0);
+//}
 
 //int main( void )
 //{
