@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:33 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/26 20:05:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/27 17:17:16 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(void) : _rawNb(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int value)										// converit un entier en virgule fixe.
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->_rawNb = (value << this->_bits);
 }
 
 Fixed::Fixed(const float value)										// converit un nombre decimal en virgule fixe.
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	_rawNb = static_cast<int>(roundf(value * (1 << this->_bits)));	// cast du retour de 'roundf' (float arrondi). 'roundf' prend le produit du float d'entree et 1 avec un decalage de '_bits'(8) bits -> 1*2^8 = 256
 }
 
 Fixed::Fixed(const Fixed& copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = copy;													// appel de l'operateur de surcharge '='.
 }
 
@@ -49,73 +49,73 @@ Fixed&	Fixed::operator=(const Fixed& rhs)							// opérateur d'affectation : co
 {
 	if (this != &rhs)												// protection contre l'auto-affectation ex : a = a
 	{
-		std::cout << "Copy assignment operator called" << std::endl;
+		//std::cout << "Copy assignment operator called" << std::endl;
 		this->_rawNb = rhs._rawNb;									// copie la valeur '_rawNb' du Fixed source 'rhs' dans l'attribut _rawNb de l'objet courant
 	}
 	return (*this);													// retourne l'objet courant pour permettre ca : a = b = c
 }
 
-bool	Fixed::operator>(const Fixed& rhs)
+bool	Fixed::operator>(const Fixed& rhs) const
 {
 	if (this->_rawNb > rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-bool	Fixed::operator<(const Fixed& rhs)
+bool	Fixed::operator<(const Fixed& rhs) const
 {
 	if (this->_rawNb < rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-bool	Fixed::operator>=(const Fixed& rhs)
+bool	Fixed::operator>=(const Fixed& rhs) const
 {
 	if (this->_rawNb >= rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-bool	Fixed::operator<=(const Fixed& rhs)
+bool	Fixed::operator<=(	const Fixed& rhs) const
 {
 	if (this->_rawNb <= rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-bool	Fixed::operator==(const Fixed& rhs)
+bool	Fixed::operator==(const Fixed& rhs) const
 {
 	if (this->_rawNb == rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-bool	Fixed::operator!=(const Fixed& rhs)
+bool	Fixed::operator!=(const Fixed& rhs) const
 {
 	if (this->_rawNb != rhs._rawNb)
 		return (1);
 	return (0);
 }
 
-Fixed	Fixed::operator+(Fixed& rhs)
+Fixed	Fixed::operator+(const Fixed& rhs)
 {
-	Fixed result(this->toFloat() + rhs.toFloat());		// besoin de rpasser en float (et pas en rawNb) pour faire l'operation 
+	Fixed result(this->toFloat() + rhs.toFloat());		// besoin de passer en float (et pas en rawNb) pour faire l'operation 
 	return (result);									// car nous faisons une nouvelle instance avec le constructeur(float) qui re convertit en rawNb
 }
 
-Fixed	Fixed::operator-(Fixed& rhs)
+Fixed	Fixed::operator-(const Fixed& rhs)
 {
 	Fixed result(this->toFloat() - rhs.toFloat());
 	return (result);
 }
 
-Fixed	Fixed::operator*(Fixed& rhs)
+Fixed	Fixed::operator*(const Fixed& rhs)
 {
 	Fixed result(this->toFloat() * rhs.toFloat());
 	return (result);
 }
 
-Fixed	Fixed::operator/(Fixed& rhs)
+Fixed	Fixed::operator/(const Fixed& rhs)
 {
 	Fixed result(this->toFloat() / rhs.toFloat());
 	return (result);
@@ -123,7 +123,7 @@ Fixed	Fixed::operator/(Fixed& rhs)
 
 Fixed	Fixed::operator++(int) // Post
 {
-	Fixed	result = *this; // pas sur de ca -> result = *this;
+	Fixed	result = *this;
 	this->_rawNb++;
 	return (result);
 }
@@ -131,7 +131,7 @@ Fixed	Fixed::operator++(int) // Post
 Fixed&	Fixed::operator++() // Pre
 {
 	this->_rawNb++;
-	return (*this); // pas sur de ca
+	return (*this);
 }
 
 Fixed	Fixed::operator--(int) // Post
@@ -149,9 +149,10 @@ Fixed&	Fixed::operator--() // Pre
 
 Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
+	//std::cout << "min NO const called : ";
 	if (a == b)
 	{
-		std::cout << "The two objects have equal values: return the first object" << std::endl;
+		//std::cout << "The two objects have equal values: return the first object" << std::endl;
 		return(a);
 	}
 	else if (a < b)
@@ -159,29 +160,42 @@ Fixed&	Fixed::min(Fixed& a, Fixed& b)
 	return(b);
 }
 
-Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
+const Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
 {
-	if (&a == &b) // besoin d'une explication
+	//std::cout << "min const called : ";
+	if (a == b) // besoin d'une explication
 	{
-		std::cout << "The two objects have equal values: return the first object" << std::endl;
+		//std::cout << "The two objects have equal values: return the first object" << std::endl;
 		return(a);
 	}
-	else if (&a < &b)
+	else if (a < b)
 		return (a);
 	return(b);
 }
 
 Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
-	if (a > b)
+	//std::cout << "max NO const called : ";
+	if (a == b)
+	{
+		//std::cout << "The two objects have equal values: return the first object" << std::endl;
 		return(a);
+	}
+	else if (a > b)
+		return (a);
 	return(b);
 }
 
-Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 {
-	if (&a > &b)
+	//std::cout << "max const called : ";
+	if (a == b)
+	{
+		//std::cout << "The two objects have equal values: return the first object" << std::endl;
 		return(a);
+	}
+	else if (a > b)
+		return (a);
 	return(b);
 }
 
@@ -190,13 +204,13 @@ Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 
 int	Fixed::getRawBits(void) const									// accesseur de l'attribut _rawNb
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return(this->_rawNb);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
+	//std::cout << "setRawBits member function called" << std::endl;
 	this->_rawNb = raw;
 }
 

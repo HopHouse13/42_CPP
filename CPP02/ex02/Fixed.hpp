@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/26 19:36:21 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/27 16:48:16 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,27 @@ class	Fixed
 		
 		Fixed& operator=(const Fixed& rhs);		// 4) que faire si Fixed b = Fixed a
 		
-		bool operator>(const Fixed& rhs);
-		bool operator<(const Fixed& rhs);
-		bool operator>=(const Fixed& rhs);
-		bool operator<=(const Fixed& rhs);
-		bool operator==(const Fixed& rhs);
-		bool operator!=(const Fixed& rhs);
+		bool operator>(const Fixed& rhs) const;
+		bool operator<(const Fixed& rhs) const;
+		bool operator>=(const Fixed& rhs) const;
+		bool operator<=(const Fixed& rhs) const;
+		bool operator==(const Fixed& rhs) const;
+		bool operator!=(const Fixed& rhs) const;
 
-		Fixed operator+(Fixed& rhs);
-		Fixed operator-(Fixed& rhs);
-		Fixed operator*(Fixed& rhs);
-		Fixed operator/(Fixed& rhs);
+		Fixed operator+(const Fixed& rhs);
+		Fixed operator-(const Fixed& rhs);
+		Fixed operator*(const Fixed& rhs);
+		Fixed operator/(const Fixed& rhs);
 
 		Fixed operator++(int); //Post
 		Fixed &operator++(); //Pre
 		Fixed operator--(int); //Post
 		Fixed &operator--(); //Pre
 
-		static Fixed &min(Fixed& a, Fixed& b);				// fonctions static: membre de classe et non de l'objet.
-		static Fixed &min(const Fixed& a, const Fixed& b);	// ces fonctions peuvent être appelées sans créer d’instance.
+		static Fixed &min(Fixed& a, Fixed& b);						// fonctions static: membre de classe et non de l'objet.
+		const static Fixed &min(const Fixed& a, const Fixed& b);	// ces fonctions peuvent être appelées sans créer d’instance.
 		static Fixed &max(Fixed& a, Fixed& b);
-		static Fixed &max(const Fixed& a, const Fixed& b);
+		const static Fixed &max(const Fixed& a, const Fixed& b);
 
 		int			getRawBits() const;
 		void		setRawBits(int const raw);
