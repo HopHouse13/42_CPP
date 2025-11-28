@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:23:40 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/27 19:13:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/11/28 14:34:52 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	main(void)
 	const Fixed	f(43);
 	std::cout << Fixed::min(c, d) << std::endl;
 	std::cout << Fixed::max(c, d) << std::endl;
-	std::cout << Fixed::min(e, f) << std::endl;
-	std::cout << Fixed::max(e, f) << std::endl;
+	std::cout << Fixed::min(e, f) << std::endl; // const
+	std::cout << Fixed::max(e, f) << std::endl; // const
 
 	std::cout << "[1]" << (c < d) << std::endl;
 	std::cout << "[2]" << (c <= d) << std::endl;
