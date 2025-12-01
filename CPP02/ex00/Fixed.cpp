@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:24:33 by pbret             #+#    #+#             */
-/*   Updated: 2025/11/25 17:33:02 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/01 13:54:47 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Fixed::Fixed(void) : _nb(0)
 
 Fixed::Fixed(const Fixed& copy)
 {
-	std::cout << "copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = copy; // utilisation de l'operateur de surcharge '='.
 }
 
