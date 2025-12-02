@@ -6,20 +6,20 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:54:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:42 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/02 18:28:04 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name("Unknown"), _hp(10), _ep(10), _attackDmg(0)
+ClapTrap::ClapTrap(void) : _name("unknown"), _hp(10), _ep(10), _attackDmg(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "Default constructor of ClapTrap " << _name << " called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10), _attackDmg(0)
+ClapTrap::ClapTrap(const std::string& name) : _name(name), _hp(10), _ep(10), _attackDmg(0)
 {
-	std::cout << "Constructor of " << _name << " called" << std::endl;
+	std::cout << "Constructor of ClapTrap " << _name << " called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src)
@@ -28,25 +28,25 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 	this->_hp			= src._hp;
 	this->_ep			= src._ep;
 	this->_attackDmg	= src._attackDmg;
-	std::cout << "Copy constructor of " << this->_name << " called" << std::endl;
+	std::cout << "Copy constructor of ClapTrap " << this->_name << " called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& rhs)
 {
 	if (this != &rhs)
 	{
-		this->_name = rhs._name;
-		this->_hp = rhs._hp;
-		this->_ep = rhs._ep;
-		this->_attackDmg = rhs._attackDmg;
+		this->_name			= rhs._name;
+		this->_hp			= rhs._hp;
+		this->_ep			= rhs._ep;
+		this->_attackDmg	= rhs._attackDmg;
 	}
-	std::cout << "Assignement operator overload of " << this->_name << " called" << std::endl;
+	std::cout << "Assignement operator overload of ClapTrap " << this->_name << " called" << std::endl;
 	return (*this);
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor of " << this->_name << " called" << std::endl;
+	std::cout << "Destructor of ClapTrap " << this->_name << " called" << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target)
@@ -59,10 +59,10 @@ void	ClapTrap::attack(const std::string& target)
 			std::cout << CYAN << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDmg << " health points." << RESET << std::endl;
 		}
 		else
-			std::cout << YELLOW << this->_name << " has no energy points left to attack." << RESET << std::endl;
+			std::cout << YELLOW << "ClapTrap " << this->_name << " has no energy points left to attack." << RESET << std::endl;
 	}
 	else
-		std::cout << YELLOW << this->_name << " is KO and cannot attack." << RESET << std::endl;
+		std::cout << YELLOW << "ClapTrap " << this->_name << " is KO and cannot attack." << RESET << std::endl;
 	std::cout << *this << std::endl;
 }
 
@@ -74,13 +74,13 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		{
 			this->_ep--;
 			this->_hp += amount;
-			std::cout << GREEN << this->_name << " repairs itself for " << amount << " health points." << RESET << std::endl;
+			std::cout << GREEN << "ClapTrap " << this->_name << " repairs itself for " << amount << " health points." << RESET << std::endl;
 		}
 		else
-			std::cout << YELLOW << this->_name << " has no energy points left and cannot repair itself." << RESET << std::endl;
+			std::cout << YELLOW << "ClapTrap " << this->_name << " has no energy points left and cannot repair itself." << RESET << std::endl;
 	}
 	else
-		std::cout << YELLOW << this->_name << " is KO and cannot repair itself." << RESET << std::endl;
+		std::cout << YELLOW << "ClapTrap " << this->_name << " is KO and cannot repair itself." << RESET << std::endl;
 	std::cout << *this << std::endl;
 }
 
@@ -109,12 +109,12 @@ std::string	ClapTrap::getName(void) const
 	return(this->_name);
 }
 
-unsigned int	ClapTrap::getHP(void) const
+unsigned int	ClapTrap::getHp(void) const
 {
 	return(this->_hp);
 }
 
-unsigned int	ClapTrap::getEP(void) const
+unsigned int	ClapTrap::getEp(void) const
 {
 	return(this->_ep);
 }
@@ -127,8 +127,8 @@ unsigned int	ClapTrap::getAttackDmg(void) const
 std::ostream&	operator<<(std::ostream& os, const ClapTrap& rhs)
 {
 	os	<< "Name: " << rhs.getName()
-		<< " | HP: " << rhs.getHP()
-		<< " | EP: " << rhs.getEP()
+		<< " | HP: " << rhs.getHp()
+		<< " | EP: " << rhs.getEp()
 		<< " | AttackDmg: " << rhs.getAttackDmg();
 	return (os);
 }

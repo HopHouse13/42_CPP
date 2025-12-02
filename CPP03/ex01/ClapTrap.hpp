@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:53:56 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/02 14:51:15 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/02 18:28:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ClapTrap
 {
 	public :
 		ClapTrap(void);
-		ClapTrap(const std::string name);
+		ClapTrap(const std::string& name);
 		ClapTrap(const ClapTrap& src);
 		ClapTrap&	operator=(const ClapTrap& rhs);
 		~ClapTrap(void);
@@ -40,11 +40,11 @@ class ClapTrap
 		void			beRepaired(unsigned int amount);
 
 		std::string		getName(void) const;
-		unsigned int	getHP(void) const;
-		unsigned int	getEP(void) const;
+		unsigned int	getHp(void) const;
+		unsigned int	getEp(void) const;
 		unsigned int	getAttackDmg(void) const;
 	
-	private :
+	protected :
 		std::string		_name;
 		unsigned int	_hp;
 		unsigned int	_ep;
