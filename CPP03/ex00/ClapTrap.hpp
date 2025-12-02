@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:53:56 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/01 21:55:03 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/02 14:04:06 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ class ClapTrap
 		unsigned int	getAttackDmg(void) const;
 	
 	private :
-		std::string		_Name;
-		unsigned int	_HP;
-		unsigned int	_EP;
-		unsigned int	_AttackDmg;
+		std::string		_name;
+		unsigned int	_hp;
+		unsigned int	_ep;
+		unsigned int	_attackDmg;
 };
 
 std::ostream&	operator<<(std::ostream& os, const ClapTrap& rhs);
