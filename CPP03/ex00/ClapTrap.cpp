@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:54:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:42 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:20:04 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(void) : _name("Unknown"), _hp(10), _ep(10), _attackDmg(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "Default constructor of ClapTrap " << _name << " called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10), _attackDmg(0)

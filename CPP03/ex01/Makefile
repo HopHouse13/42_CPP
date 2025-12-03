@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 16:27:37 by pbret             #+#    #+#              #
-#    Updated: 2025/12/02 18:17:45 by pbret            ###   ########.fr        #
+#    Updated: 2025/12/03 13:53:49 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= ClapTrap.cpp \
 			ScavTrap.cpp \
-			FlagTrap.cpp \
 			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)

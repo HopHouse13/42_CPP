@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:54:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/02 18:02:41 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:19:30 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& rhs)
 		this->_hp			= rhs._hp;
 		this->_ep			= rhs._ep;
 		this->_attackDmg	= rhs._attackDmg;
+		std::cout << "Assignement operator overload of ClapTrap " << this->_name << " called" << std::endl;
 	}
-	std::cout << "Assignement operator overload of ClapTrap " << this->_name << " called" << std::endl;
+	else
+		std::cout << "The two instances are the same." << std::endl;
 	return (*this);
 }
 

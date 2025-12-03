@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:57:39 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/02 18:02:47 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:18:53 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs)
 		ClapTrap::operator=(rhs);
 		std::cout << "Assignement operator overload of ScavTrap " << this->_name << " called" << std::endl;
 	}
+	else
+		std::cout << "The two instances are the same." << std::endl;
 	return (*this);
 }
 
