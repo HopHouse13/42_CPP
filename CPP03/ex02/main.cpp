@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:29:51 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/03 17:29:23 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/03 19:25:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(void)
 
 	FragTrap	Pierre("Pierre");
 
-	Pierre = Pierre;
 	Pierre = Alix;
 	std::cout << Pierre << std::endl;
 

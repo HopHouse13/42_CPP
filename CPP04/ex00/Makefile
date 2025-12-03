@@ -5,17 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/05 17:10:30 by pbret             #+#    #+#              #
-#    Updated: 2025/12/03 19:27:59 by pbret            ###   ########.fr        #
+#    Created: 2025/12/01 16:27:37 by pbret             #+#    #+#              #
+#    Updated: 2025/12/03 19:21:50 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Fixed
+NAME		= animal
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= main.cpp \
-			Fixed.cpp
-
+SRCS		= animal.class.cpp \
+			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++

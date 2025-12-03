@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 16:27:37 by pbret             #+#    #+#              #
-#    Updated: 2025/12/03 14:48:53 by pbret            ###   ########.fr        #
+#    Updated: 2025/12/03 19:23:41 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(OBJS) -o $(NAME) -g 
+			@$(CC) $(OBJS) $(CFLAGS) -o $(NAME) -g 
 			@echo "\033[32m""Compilation of $(NAME) completed!""\033[0m"
 
 clean:
