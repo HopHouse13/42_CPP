@@ -1,14 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animal.class.cpp                                   :+:      :+:    :+:   */
+/*   Dog.class.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 18:43:48 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/04 15:03:29 by pbret            ###   ########.fr       */
+/*   Created: 2025/12/04 15:03:33 by pbret             #+#    #+#             */
+/*   Updated: 2025/12/05 18:31:11 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "animal.class.hpp"
+#ifndef DOG_CLASS_HPP
+# define DOG_CLASS_HPP
 
+#include "Animal.class.hpp"
+
+class Dog : public Animal
+{
+	public:
+		Dog(void);
+		Dog(const Dog& rhs);
+		Dog&		operator=(const Dog& rhs);
+		~Dog(void);
+
+		void		makeSound(void) const;
+
+	protected:
+		std::string	_type;
+};
+
+#endif

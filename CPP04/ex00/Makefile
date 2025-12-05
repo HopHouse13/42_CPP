@@ -6,14 +6,18 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/01 16:27:37 by pbret             #+#    #+#              #
-#    Updated: 2025/12/03 19:21:50 by pbret            ###   ########.fr        #
+#    Updated: 2025/12/05 18:40:31 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= animal
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= animal.class.cpp \
+SRCS		= Animal.class.cpp \
+			Cat.class.cpp \
+			Dog.class.cpp \
+			WrongAnimal.class.cpp \
+			WrongCat.class.cpp \
 			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
