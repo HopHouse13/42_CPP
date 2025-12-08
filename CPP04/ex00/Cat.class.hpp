@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:03:33 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/05 18:31:17 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/08 17:36:24 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ class Cat : public Animal
 		~Cat(void);
 
 		void		makeSound(void) const;
-
-	protected:
-		std::string	_type;
 };
 
 #endif

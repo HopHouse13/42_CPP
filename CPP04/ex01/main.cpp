@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:51:49 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 16:08:12 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/08 20:02:53 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,34 @@
 
 int main()
 {
-	std::cout << "///Animal///" << std::endl << std::endl;
-	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal* k = new Cat();
+	delete j;//should not create a leak
+	delete k;
 
-	std::cout << meta->getType() << " " << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	meta->makeSound();
-	j->makeSound();
-	i->makeSound();
+	Animal*	tab[4];
+	
+	int	i = -1;
+	while (++i < 4)
+	{
+		if (i%2 == 0)
+			tab[i] = new Cat();
+		else
+			tab[i] = new Dog();
+		std::cout << CYAN << "Animal " << tab[i]->getType() << " at index " << i << " allocated" << RESET << std::endl;
+	}
 
-	delete(meta);
-	delete(j);
-	delete(i);
-
-	std::cout << std::endl << "///WrongAnimal///" << std::endl << std::endl;
-	const WrongAnimal* wa = new WrongAnimal();
-	const WrongAnimal* wc = new WrongCat();
-
-	std::cout << wa->getType() << " " << std::endl;
-	std::cout << wc->getType() << " " << std::endl; // pas sur de la pertinence 
-	wa->makeSound();
-	wc->makeSound();
-
-	delete(wa);
-	delete(wc);
-
-	return 0;
+	//while(i-- != 0)
+	//{
+	//	if (i%2 == 0)
+	//		while (tab[i].)
+	//			tab[i].->_brain.setIdea()
+	//}
+	
+	while(i-- != 0)
+	{
+		delete (tab[i]);
+		std::cout << YELLOW << "Animal at index " << i << " has been deleted" << RESET << std::endl;
+	}
+	return (0);
 }

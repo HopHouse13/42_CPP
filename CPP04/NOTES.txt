@@ -1,0 +1,25 @@
+ANIMAL
+
+constructeurs/des custom pour chaque classe.
+
+Class -> Animal
+ligne d' init: type -> "unknown"
+attributs proteges -> std::string type;
+ft membre public -> makeSound();
+
+class -> Dog heritage public
+
+Class -> Cat heritage public
+
+---------------------------------------------
+
+*Une class Brain avec un tableau de 100 std:string "ideas" en prive
+
+*Dog et cat -> Ajout d'un attribue prive d'un objet de type "Brain"
+
+*modif de leurs constructeurs et destructeurs:
+Constructeurs -> cree un objet Brain avec new Brain()
+Destructeurs -> doit delete chaque objet du tableau
+
+*dans main:
+Je ne comprends ce que je dois faire	std::cout << "Default constructor of Animal called" << std::endl;

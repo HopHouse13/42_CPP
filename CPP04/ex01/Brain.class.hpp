@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.class.hpp                                 :+:      :+:    :+:   */
+/*   Brain.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 18:28:32 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 14:54:54 by pbret            ###   ########.fr       */
+/*   Created: 2025/12/08 16:33:39 by pbret             #+#    #+#             */
+/*   Updated: 2025/12/08 19:42:07 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_CLASS_HPP
-# define WRONGCAT_CLASS_HPP
+#ifndef BRAIN_CLASS_CPP
+# define BRAIN_CLASS_CPP
 
-#include "WrongAnimal.class.hpp"
+#include <string>
+#include <iostream>
 
-class WrongCat : public WrongAnimal
+class Brain
 {
 	public:
-		WrongCat(void);
-		WrongCat(const WrongCat& rhs);
-		WrongCat&	operator=(const WrongCat& rhs);
-		~WrongCat(void);
+		Brain();
+		Brain(const Brain& rhs);
+		Brain&	operator=(const Brain& rhs);
+		~Brain();
 
-		void		makeSound(void) const;
-		const std::string&	getType(void) const; // ASUPP
+		void				setIdea(const unsigned int idx, const std::string idea);
+		const std::string	getIdea(const unsigned int idx) const;
+	
+	private:
+		std::string	_ideas[100];
 
-	protected:
-		std::string	_type;
 };
 
 #endif

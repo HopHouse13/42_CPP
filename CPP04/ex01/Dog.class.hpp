@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.class.hpp                                 :+:      :+:    :+:   */
+/*   Dog.class.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 18:28:32 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 14:54:54 by pbret            ###   ########.fr       */
+/*   Created: 2025/12/04 15:03:33 by pbret             #+#    #+#             */
+/*   Updated: 2025/12/08 18:10:15 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_CLASS_HPP
-# define WRONGCAT_CLASS_HPP
+#ifndef DOG_CLASS_HPP
+# define DOG_CLASS_HPP
 
-#include "WrongAnimal.class.hpp"
+#include "Animal.class.hpp"
 
-class WrongCat : public WrongAnimal
+class Dog : public Animal
 {
 	public:
-		WrongCat(void);
-		WrongCat(const WrongCat& rhs);
-		WrongCat&	operator=(const WrongCat& rhs);
-		~WrongCat(void);
+		Dog(void);
+		Dog(const Dog& rhs);
+		Dog&		operator=(const Dog& rhs);
+		~Dog(void);
 
 		void		makeSound(void) const;
-		const std::string&	getType(void) const; // ASUPP
 
-	protected:
-		std::string	_type;
+	private:
+		Brain	*_brain;
+
 };
 
 #endif
