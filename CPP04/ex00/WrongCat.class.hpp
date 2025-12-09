@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 18:28:32 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 14:54:54 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/09 17:43:18 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class WrongCat : public WrongAnimal
 		~WrongCat(void);
 
 		void		makeSound(void) const;
-		const std::string&	getType(void) const; // ASUPP
 
 	protected:
 		std::string	_type;

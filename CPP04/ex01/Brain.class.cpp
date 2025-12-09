@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:32:30 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 19:44:37 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/09 17:16:16 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,22 @@ Brain::Brain()
 	
 Brain::Brain(const Brain& rhs)
 {
-	// this->_ideas = rhs._ideas; ca fonctionne po
+	std::cout << "Copy constructor of Brain called" << std::endl;
 	for(int i = 0; i <= 99; i++)
 	{
 		this->_ideas[i] = rhs._ideas[i];
 	}
-	std::cout << "Copy constructor of Brain called" << std::endl;
 }
 
 Brain&	Brain::operator=(const Brain& rhs)
 {
 	if (this != &rhs)
 	{
+		std::cout << "Assignement operator overload of Brain called" << std::endl;
 		for(int i = 0; i <= 99; i++)
 		{
 			this->_ideas[i] = rhs._ideas[i];
 		}
-		std::cout << "Assignement operator overload of Brain called" << std::endl;
 	}
 	return (*this);
 }
@@ -47,9 +46,15 @@ Brain::~Brain()
 
 void	Brain::setIdea(const unsigned int idx, const std::string idea)
 {
-	this->_ideas[idx] = idea;
+	if(idx >= 0 && idx <= 99)
+		this->_ideas[idx] = idea;
+	else
+		std::cout << "Invalid index" << std::endl;
 }
 const std::string	Brain::getIdea(const unsigned int idx) const
 {
-	return(this->_ideas[idx]);
+	if(idx >= 0 && idx <= 99)
+		return(this->_ideas[idx]);
+	else
+		return("Invalid index");
 }

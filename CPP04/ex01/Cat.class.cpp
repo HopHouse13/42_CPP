@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:43:48 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 19:58:23 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/09 17:17:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 Cat::Cat(void) : Animal()
 {
-	this->_type = "cat";
-	this->_brain = new Brain;
 	std::cout << "Default constructor of Cat called" << std::endl;
+	this->_type = "Cat";
+	this->_brain = new Brain;
 }
 
 Cat::Cat(const Cat& rhs) : Animal(rhs)
 {
-	this->_brain = new Brain(*rhs._brain); // copie profonde
 	std::cout << "Copy constructor of Cat called" << std::endl;
+	this->_brain = new Brain(*rhs._brain); // copie profonde
 }
 
 Cat& Cat::operator=(const Cat& rhs)
 {
 	if (this != &rhs)
 	{
-		this->_brain = new Brain(*rhs._brain);
-		Animal::operator=(rhs); // meme questionnement que cat
 		std::cout << "Assignement operator overload of Cat called" << std::endl;
+		Animal::operator=(rhs);
+		delete _brain;
+		this->_brain = new Brain(*rhs._brain);
 	}
 	return(*this);
 }
@@ -47,7 +48,16 @@ void	Cat::makeSound(void) const
 	std::cout << GREEN << "MIAOUU" << RESET << std::endl;
 }
 
-Brain&		Cat::getBrain(void) const
+void	Cat::setIdea(const unsigned int idx, const std::string idea)
 {
-	return (*this->_brain);
-} 
+	this->_brain->setIdea(idx, idea);
+}
+const std::string	Cat::getIdea(const unsigned int idx) const
+{
+	return(this->_brain->getIdea(idx));
+}
+
+const Brain*		Cat::getAddressBrain(void) const
+{
+	return (this->_brain);
+}

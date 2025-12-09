@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 18:27:58 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/08 16:07:08 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/09 17:43:13 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,3 @@ void	WrongCat::makeSound(void) const
 	std::cout << GREEN << "MIAOUU" << RESET << std::endl;
 }
 
-const std::string&	WrongCat::getType(void) const // ASUPP
-{
-	std::cout << "TEST" << std::endl;
-	return (this->_type);
-}
