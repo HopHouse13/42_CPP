@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/11 19:05:55 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/11 19:57:05 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class Bureaucrat
 		{
 			public:
 				const char	*what(void) const throw(); // du coup il faudrait le mettre a toutes les fonctions sans throw externe?
-		};
+		}; // dans la class exception, what est virtual donc nous pouvons l'override
 
 	private:
 		std::string			_name;

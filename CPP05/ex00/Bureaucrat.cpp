@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/11 19:09:12 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/11 22:23:39 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,12 @@ Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150) // grade entre 1 - 
 Bureaucrat::Bureaucrat(const std::string name, const unsigned int grade) : _name(name)
 {	
 	std::cout << "Constructor of " << this->_name << " called" << std::endl;
-	try
-	{
-		if(grade < 1)
-			throw Bureaucrat::GradeTooLowException(); // c'est quoi exactement? un constructeur?
-		if(grade > 150)
-			throw Bureaucrat::GradeTooHighException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what();
-	}
-	this->_grade = grade;
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException(); // c'est quoi exactement? un constructeur?
+	else if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& rhs) : _name(rhs._name), _grade(rhs._grade)
@@ -67,22 +61,26 @@ const unsigned int&	Bureaucrat::getGrade(void) const
 
 void	Bureaucrat::incrementGrade(void)
 {
-	this->_grade++;
+	if (this->_grade == 1)
+		throw Bureaucrat::GradeTooHighException();
+	this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade(void)
 {
-	this->_grade--;
+	if (this->_grade == 150)
+		throw Bureaucrat::GradeTooLowException();
+	this->_grade++;
 }
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return(RED"Grade is too high\n"RESET);
+	return (RED"Grade is too high\n"RESET); // est ce que cela va a l'encontre du sujet "\n"?
 }
 
 const char	*Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return(RED"Grade is too low\n"RESET);
+	return (RED"Grade is too low\n"RESET);
 }
 
 std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& rhs)
