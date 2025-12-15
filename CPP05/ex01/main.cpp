@@ -6,11 +6,12 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/15 18:10:49 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/15 21:43:22 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void)
 {
@@ -61,8 +62,11 @@ int	main(void)
 	{
 		std::cout << Flo;
 		Flo.incrementGrade();
+		Form	F1("hello", 1, 1);
+		Form	F2;
+		F2 = F1;
 	}
-	catch (std::exception& excep)
+	catch (std::exception& excep) // pourquoi ca catch les trow de Form et de Bureaucrat??
 	{
 		std::cerr << excep.what();
 	}
