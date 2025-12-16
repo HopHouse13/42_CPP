@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/15 21:43:22 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/16 21:43:26 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,24 @@ int	main(void)
 	}
 	std::cout << *Max;
 	delete (Max);
-	
+
 	Bureaucrat Flo("Flo", 42);
 	try
 	{
 		std::cout << Flo;
+		
+		Form	F1("F1", 41, 1);
+		std::cout << F1;
+		Flo.signForm(F1);
+		std::cout << F1;
 		Flo.incrementGrade();
-		Form	F1("hello", 1, 1);
-		Form	F2;
-		F2 = F1;
+		std::cout << Flo;
+		Flo.signForm(F1);
+		std::cout << F1;
 	}
-	catch (std::exception& excep) // pourquoi ca catch les trow de Form et de Bureaucrat??
+	catch (std::exception& excep) // pourquoi ca catch les throw de Form et de Bureaucrat??
 	{
 		std::cerr << excep.what();
 	}
-	std::cout << Flo;
 	return (0);
 }

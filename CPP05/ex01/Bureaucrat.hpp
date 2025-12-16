@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/15 21:19:26 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/16 20:54:32 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
+class Form; // declaration anticipee
+
 class Bureaucrat
 {
 	public:
@@ -40,6 +42,8 @@ class Bureaucrat
 		void				incrementGrade(void);
 		void				decrementGrade(void);
 
+		void				signForm(Form& form) const;
+
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -53,10 +57,10 @@ class Bureaucrat
 		}; // dans la class exception, what est virtual donc nous pouvons l'override
 
 	private:
-		std::string			_name; // ATTENTION sujet demande un const mais dans l'operateur d'affection nous ne pouvons pas initialiser _name.
+		const std::string	_name; // ATTENTION sujet demande un const mais dans l'operateur d'affection nous ne pouvons pas initialiser _name.
 		unsigned int		_grade;
 };
 
-std::ostream&		operator<<(std::ostream& outStream, const Bureaucrat& rhs);
+std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& rhs);
 
 #endif

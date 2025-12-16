@@ -6,11 +6,12 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/11 22:23:39 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/16 21:30:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150) // grade entre 1 - 150
 {	
@@ -38,7 +39,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs)
 	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
 	if (this != &rhs)
 	{
-		this->_name = rhs._name;
+		//this->_name = rhs._name;
 		this->_grade = rhs._grade;
 	}
 	return (*this);
@@ -71,6 +72,21 @@ void	Bureaucrat::decrementGrade(void)
 	if (this->_grade == 150)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
+}
+// Fonction en const car elle ne modifie pas son objet(bureaucrat). Par contre beSigned(non const) modifie l'objet Form donc le param declass Form ne peut pas etre passe en const
+void	Bureaucrat::signForm(Form& form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout	<< "Bureaucrat " << this->_name << " signed the form "
+					<< form.getNameForm() << std::endl;
+	}
+	catch (std::exception& excep)
+	{
+		std::cout	<< "Bureaucrat " << this->_name << " couldn't sign the form "
+					<< form.getNameForm() << " because " << excep.what();
+	}
 }
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()

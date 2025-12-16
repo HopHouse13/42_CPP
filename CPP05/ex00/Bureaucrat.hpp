@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/11 19:57:05 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/16 16:37:28 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ class Bureaucrat
 		}; // dans la class exception, what est virtual donc nous pouvons l'override
 
 	private:
-		std::string			_name;
+		const std::string	_name;
 		unsigned int		_grade;
 };
 

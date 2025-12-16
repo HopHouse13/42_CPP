@@ -6,13 +6,13 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/11 22:23:39 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/16 16:37:50 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150) // grade entre 1 - 150
+Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150)
 {	
 	std::cout << "Default constructor of " << this->_name << " called" << std::endl;
 }
@@ -37,10 +37,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs)
 {
 	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
 	if (this != &rhs)
-	{
-		this->_name = rhs._name;
 		this->_grade = rhs._grade;
-	}
 	return (*this);
 }
 

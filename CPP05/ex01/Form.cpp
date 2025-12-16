@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/15 21:44:09 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/16 21:39:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(void) : _name("unknown"), _isSigned(false), _sigGrade(150), _execGrade(150)
 {
@@ -34,12 +35,12 @@ Form::Form(const Form& rhs)
 {
 	std::cout << "Copy construtor of " << this->_name << " called" << std::endl;
 }
+
 const Form&	Form::operator=(const Form& rhs)
 {
 	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
 	if (this != &rhs)
 	{
-		//this->_name = rhs._name; // ATTENTION sujet demande un const mais dans l'operateur d'affection nous ne pouvons pas initialiser _name.
 		this->_sigGrade = rhs._sigGrade;
 		this->_execGrade = rhs._execGrade;
 	}
@@ -49,6 +50,33 @@ const Form&	Form::operator=(const Form& rhs)
 Form::~Form(void)
 {
 	std::cout << "Destrutor of " << this->_name << " called" << std::endl;
+}
+
+const std::string&	Form::getNameForm(void) const
+{
+	return(this->_name);
+}
+
+const bool&			Form::getIsSignedForm(void) const
+{
+	return(this->_isSigned);
+}
+
+const unsigned int&	Form::getSigGradeForm(void) const
+{
+	return(this->_sigGrade);
+}
+
+const unsigned int&	Form::getExecGradeForm(void) const
+{
+	return(this->_execGrade);
+}
+
+void	Form::beSigned(const Bureaucrat& guy)
+{
+	if (this->_sigGrade < guy.getGrade()) // il faut que le bureaucrat soit plus petit que le form pour pouvoir le signer?
+		throw Form::GradeTooLowException();
+	this->_isSigned = true;
 }
 
 const char*	Form::GradeTooHighException::what(void) const throw()
@@ -61,7 +89,11 @@ const char*	Form::GradeTooLowException::what(void) const throw()
 	return (RED"The grade of the form is too low\n"RESET);
 }
 
-const bool& Form::getIsSigned(void) // aSUPP
+std::ostream&	operator<<(std::ostream& outStream, const Form& rhs)
 {
-	return (this->_isSigned);
+	outStream	<< YELLOW << "The form " << rhs.getNameForm() << std::endl
+				<< "Signature grade -> " << rhs.getSigGradeForm() << std::endl
+				<< "Execution grade -> " << rhs.getExecGradeForm() << std::endl
+				<< "Signature status -> " << rhs.getIsSignedForm() << RESET << std::endl;
+	return(outStream);
 }
