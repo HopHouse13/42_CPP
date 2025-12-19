@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:28:18 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/17 17:43:30 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 18:04:10 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,38 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 	std::cout << "Destructor of " << this->getNameForm() << " called" << std::endl;
 }
 
-void	ShrubberyCreationForm::execute(const Bureaucrat& executor)
+void	ShrubberyCreationForm::action(void) const
 {
-	if ()
+	std::string	fileName = this->_target + "_shrubbery";
+	std::ofstream tree(fileName.c_str());
+	if (!tree.is_open())
+		throw ShrubberyCreationForm::fileError();
+	tree << "\n"
+"\n"
+"\n"
+"               *\n"
+"              /|\\\n"
+"             /*|O\\\n"
+"            /*/|\\*\\\n"
+"           /X/0|*\\X\\\n"
+"          /*/X/|\\O\\*\\\n"
+"         /O/*/X|*\\O\\X\\\n"
+"       /*/0/X/*|*\\X\\0\\*\\\n"
+"      /X/0/*/X/|\\O\\X\\*\\X\\\n"
+"     /*/X/O/X/0|X\\0\\X\\O\\*\\\n"
+"   /O/X/*/O/X/*|O\\*\\O\\X\\*\\0\\\n"
+"  /*/0/X/*/X/O/|\\*\\O\\X\\0\\X\\*\\\n"
+" /X/O/X/0/*/X/O|X\\O\\X\\*\\O\\X\\X\\\n"
+"/*/X/O/X/O/X/*/|\\X\\0\\X\\O\\X\\0\\*\\\n"
+"             |   |\n"
+"             |   |\n"
+"        ____/_____\\____\n"
+"\n"
+"\n"
+"\n";
+}
+
+const char*	ShrubberyCreationForm::fileError::what(void) const throw()
+{
+	return (RED"Error creating the tree's file\n"RESET);
 }

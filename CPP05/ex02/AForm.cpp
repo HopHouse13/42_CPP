@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/17 17:41:57 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 17:17:56 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ void	AForm::beSigned(const Bureaucrat& guy)
 	this->_isSigned = true;
 }
 
+void	AForm::execute(const Bureaucrat& executor) const
+{
+	if (this->_isSigned == false)
+		throw AForm::Unsigned();
+	else if (executor.getGrade() > this->_sigGrade)
+		throw AForm::GradeTooLowException();
+	else
+		action();
+}
+
 const char*	AForm::GradeTooHighException::what(void) const throw()
 {
 	return (RED"The grade of the form is too high\n"RESET);
@@ -87,6 +97,11 @@ const char*	AForm::GradeTooHighException::what(void) const throw()
 const char*	AForm::GradeTooLowException::what(void) const throw()
 {
 	return (RED"The grade of the form is too low\n"RESET);
+}
+
+const char*	AForm::Unsigned::what(void) const throw()
+{
+	return (RED"The form is unsigned\n"RESET);
 }
 
 std::ostream&	operator<<(std::ostream& outStream, const AForm& rhs)

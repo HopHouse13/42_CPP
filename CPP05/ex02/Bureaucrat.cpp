@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/17 16:57:32 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 19:32:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs)
 {
 	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
 	if (this != &rhs)
-	{
-		//this->_name = rhs._name;
-		this->_grade = rhs._grade;
-	}
+		this->_grade = rhs._grade; // _name est en const (obligation du sujet)
 	return (*this);
 }
 
@@ -73,21 +70,36 @@ void	Bureaucrat::decrementGrade(void)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
 }
+
 // Fonction en const car elle ne modifie pas son objet(bureaucrat). Par contre beSigned(non const) modifie l'objet Form donc le param declass Form ne peut pas etre passe en const
 void	Bureaucrat::signForm(AForm& Aform) const
 {
 	try
 	{
 		Aform.beSigned(*this);
-		std::cout	<< "Bureaucrat " << this->_name << " signed the form "
-					<< Aform.getNameForm() << std::endl;
+		std::cout	<< GREEN << "Bureaucrat " << this->_name << " signed the form "
+					<< GREEN << Aform.getNameForm() << RESET << std::endl;
 	}
 	catch (std::exception& excep)
 	{
-		std::cout	<< "Bureaucrat " << this->_name << " couldn't sign the form "
-					<< Aform.getNameForm() << " because " << excep.what();
+		std::cout	<< RED << "Bureaucrat " << this->_name << " couldn't sign the form "
+					<< Aform.getNameForm() << " because " << excep.what() << RESET;
 	}
 }
+
+void	Bureaucrat::execteForm(const AForm& form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout	<< GREEN << this->_name << " executed " << form.getNameForm() << RESET << std::endl;
+	}
+	catch (std::exception& excep)
+	{
+		std::cout	<< RED << this->_name << " didn't execute " << form.getNameForm() << RESET << std::endl;
+	}
+}
+
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {
@@ -101,6 +113,6 @@ const char	*Bureaucrat::GradeTooLowException::what(void) const throw()
 
 std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& rhs)
 {
-	outStream << YELLOW << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << "." << RESET << std::endl;
+	outStream << YELLOW << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << RESET << std::endl;
 	return (outStream);
 }

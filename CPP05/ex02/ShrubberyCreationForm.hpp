@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:31:31 by pab               #+#    #+#             */
-/*   Updated: 2025/12/17 17:35:43 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 17:00:19 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include <fstream>
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
@@ -35,9 +36,14 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& rhs);
 		~ShrubberyCreationForm(void);
 
-		void	execute(const Bureaucrat& executor);
-	
+		void	action(void) const;
 
+	class fileError : public std::exception // maybe a Supp
+	{
+		public:
+			const char* what(void) const throw();
+	};
+	
 	private:
 		std::string	_target;
 };

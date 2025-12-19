@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/17 17:05:35 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 19:30:09 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ int	main(void)
 	std::cout << *Max;
 	delete (Max);
 
-	Bureaucrat Flo("Flo", 42);
 	try
 	{
+		Bureaucrat Flo("Flo",42);
 		std::cout << Flo;
-		
+
 		ShrubberyCreationForm	F1("Maison");
 		std::cout << F1;
-		Flo.signForm(F1);
-		std::cout << F1;
-		Flo.incrementGrade();
-		std::cout << Flo;
-		Flo.signForm(F1);
-		std::cout << F1;
+		//Flo.signForm(F1);
+		Flo.execteForm(F1);
+		//std::cout << F1;
+		//Flo.incrementGrade();
+		//std::cout << Flo;
+		//Flo.signForm(F1);
+		//std::cout << F1;
 	}
 	catch (std::exception& excep) // pourquoi ca catch les throw de Form et de Bureaucrat??
 	{

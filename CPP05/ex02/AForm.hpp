@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:31:31 by pab               #+#    #+#             */
-/*   Updated: 2025/12/17 18:33:38 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/19 16:28:57 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,27 @@ class AForm
 		const unsigned int&	getExecGradeForm(void) const;
 
 		void				beSigned(const Bureaucrat& guy);
-		void				virtual execute(const Bureaucrat& executor) const;
+		void				execute(const Bureaucrat& executor) const;
+		void virtual		action(void) const = 0;
 
-		class GradeTooHighException : public std::exception // pourquoi ne pas les mettre en private?
+		class GradeTooHighException : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
 		};
+
 		class GradeTooLowException : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
 		};
 
+		class Unsigned : public std::exception
+		{
+			public:
+				const char* what(void) const throw();
+		};
+	
 	private:
 		const std::string	_name;
 		bool				_isSigned;
@@ -76,5 +84,5 @@ std::ostream&	operator<<(std::ostream& outStream, const AForm& rhs);
 // exec -> pour executer l'action
 
 // Dans Bureaucrat:
-// try {executeForm(Form const& form) -> bureaucrat qui execute "exec" + Message reussite}
+// try {executeForm(Form const& form) -> bureaucrat qui execute "execute" + Message reussite}
 // si throw d'execute(AForm) -> Message de fail
