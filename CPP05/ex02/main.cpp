@@ -3,77 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/19 19:30:09 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/22 19:08:11 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
 	try
 	{
-		Bureaucrat	Adri("Adri", 0); // l'objet n'est pas construit car le constructeur throw donc l'objet n'est pas instancie.
-	}
-	catch (std::exception& excep)
-	{
-		std::cerr << excep.what();
-	}
-
-	try
-	{
-		Bureaucrat	Paul("Paul", 151);
-	}
-	catch (std::exception& excep)
-	{
-		std::cerr << excep.what();
-	}
-
-	try
-	{
-		Bureaucrat	Alix("Alix", 150); // l'objet est construit, grade 150 est valide
-		std::cout << Alix;
-		Alix.decrementGrade(); // le grade decremente -> 151 -> invalide -> throw
-	}
-	catch (std::exception& excep)
-	{
-		std::cerr << excep.what();
-	}
-
-	Bureaucrat* Max = new Bureaucrat("Max", 1); // try un scope propre. Une variable est declaree a l'interieur est supp a la fin du try
-	try
-	{
-		std::cout << *Max;
-		Max->incrementGrade();
-	}
-	catch (std::exception& excep)
-	{
-		std::cerr << excep.what();
-	}
-	std::cout << *Max;
-	delete (Max);
-
-	try
-	{
-		Bureaucrat Flo("Flo",42);
+		Bureaucrat Flo("Flo", 21);
+		Bureaucrat Pab("Pab", 2);
 		std::cout << Flo;
+		std::cout << Pab;
 
 		ShrubberyCreationForm	F1("Maison");
+		RobotomyRequestForm		F2("Sundae");
+		PresidentialPardonForm	F3("Phillippe Morris");
+
+		
 		std::cout << F1;
-		//Flo.signForm(F1);
+		Pab.signForm(F1);
 		Flo.execteForm(F1);
-		//std::cout << F1;
-		//Flo.incrementGrade();
-		//std::cout << Flo;
-		//Flo.signForm(F1);
-		//std::cout << F1;
+
+		std::cout << F2;
+		Pab.execteForm(F2);
+		Flo.signForm(F2);
+		Pab.execteForm(F2);
+
+		std::cout << F3;
+		Flo.signForm(F3);
+		Flo.execteForm(F3);
+		Pab.execteForm(F3);
 	}
-	catch (std::exception& excep) // pourquoi ca catch les throw de Form et de Bureaucrat??
+	catch (std::exception& excep)
 	{
 		std::cerr << excep.what();
 	}

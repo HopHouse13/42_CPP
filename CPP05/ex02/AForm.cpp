@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/19 17:17:56 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/22 19:02:35 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 AForm::AForm(void) : _name("unknown"), _isSigned(false), _sigGrade(150), _execGrade(150)
 {
-	std::cout << "Default construtor of " << this->_name << " called" << std::endl;
+	std::cout << "Default construtor of AForm called" << std::endl;
 }
 
 AForm::AForm(const std::string name, const unsigned int sigGrade, const unsigned int execGrade)
 : _name(name), _isSigned(false)
 {
-	std::cout << "Construtor of " << this->_name << " called" << std::endl;
+	std::cout << "Construtor of AForm called" << std::endl;
 	if (sigGrade < 1 || execGrade < 1)
 		throw AForm::GradeTooHighException();
 	if (sigGrade > 150 || execGrade > 150)
@@ -33,12 +33,12 @@ AForm::AForm(const std::string name, const unsigned int sigGrade, const unsigned
 AForm::AForm(const AForm& rhs)
 : _name(rhs._name), _isSigned(rhs._isSigned), _sigGrade(rhs._sigGrade), _execGrade(rhs._execGrade)
 {
-	std::cout << "Copy construtor of " << this->_name << " called" << std::endl;
+	std::cout << "Copy construtor of AForm called" << std::endl;
 }
 
 const AForm&	AForm::operator=(const AForm& rhs)
 {
-	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
+	std::cout << "Assignment operator of AForm called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_sigGrade = rhs._sigGrade;
@@ -49,7 +49,7 @@ const AForm&	AForm::operator=(const AForm& rhs)
 
 AForm::~AForm(void)
 {
-	std::cout << "Destrutor of " << this->_name << " called" << std::endl;
+	std::cout << "Destructor of AForm called" << std::endl;
 }
 
 const std::string&	AForm::getNameForm(void) const
@@ -83,7 +83,7 @@ void	AForm::execute(const Bureaucrat& executor) const
 {
 	if (this->_isSigned == false)
 		throw AForm::Unsigned();
-	else if (executor.getGrade() > this->_sigGrade)
+	else if (executor.getGrade() > this->_execGrade)
 		throw AForm::GradeTooLowException();
 	else
 		action();
