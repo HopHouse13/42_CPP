@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 19:33:10 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/23 20:01:03 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Intern::~Intern(void)
 AForm*	Intern::makeForm(std::string nameForm, std::string targetForm)
 {
 	AForm		*ptrForm = NULL;
-	std::string	formType[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+	std::string	formType[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 	int			idx = 0;
 	
 	while (idx < 3)
@@ -62,11 +62,12 @@ AForm*	Intern::makeForm(std::string nameForm, std::string targetForm)
 		default:
 			throw Intern::wrongNameForm();
 	}
+	std::cout << GREEN << "Intern creates " << nameForm << RESET << std::endl;
 	return (ptrForm);
 }
 
 const char*	Intern::wrongNameForm::what(void) const throw()
 {
-	return (RED"Invalid form name\n"RESET);
+	return (RED"Form name does not exist!\n"RESET);
 }
 
