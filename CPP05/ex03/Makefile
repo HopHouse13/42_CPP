@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pab <pab@student.42.fr>                    +#+  +:+       +#+         #
+#    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/11 18:10:23 by pbret             #+#    #+#              #
-#    Updated: 2025/12/22 16:51:40 by pab              ###   ########.fr        #
+#    Updated: 2025/12/23 19:44:47 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Form
+NAME		= Intern
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= Bureaucrat.cpp \
@@ -18,6 +18,7 @@ SRCS		= Bureaucrat.cpp \
 			ShrubberyCreationForm.cpp \
 			RobotomyRequestForm.cpp \
 			PresidentialPardonForm.cpp \
+			Intern.cpp \
 			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)

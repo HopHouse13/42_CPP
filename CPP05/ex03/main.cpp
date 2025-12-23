@@ -3,46 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/22 19:08:11 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 19:44:03 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Intern.hpp"
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
 	try
 	{
-		Bureaucrat Flo("Flo", 21);
-		Bureaucrat Pab("Pab", 2);
-		std::cout << Flo;
-		std::cout << Pab;
-
-		ShrubberyCreationForm	F1("Maison");
-		RobotomyRequestForm		F2("Sundae");
-		PresidentialPardonForm	F3("Phillippe Morris");
-
+		std::cout << YELLOW << "/// Forms valids ///" << RESET << std::endl;
+		Intern	Alix;
+		Bureaucrat Paul("Paul", 1);
 		
-		std::cout << F1;
-		Pab.signForm(F1);
-		Flo.execteForm(F1);
+		AForm*	f1 = Alix.makeForm("PresidentialPardonForm", "Pab");
+		Paul.signForm(*f1); // dereferencement car il faut une ref. et pas une adresse
+		Paul.executeForm(*f1);
+		AForm*	f2 = Intern().makeForm("RobotomyRequestForm", "Pab"); // instance temporaire: son scope est uniquement aur la ligne
+		Paul.signForm(*f2);
+		Paul.executeForm(*f2);
+		AForm*	f3 = Alix.makeForm("ShrubberyCreationForm", "Pab");
+		Paul.signForm(*f3);
+		Paul.executeForm(*f3);	
+		delete (f1); // delete des form car l'initilisation est dynamique (new)
+		delete (f2);
+		delete (f3);
 
-		std::cout << F2;
-		Pab.execteForm(F2);
-		Flo.signForm(F2);
-		Pab.execteForm(F2);
-
-		std::cout << F3;
-		Flo.signForm(F3);
-		Flo.execteForm(F3);
-		Pab.execteForm(F3);
+		std::cout << YELLOW << "/// Form invalid ///" << RESET << std::endl;
+		Intern	sundae;
+		Bureaucrat Flan("Flan", 1);
+		
+		AForm*	f4 = sundae.makeForm("WrongNameForm", "Pab"); // name invalid
+		Flan.signForm(*f4); // code pas exec car un throw a ete envoye la ligne au dessus
+		Flan.executeForm(*f4);
+		delete (f4);
 	}
 	catch (std::exception& excep)
 	{

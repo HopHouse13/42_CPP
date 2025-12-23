@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/22 18:27:14 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 16:04:46 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	Bureaucrat::signForm(AForm& Aform) const
 	}
 }
 
-void	Bureaucrat::execteForm(const AForm& form) const
+void	Bureaucrat::executeForm(const AForm& form) const
 {
 	try
 	{

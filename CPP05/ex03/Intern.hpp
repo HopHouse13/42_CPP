@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/22 19:52:43 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 17:17:51 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <string>
 #include <iostream>
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
@@ -32,25 +35,17 @@ class Intern
 {
 	public:
 		Intern(void);
-		Intern(const std::string name, const unsigned int grade);
 		Intern(const Intern& rhs);
 		Intern& operator=(const Intern& rhs);
 		~Intern(void);
 
-		AForm	*makeForm(std::string nameForm, std::string targetForm); // new vu que c'est un pointeur
-		//class GradeTooHighException : public std::exception
-		//{
-		//	public:
-		//		const char	*what(void) const throw();
-		//};
+		AForm*	makeForm(std::string nameForm, std::string targetForm); // new vu que c'est un pointeur
 
-		//class GradeTooLowException : public std::exception
-		//{
-		//	public:
-		//		const char	*what(void) const throw();
-		//};
+		class wrongNameForm : public std::exception
+		{
+			public:
+				const char*	what(void) const throw();
+		};
 };
-
-std::ostream&	operator<<(std::ostream& outStream, const Intern& rhs);
 
 #endif

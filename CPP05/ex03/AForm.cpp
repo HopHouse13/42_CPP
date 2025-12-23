@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/22 19:02:35 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 19:35:18 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 AForm::AForm(void) : _name("unknown"), _isSigned(false), _sigGrade(150), _execGrade(150)
 {
-	std::cout << "Default construtor of AForm called" << std::endl;
+	std::cout << "Default constructor of AForm called" << std::endl;
 }
 
 AForm::AForm(const std::string name, const unsigned int sigGrade, const unsigned int execGrade)
 : _name(name), _isSigned(false)
 {
-	std::cout << "Construtor of AForm called" << std::endl;
+	std::cout << "Constructor of AForm called" << std::endl;
 	if (sigGrade < 1 || execGrade < 1)
 		throw AForm::GradeTooHighException();
 	if (sigGrade > 150 || execGrade > 150)
@@ -33,7 +33,7 @@ AForm::AForm(const std::string name, const unsigned int sigGrade, const unsigned
 AForm::AForm(const AForm& rhs)
 : _name(rhs._name), _isSigned(rhs._isSigned), _sigGrade(rhs._sigGrade), _execGrade(rhs._execGrade)
 {
-	std::cout << "Copy construtor of AForm called" << std::endl;
+	std::cout << "Copy constructor of AForm called" << std::endl;
 }
 
 const AForm&	AForm::operator=(const AForm& rhs)
