@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/16 22:19:29 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/23 20:34:19 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ const char*	Form::GradeTooLowException::what(void) const throw()
 
 std::ostream&	operator<<(std::ostream& outStream, const Form& rhs)
 {
-	outStream	<< YELLOW << "The form " << rhs.getNameForm() << std::endl
+	outStream	<< YELLOW << "The form " << rhs.getNameForm() << ":" << std::endl
 				<< "Signature grade -> " << rhs.getSigGradeForm() << std::endl
 				<< "Execution grade -> " << rhs.getExecGradeForm() << std::endl
 				<< "Signature status -> " << rhs.getIsSignedForm() << RESET << std::endl;

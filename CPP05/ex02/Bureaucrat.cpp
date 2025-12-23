@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/22 18:27:14 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 21:01:43 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	Bureaucrat::decrementGrade(void)
 	this->_grade++;
 }
 
-// Fonction en const car elle ne modifie pas son objet(bureaucrat). Par contre beSigned(non const) modifie l'objet Form donc le param declass Form ne peut pas etre passe en const
+// Fonction en const car elle ne modifie pas son objet(bureaucrat). Par contre beSigned(non const) modifie l'objet Form donc le param de class Form ne peut pas etre passe en const
 void	Bureaucrat::signForm(AForm& Aform) const
 {
 	try
@@ -87,7 +87,7 @@ void	Bureaucrat::signForm(AForm& Aform) const
 	}
 }
 
-void	Bureaucrat::execteForm(const AForm& form) const
+void	Bureaucrat::executeForm(const AForm& form) const
 {
 	try
 	{
@@ -96,10 +96,9 @@ void	Bureaucrat::execteForm(const AForm& form) const
 	}
 	catch (std::exception& excep)
 	{
-		std::cout	<< RED << this->_name << " didn't execute " << form.getNameForm() << RESET << std::endl;
+		std::cout	<< RED << this->_name << " didn't execute " << form.getNameForm() << " because " << excep.what() << RESET;
 	}
 }
-
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {

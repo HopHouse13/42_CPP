@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/16 21:30:01 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/23 20:36:20 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	Bureaucrat::signForm(Form& form) const
 	try
 	{
 		form.beSigned(*this);
-		std::cout	<< "Bureaucrat " << this->_name << " signed the form "
-					<< form.getNameForm() << std::endl;
+		std::cout	<< GREEN << "Bureaucrat " << this->_name << " signed the form "
+					<< GREEN << form.getNameForm() << RESET << std::endl;
 	}
 	catch (std::exception& excep)
 	{
-		std::cout	<< "Bureaucrat " << this->_name << " couldn't sign the form "
-					<< form.getNameForm() << " because " << excep.what();
+		std::cout	<< RED << "Bureaucrat " << this->_name << " couldn't sign the form "
+					<< form.getNameForm() << " because " << excep.what() << RESET;
 	}
 }
 

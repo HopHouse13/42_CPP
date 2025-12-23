@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pab <pab@student.42.fr>                    +#+  +:+       +#+         #
+#    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/11 18:10:23 by pbret             #+#    #+#              #
-#    Updated: 2025/12/22 16:51:40 by pab              ###   ########.fr        #
+#    Updated: 2025/12/23 20:43:11 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Form
+NAME		= MultiForm
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= Bureaucrat.cpp \

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 16:04:46 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/23 21:02:17 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	Bureaucrat::executeForm(const AForm& form) const
 	}
 	catch (std::exception& excep)
 	{
-		std::cout	<< RED << this->_name << " didn't execute " << form.getNameForm() << RESET << std::endl;
+		std::cout	<< RED << this->_name << " didn't execute " << form.getNameForm() << " because " << excep.what() << RESET;
 	}
 }
 

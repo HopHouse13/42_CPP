@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/22 19:08:11 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/23 21:30:28 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,63 @@
 
 int	main(void)
 {
+	std::cout << YELLOW << "/// Invalid cases ///" << RESET << std::endl;
+
 	try
 	{
-		Bureaucrat Flo("Flo", 21);
-		Bureaucrat Pab("Pab", 2);
-		std::cout << Flo;
-		std::cout << Pab;
+		Bureaucrat				b1("b1", 150);
+		ShrubberyCreationForm	f1("jardin");
 
-		ShrubberyCreationForm	F1("Maison");
-		RobotomyRequestForm		F2("Sundae");
-		PresidentialPardonForm	F3("Phillippe Morris");
+		b1.signForm(f1);
+	}
+	catch (std::exception& excep)
+	{
+		std::cerr << excep.what();
+	}
 
-		
-		std::cout << F1;
-		Pab.signForm(F1);
-		Flo.execteForm(F1);
+	try
+	{
+		Bureaucrat			b2("b2", 1);
+		RobotomyRequestForm	f2("Harry");
 
-		std::cout << F2;
-		Pab.execteForm(F2);
-		Flo.signForm(F2);
-		Pab.execteForm(F2);
+		b2.executeForm(f2);
+	}
+	catch (std::exception& excep)
+	{
+		std::cerr << excep.what();
+	}
 
-		std::cout << F3;
-		Flo.signForm(F3);
-		Flo.execteForm(F3);
-		Pab.execteForm(F3);
+	try
+	{
+		Bureaucrat				b3("b3", 20);
+		PresidentialPardonForm	f3("Harry");
+
+		b3.signForm(f3);
+		b3.executeForm(f3);
+	}
+	catch (std::exception& excep)
+	{
+		std::cerr << excep.what();
+	}
+	std::cout << YELLOW << "/// Valid cases ///" << RESET << std::endl;
+
+	Bureaucrat	b4("b4", 1);
+	try
+	{
+		ShrubberyCreationForm	f4("jardin");
+
+		b4.signForm(f4);
+		b4.executeForm(f4);
+
+		RobotomyRequestForm	f5("Harry");
+
+		b4.signForm(f5);
+		b4.executeForm(f5);
+
+		PresidentialPardonForm	f6("Harry");
+
+		b4.signForm(f6);
+		b4.executeForm(f6);
 	}
 	catch (std::exception& excep)
 	{
