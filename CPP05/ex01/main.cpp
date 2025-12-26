@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 20:33:29 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/26 12:30:05 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(void)
 		std::cerr << excep.what();
 	}
 
-	std::cout << YELLOW << "/// Invalid cases ///" << RESET << std::endl;
+	std::cout << YELLOW << "/// Valid cases ///" << RESET << std::endl;
 	try
 	{
 		Bureaucrat	Flo("Flo", 42);

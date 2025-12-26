@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:31:31 by pab               #+#    #+#             */
-/*   Updated: 2025/12/16 20:56:57 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/26 12:40:14 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class Form
 
 		void				beSigned(const Bureaucrat& guy);
 
-		class GradeTooHighException : public std::exception // pourquoi ne pas les mettre en private?
+		class GradeTooHighException : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
@@ -55,12 +55,10 @@ class Form
 		};
 
 	private:
-		const std::string	_name;
-		bool				_isSigned;
-		unsigned int		_sigGrade;
-		unsigned int		_execGrade;
-		
-		
+		const std::string		_name;
+		bool					_isSigned;
+		const unsigned int		_sigGrade;
+		const unsigned int		_execGrade;
 };
 
 std::ostream&	operator<<(std::ostream& outStream, const Form& rhs);

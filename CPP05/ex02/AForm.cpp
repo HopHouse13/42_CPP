@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/22 19:02:35 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/26 12:52:28 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ const unsigned int&	AForm::getExecGradeForm(void) const
 void	AForm::beSigned(const Bureaucrat& guy)
 {
 	if (this->_sigGrade < guy.getGrade()) // il faut que le bureaucrat soit plus petit que le form pour pouvoir le signer?
-		throw AForm::GradeTooLowException();
+		throw AForm::GradeTooHighException();
 	this->_isSigned = true;
 }
 
@@ -83,8 +83,8 @@ void	AForm::execute(const Bureaucrat& executor) const
 {
 	if (this->_isSigned == false)
 		throw AForm::Unsigned();
-	else if (executor.getGrade() > this->_execGrade)
-		throw AForm::GradeTooLowException();
+	else if (this->_execGrade < executor.getGrade())
+		throw AForm::GradeTooHighException();
 	else
 		action();
 }

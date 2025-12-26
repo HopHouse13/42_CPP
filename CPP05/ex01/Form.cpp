@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/23 20:34:19 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/26 12:44:00 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ const unsigned int&	Form::getExecGradeForm(void) const
 
 void	Form::beSigned(const Bureaucrat& guy)
 {
-	if (this->_sigGrade < guy.getGrade()) // il faut que le bureaucrat soit plus petit que le form pour pouvoir le signer?
-		throw Form::GradeTooLowException();
+	if (this->_sigGrade < guy.getGrade())
+		throw Form::GradeTooHighException();
 	this->_isSigned = true;
 }
 
