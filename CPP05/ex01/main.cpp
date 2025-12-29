@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/26 12:30:05 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/29 14:43:48 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	std::cout << YELLOW << "/// Invalid cases ///" << RESET << std::endl;
 	try
 	{
-		Form	f1("f1", 0, 1);
+		Form	f1("f1", 0, 1); // tentative de creation de f1 avec une value invalid (0 en grade de signature)
 	}
 	catch (std::exception& excep)
 	{
@@ -36,7 +36,7 @@ int	main(void)
 
 	try
 	{
-		Form	f3("f3", 1, 0);
+		Form	f3("f3", 1, 0);  // tentative de creation de f3 avec une value invalid (0 en grade d'execution)
 	}
 	catch (std::exception& excep)
 	{

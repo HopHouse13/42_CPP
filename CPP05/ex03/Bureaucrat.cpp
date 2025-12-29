@@ -6,23 +6,23 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 21:02:17 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/29 16:20:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150) // grade entre 1 - 150
+Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150)
 {	
 	std::cout << "Default constructor of " << this->_name << " called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, const unsigned int grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name)
 {	
 	std::cout << "Constructor of " << this->_name << " called" << std::endl;
 	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException(); // c'est quoi exactement? un constructeur?
+		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	else
@@ -38,7 +38,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs)
 {
 	std::cout << "Assignment operator of " << this->_name << " overload called" << std::endl;
 	if (this != &rhs)
-		this->_grade = rhs._grade; // _name est en const (obligation du sujet)
+		this->_grade = rhs._grade;
 	return (*this);
 }
 
@@ -52,7 +52,7 @@ const std::string&	Bureaucrat::getName(void) const
 	return (this->_name);
 }
 
-const unsigned int&	Bureaucrat::getGrade(void) const
+const int&	Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }
@@ -103,7 +103,7 @@ void	Bureaucrat::executeForm(const AForm& form) const
 
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return (RED"Grade is too high\n"RESET); // est ce que cela va a l'encontre du sujet "\n"?
+	return (RED"Grade is too high\n"RESET);
 }
 
 const char	*Bureaucrat::GradeTooLowException::what(void) const throw()

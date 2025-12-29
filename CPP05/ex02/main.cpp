@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 21:30:28 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/29 16:18:20 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	main(void)
 	try
 	{
 		Bureaucrat				b1("b1", 150);
-		ShrubberyCreationForm	f1("jardin");
+		ShrubberyCreationForm	f1("jardin"); // (sigGrade 145, execGrade 137)
 
-		b1.signForm(f1);
+		b1.signForm(f1); // b1.grade(150) > f1.sigGrade(145) -> grade de b1 est trop low
 	}
 	catch (std::exception& excep)
 	{
@@ -37,7 +37,7 @@ int	main(void)
 		Bureaucrat			b2("b2", 1);
 		RobotomyRequestForm	f2("Harry");
 
-		b2.executeForm(f2);
+		b2.executeForm(f2); // f2 n'est pas signe
 	}
 	catch (std::exception& excep)
 	{
@@ -47,10 +47,10 @@ int	main(void)
 	try
 	{
 		Bureaucrat				b3("b3", 20);
-		PresidentialPardonForm	f3("Harry");
+		PresidentialPardonForm	f3("Harry"); // (sigGrade 25, execGrade 5)
 
 		b3.signForm(f3);
-		b3.executeForm(f3);
+		b3.executeForm(f3);  // b3.grade(20) > f1.sigGrade(5) -> grade de b3 est trop low
 	}
 	catch (std::exception& excep)
 	{

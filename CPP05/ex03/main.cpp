@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:56:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/26 12:30:29 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/29 16:40:06 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	std::cout << YELLOW << "/// Invalid cases ///" << RESET << std::endl;
-	
+
 	try
 	{
 		Intern		sundae;
@@ -43,7 +43,7 @@ int	main(void)
 		Paul.signForm(*f1); // dereferencement car il faut une ref. et pas une adresse
 		Paul.executeForm(*f1);
 
-		AForm*	f2 = Intern().makeForm("robotomy request", "Pab"); // instance temporaire: son scope est uniquement aur la ligne
+		AForm*	f2 = Intern().makeForm("robotomy request", "Pab"); // instance temporaire: sa duree de vie est uniquement sur la ligne / utilisation du constructeur par defaut de "Intern"
 		Paul.signForm(*f2);
 		Paul.executeForm(*f2);
 

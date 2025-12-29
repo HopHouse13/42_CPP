@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:30:36 by pab               #+#    #+#             */
-/*   Updated: 2025/12/26 12:51:36 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/29 16:19:57 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@ AForm::AForm(void) : _name("unknown"), _isSigned(false), _sigGrade(150), _execGr
 	std::cout << "Default constructor of AForm called" << std::endl;
 }
 
-AForm::AForm(const std::string name, const unsigned int sigGrade, const unsigned int execGrade)
-: _name(name), _isSigned(false)
+AForm::AForm(const std::string name, const int sigGrade, const int execGrade)
+: _name(name), _isSigned(false), _sigGrade(sigGrade), _execGrade(execGrade)
 {
 	std::cout << "Constructor of AForm called" << std::endl;
 	if (sigGrade < 1 || execGrade < 1)
 		throw AForm::GradeTooHighException();
 	if (sigGrade > 150 || execGrade > 150)
 		throw AForm::GradeTooLowException();
-	this->_sigGrade = sigGrade;
-	this->_execGrade = execGrade;
 }
 
 AForm::AForm(const AForm& rhs)
@@ -41,8 +39,7 @@ const AForm&	AForm::operator=(const AForm& rhs)
 	std::cout << "Assignment operator of AForm called" << std::endl;
 	if (this != &rhs)
 	{
-		this->_sigGrade = rhs._sigGrade;
-		this->_execGrade = rhs._execGrade;
+		this->_isSigned = rhs._isSigned;
 	}
 	return(*this);
 }
@@ -62,19 +59,19 @@ const bool&			AForm::getIsSignedForm(void) const
 	return(this->_isSigned);
 }
 
-const unsigned int&	AForm::getSigGradeForm(void) const
+const int&	AForm::getSigGradeForm(void) const
 {
 	return(this->_sigGrade);
 }
 
-const unsigned int&	AForm::getExecGradeForm(void) const
+const int&	AForm::getExecGradeForm(void) const
 {
 	return(this->_execGrade);
 }
 
 void	AForm::beSigned(const Bureaucrat& guy)
 {
-	if (this->_sigGrade < guy.getGrade()) // il faut que le bureaucrat soit plus petit que le form pour pouvoir le signer?
+	if (this->_sigGrade < guy.getGrade())
 		throw AForm::GradeTooHighException();
 	this->_isSigned = true;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:31:31 by pab               #+#    #+#             */
-/*   Updated: 2025/12/26 12:40:14 by pab              ###   ########.fr       */
+/*   Updated: 2025/12/29 14:41:42 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ class Form
 {
 	public:
 		Form(void);
-		Form(const std::string name, const unsigned int sigGrade, const unsigned int execGrade);
+		Form(const std::string name, const int sigGrade, const int execGrade);
 		Form(const Form& rhs);
 		const Form&	operator=(const Form& rhs);
 		~Form(void);
 
 		const std::string&	getNameForm(void) const;
 		const bool&			getIsSignedForm(void) const;
-		const unsigned int&	getSigGradeForm(void) const;
-		const unsigned int&	getExecGradeForm(void) const;
+		const int&	getSigGradeForm(void) const;
+		const int&	getExecGradeForm(void) const;
 
 		void				beSigned(const Bureaucrat& guy);
 
@@ -55,10 +55,10 @@ class Form
 		};
 
 	private:
-		const std::string		_name;
-		bool					_isSigned;
-		const unsigned int		_sigGrade;
-		const unsigned int		_execGrade;
+		const std::string	_name;
+		bool				_isSigned;
+		const int			_sigGrade;
+		const int			_execGrade;
 };
 
 std::ostream&	operator<<(std::ostream& outStream, const Form& rhs);

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:22 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/16 20:54:32 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/29 14:41:22 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ class Bureaucrat
 {
 	public:
 		Bureaucrat(void);
-		Bureaucrat(const std::string name, const unsigned int grade);
+		Bureaucrat(const std::string name, const int grade);
 		Bureaucrat(const Bureaucrat& rhs);
 		Bureaucrat& operator=(const Bureaucrat& rhs);
 		~Bureaucrat(void);
 
 		const std::string&	getName(void) const;
-		const unsigned int&	getGrade(void) const;
+		const int&	getGrade(void) const;
 		void				incrementGrade(void);
 		void				decrementGrade(void);
 
@@ -53,12 +53,12 @@ class Bureaucrat
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char	*what(void) const throw(); // du coup il faudrait le mettre a toutes les fonctions sans throw externe?
-		}; // dans la class exception, what est virtual donc nous pouvons l'override
+				const char	*what(void) const throw(); // dans la class exception, what est virtual donc nous pouvons l'override
+		};
 
 	private:
-		const std::string	_name; // ATTENTION sujet demande un const mais dans l'operateur d'affection nous ne pouvons pas initialiser _name.
-		unsigned int		_grade;
+		const std::string	_name;
+		int					_grade;
 };
 
 std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& rhs);

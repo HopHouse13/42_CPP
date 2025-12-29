@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 18:41:19 by pbret             #+#    #+#             */
-/*   Updated: 2025/12/23 21:01:43 by pbret            ###   ########.fr       */
+/*   Updated: 2025/12/29 14:38:42 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(void) : _name("unknown"), _grade(150) // grade entre 1 - 
 	std::cout << "Default constructor of " << this->_name << " called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, const unsigned int grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name)
 {	
 	std::cout << "Constructor of " << this->_name << " called" << std::endl;
 	if (grade < 1)
@@ -52,7 +52,7 @@ const std::string&	Bureaucrat::getName(void) const
 	return (this->_name);
 }
 
-const unsigned int&	Bureaucrat::getGrade(void) const
+const int&	Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }
