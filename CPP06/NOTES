@@ -1,0 +1,132 @@
+En C
+
+cast:	Implicite / Explicite (convertion)
+
+--------------------
+Cast implicit:	double a = int b;
+
+int moins precis. double plus precis que le int
+donc
+int	a = 42; 
+double	b = a; (pas de perte de precision car double(64bits) prend l' ensemble des int(32bits)) OK
+
+double	a = 42; 
+int	b = a; (perte de precision car int ne prend pas la totalite des doubles) pas OK -> faire une cast implicit.
+
+--------------------
+cast explicit:	int b; double a = (double)b;
+
+Bonne pratique en imposant une convertion.
+
+--------------------
+Promotion / Demotion
+
+int -> double / double -> int
+
+int	a = 42;
+double	b = a; (promotion)
+
+double	a = 42;
+int	b = (int)a; (demotion)
+
+
+*******************************************************************************************************
+
+cast: Reinterpretation
+
+meme hierarchie
+
+(pas compris)
+change le type sans changer les bits (pas ouf comme pratique)
+ 
+*******************************************************************************************************
+const -> non const OK
+
+l'invers pas bon
+Possible en explicite mais deconseille
+
+constance != mutable
+
+*******************************************************************************************************
+En C++
+up cast / down cast -> reinterpretation de class avec sa hierarchie
+
+--------------------
+static cast<TYPE>(VAR)
+
+cast de base que se base sur l'abre d'heritage
+
+--------------------
+dynamic cast<TYPE>(VAR)
+
+Il faut au moins une methode virtuelle (polymophisme) dans la class parent.
+Le dynamic cast est fait lors de l'execution (non a la compilation comme le static cast)
+
+Le dynamic cast peut renvoyer "NULL" si il fail. (tentative de cast d'une autre class en dehors de l'arbre d'heritage de la cass consernee)
+
+--------------------
+reinterpret_cast<TYPE>(VAR)
+
+réinterpréter les bits d’une valeur comme un autre type, sans les modifier.
+
+pas de securite
+voir le retypage
+
+--------------------
+const_cast<TPYE>(VAR)
+
+const -> mutable (implicite/explicite)		OK
+mutable -> const (implicite)			Compilateur error
+mutable (const_cast)-> const (explicite)	OK
+
+WARING Cela fonctionne mais n'est pas propre -> il y a un souci
+
+--------------------
+Cast Operator
+
+customize les cast via une class comme pour operator=.
+
+ex:
+
+class hello
+{
+	public:
+		operator double(); -> dans le corps {return (this->_value);
+		operator int(); -> {return (static_cast<int>(this->_value);
+	private:
+		double	_value;
+};
+
+
+
+A ACOMPRENDE CA :
+
+
+Types de conversions
+----------------------------------------------------------------------
+| Cast             | Conv. | Reint. | Upcast | Downcast | Type qual. |
+| ---------------- | ----- | ------ | ------ | -------- | ---------- |
+| implicit         |       | Yes    |        | Yes      |            |
+| static_cast      | Yes   |        | Yes    | Yes      |            | (check a la compilation)
+| dynamic_cast     |       |        | Yes    |          | Yes        | (check au runtime)
+| reinterpret_cast |       | Yes    | Yes    | Yes      |            | (retypage only)
+| const_cast       |       |        |        | Yes      |            |
+----------------------------------------------------------------------
+| Legacy C cast    | Yes   | Yes    | Yes    | Yes      | Yes        |
+----------------------------------------------------------------------
+
+Vérifications et fiabilité
+-----------------------------------------------------------------------
+| Cast             | Semantic check | Reliable at run | Tested at run |
+| ---------------- | -------------- | --------------- | ------------- |
+| implicit         | Yes            | Yes             |               |
+| static_cast      | Yes            |                 |               |
+| dynamic_cast     | Yes            | Yes             | Yes           |
+| reinterpret_cast |                |                 |               |
+| const_cast       |                |                 |               |
+-----------------------------------------------------------------------
+| Legacy C cast    |                |                 |               |
+-----------------------------------------------------------------------
+
+
+
