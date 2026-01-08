@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:48 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/05 18:14:03 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/08 18:05:16 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <string>
+#include <climits> // MAX/MIN
+#include <cstdlib> // strtol
+#include <cctype> // isdigit
 
 class ScalarConverter
 {
@@ -22,9 +25,14 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& rhs);
 		ScalarConverter&	operator=(const ScalarConverter& rhs);
-		~ScalarConverter();
+		virtual				~ScalarConverter() = 0; // destructeur abstrait pure -> class abstraite
 
-		void				convert(const std::string str); // pas de modif sur str
+		static void			convert(const std::string str); // pas de modif sur str
 };
+
+void	printTypes(const std::string str);
+bool	isChar(const std::string str);
+bool	isInt(const std::string str);
+bool	isFloat(const std::string str);
 
 #endif
