@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:30:57 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/08 14:39:49 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/20 17:24:15 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		std::cout << "The input parameter must be in the following format: ./convert <param>" << std::endl;
+		std::cout << "Error: The input parameter must be in the following format ./convert <param>" << std::endl;
 		return (1);
 	}
 	ScalarConverter::convert(av[1]);
