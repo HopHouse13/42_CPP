@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/08 18:20:59 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/19 17:51:43 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ bool	isInt(const std::string str)
 
 bool isFloat(const std::string str)
 {
-	float	valueFloat;
 	char*	ptrEnd;
-	
-	valueFloat = strtof(str.c_str(), &ptrEnd); // strtof arrete la converstion des au 2eme '.' ex: 4.4.3f
-	std::cout << ">>> " << *(ptrEnd) << std::endl;
-	if (*ptrEnd == 'f' && *(ptrEnd + 1) == '\0' && *(ptrEnd - 1) != '.') // cela ne fonctionne pas pour 4.f voir paul
+
+	// voir pour inff- inf+ nanf
+	std::strtof(str.c_str(), &ptrEnd); // strtof arrete la converstion des au 2eme '.' ex: 4.4.3f
+	std::cout << ">>> " << *ptrEnd << std::endl; // aSupp
+	if ((*ptrEnd == 'f' || *ptrEnd == 'F') && *(ptrEnd + 1) == '\0' /*&& *(ptrEnd - 1) != '.'*/) // cela ne fonctionne pas pour 4.f voir paul
 		return (true);
 	return (false);
 }
