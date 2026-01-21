@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/20 20:19:50 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/21 17:44:07 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	printTypes(const std::string str, int type)
 		printFloat(str);
 		break;
 	case 4 : // double
-		std::cout << "isDouble" << "\n"; //printDouble(str);
+		printDouble(str);
 		break;
 	default:
 		std::cout << "Error: invalid input type. Must be of type character, integer, float or double" << std::endl; // a ameliorer
@@ -140,7 +140,7 @@ void	printInt(const std::string str)
 				<< std::fixed << std::setprecision(1) << "float: " << static_cast<float>(i) << "f" << std::endl
 				<< "double: " << static_cast<double>(i) << std::endl;
 }
-
+#include <climits>
 void	printFloat(const std::string str)
 {
 	float	f = std::strtof(str.c_str(), NULL);
@@ -149,10 +149,27 @@ void	printFloat(const std::string str)
 		std::cout << "char: \'" << static_cast<char>(f) << "\'" << std::endl;
 	else
 		std::cout << "char: " << "impossible to display" << std::endl;
-	if (static_cast<int>(f) <= std::numeric_limits<int>::max() || static_cast<int>(f) >= std::numeric_limits<int>::min()) 
-		std::cout	<< "int: " << static_cast<int>(f) << std::endl;
+	if (static_cast<int>(f) <= INT_MAX || static_cast<int>(f) >= INT_MIN) 
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	else
 		std::cout << "int: " << "impossible" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl
-	<< "double: " << static_cast<double>(f) << std::endl;
+	std::cout	<< std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl
+				<< "double: " << static_cast<double>(f) << std::endl;
+}
+
+void	printDouble(const std::string str)
+{
+	double	d = std::strtod(str.c_str(), NULL);
+
+	if (d >= 32 && d <= 126)
+		std::cout << "char: \'" << static_cast<char>(d) << "\'" << std::endl;
+	else
+		std::cout << "char: " << "impossible to display" << std::endl;
+	std::cout << "value cast int: " << static_cast<int>(d) << std::endl;
+	if (static_cast<int>(d) <= INT_MAX || static_cast<int>(d) >= INT_MIN) 
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	else
+		std::cout << "int: " << "impossible" << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(d) << "f" << std::endl
+	<< "double: " << d << std::endl;
 }
