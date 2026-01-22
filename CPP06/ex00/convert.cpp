@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/22 15:39:41 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/22 19:07:39 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ bool	isFloat(const std::string str)
 {
 	char*	ptrEnd;
 	
-	if (str == "+inff" || str == "-inff" || str == "inff" || str == "nanf") // nan -> Not a Number / inff, +nanf, -nanf existe mais ne sont pas demandes a etre geres.
+	if (str == "inff" || str == "+inff" || str == "-inff" || str == "nanf" || str == "+nanf" || str == "-nanf") // nan -> Not a Number / inff, +nanf, -nanf existe mais ne sont pas demandes a etre geres.
 		return (true);
+	errno = 0;
 	std::strtof(str.c_str(), &ptrEnd); // strtof arrete la converstion des au 2eme '.' ex: 4.4.4f
 	if ((*ptrEnd == 'f' || *ptrEnd == 'F') && *(ptrEnd + 1) == '\0' && str.find('.') != std::string::npos && errno != ERANGE) // find "." pour eviter les 4f
 		return (true);
@@ -84,7 +85,7 @@ bool	isDouble(const std::string str)
 {
 	char*	ptrEnd;
 
-	if (str == "+inf" || str == "-inf" || str == "inf" || str == "nan")
+	if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan" || str == "+nan" || str == "-nan")
 		return (true);
 	errno = 0; // reset de la globale pour que stdtod modifie errno si overflow/underflow
 	std::strtod(str.c_str(), &ptrEnd); // strtod arrete la converstion des au 2eme '.' ex: 4.4.4 -> invalid
@@ -140,6 +141,7 @@ void	printInt(const std::string str)
 				<< std::fixed << std::setprecision(1) << "float: " << static_cast<float>(i) << "f" << std::endl
 				<< "double: " << static_cast<double>(i) << std::endl;
 }
+
 void	printFloat(const std::string str)
 {
 	float	f = std::strtof(str.c_str(), NULL);
@@ -148,10 +150,6 @@ void	printFloat(const std::string str)
 		std::cout << "char: \'" << static_cast<char>(f) << "\'" << std::endl;
 	else
 		std::cout << std::fixed << "char: " << "impossible to display" << std::endl;
-/*	std::cout << "value f (float): " << f << std::endl;
-	std::cout << "value cast f (double): " << static_cast<double>(f) << std::endl;
-	std::cout << "value cast f (int): " << static_cast<int>(f) << std::endl;
-	std::cout << "value int Max: " << std::numeric_limits<int>::max() << std::endl;*/
 	if (static_cast<double>(f) <= std::numeric_limits<int>::max() && static_cast<double>(f) >= std::numeric_limits<int>::min()) 
 		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	else
