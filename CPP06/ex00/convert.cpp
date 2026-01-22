@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/21 17:44:07 by pab              ###   ########.fr       */
+/*   Updated: 2026/01/22 15:39:41 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ void	printInt(const std::string str)
 				<< std::fixed << std::setprecision(1) << "float: " << static_cast<float>(i) << "f" << std::endl
 				<< "double: " << static_cast<double>(i) << std::endl;
 }
-#include <climits>
 void	printFloat(const std::string str)
 {
 	float	f = std::strtof(str.c_str(), NULL);
@@ -148,8 +147,12 @@ void	printFloat(const std::string str)
 	if (f >= 32 && f <= 126)
 		std::cout << "char: \'" << static_cast<char>(f) << "\'" << std::endl;
 	else
-		std::cout << "char: " << "impossible to display" << std::endl;
-	if (static_cast<int>(f) <= INT_MAX || static_cast<int>(f) >= INT_MIN) 
+		std::cout << std::fixed << "char: " << "impossible to display" << std::endl;
+/*	std::cout << "value f (float): " << f << std::endl;
+	std::cout << "value cast f (double): " << static_cast<double>(f) << std::endl;
+	std::cout << "value cast f (int): " << static_cast<int>(f) << std::endl;
+	std::cout << "value int Max: " << std::numeric_limits<int>::max() << std::endl;*/
+	if (static_cast<double>(f) <= std::numeric_limits<int>::max() && static_cast<double>(f) >= std::numeric_limits<int>::min()) 
 		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	else
 		std::cout << "int: " << "impossible" << std::endl;
@@ -164,9 +167,8 @@ void	printDouble(const std::string str)
 	if (d >= 32 && d <= 126)
 		std::cout << "char: \'" << static_cast<char>(d) << "\'" << std::endl;
 	else
-		std::cout << "char: " << "impossible to display" << std::endl;
-	std::cout << "value cast int: " << static_cast<int>(d) << std::endl;
-	if (static_cast<int>(d) <= INT_MAX || static_cast<int>(d) >= INT_MIN) 
+		std::cout << "char: " << "impossible to display" << std::endl;	
+	if (d <= std::numeric_limits<int>::max() && d >= std::numeric_limits<int>::min()) 
 		std::cout << "int: " << static_cast<int>(d) << std::endl;
 	else
 		std::cout << "int: " << "impossible" << std::endl;
