@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:42:56 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/23 18:22:43 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:11:06 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 Serializer::Serializer()
 {
-	std::cout << "Default constructeur Serializer called." << std::endl;
+	//std::cout << "Default constructeur Serializer called" << std::endl;
 }
 
 Serializer::Serializer(const Serializer& rhs)
 {
 	(void)rhs;
-	std::cout << "Copy constructeur Serializer called." << std::endl;
+	//std::cout << "Copy constructeur Serializer called" << std::endl;
 }
 
 Serializer&	Serializer::operator=(const Serializer& rhs)
 {
 	(void)rhs;
-	std::cout << "Assignment operator overlead Serializer called." << std::endl;
+	//std::cout << "Assignment operator overlead Serializer called" << std::endl;
 	return (*this);
 }
 
 Serializer::~Serializer()
 {
-	std::cout << "Destructor Serializer called." << std::endl;
+	//std::cout << "Destructor Serializer called" << std::endl;
 }
 
 uintptr_t	Serializer::serialize(Data* ptr)

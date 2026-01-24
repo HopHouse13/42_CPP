@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 16:55:45 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/23 18:26:05 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:10:47 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 Data::Data() : _value(42), _character('Z')
 {
-	std::cout << "Default constructor Data called" << std::endl;
+	//std::cout << "Default constructor Data called" << std::endl;
 }
 
 Data::Data(const Data& rhs) : _value(rhs._value), _character(rhs._character)
 {
-	std::cout << "Copy constructor Data called" << std::endl;
+	//std::cout << "Copy constructor Data called" << std::endl;
 }
 
 Data&	Data::operator=(const Data& rhs)
 {
-	std::cout << "Assignment operator Data called" << std::endl;
+	//std::cout << "Assignment operator Data called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_value = rhs._value;
@@ -35,15 +35,15 @@ Data&	Data::operator=(const Data& rhs)
 
 Data::~Data()
 {
-	std::cout << "Copy destructor Data called" << std::endl;
+	//std::cout << "Destructor Data called" << std::endl;
 }
 
-const int	Data::getValue() const
+int	Data::getValue() const
 {
 	return (this->_value);
 }
 
-const int	Data::getChar() const
+char	Data::getChar() const
 {
 	return (this->_character);
 }

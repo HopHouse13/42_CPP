@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert.hpp                                        :+:      :+:    :+:   */
+/*   convert.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:48 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/22 18:24:07 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/23 14:44:48 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERT_HPP
-# define CONVERT_HPP
+#ifndef CONVERT_CLASS_HPP
+# define CONVERT_CLASS_HPP
 
 #include <iostream>
 #include <string>

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:32:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/23 18:27:36 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/24 15:36:22 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 
 #include "./Data.class.hpp"
 
-#include <iostream>
+#include <iomanip> // setw
+#include <iostream> // display
+#include <stdint.h> // version C de la lib car <stdint> a ete rajoute a partir de c++11
 
 class Serializer
 {
 	public:
-		uintptr_t	serialize(Data* ptr);
-		Data*		deserialize(uintptr_t raw);
-
+		static uintptr_t	serialize(Data* ptr);
+		static Data*		deserialize(uintptr_t raw);
+		
 	private:
 		Serializer();
 		Serializer(const Serializer& rhs);
-		Serializer&	operator=(const Serializer& rhs);
+		Serializer&			operator=(const Serializer& rhs);
 		~Serializer();
-		
 };
 
 #endif

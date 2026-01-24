@@ -6,16 +6,17 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 16:59:56 by pbret             #+#    #+#              #
-#    Updated: 2026/01/22 18:30:15 by pbret            ###   ########.fr        #
+#    Updated: 2026/01/24 14:25:06 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 
-NAME		= convert
+NAME		= serializer
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= convert.cpp \
+SRCS		= Serializer.class.cpp \
+			Data.class.cpp \
 			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)

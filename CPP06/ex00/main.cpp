@@ -6,11 +6,11 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:30:57 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/22 18:18:37 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/23 14:44:04 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert.hpp"
+#include "convert.class.hpp"
 
 int	main(int ac, char **av)
 {
