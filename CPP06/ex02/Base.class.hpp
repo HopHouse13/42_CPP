@@ -6,16 +6,16 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 17:19:58 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/24 18:17:52 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/26 15:26:13 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BASE_CLASS_HPP
 # define BASE_CLASS_HPP
 
-//#include "./empty.class.hpp"
-
 #include <iostream>
+#include <ctime> // time
+#include <cstdlib> // rand()
 
 class Base
 {

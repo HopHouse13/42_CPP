@@ -6,17 +6,14 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 16:59:56 by pbret             #+#    #+#              #
-#    Updated: 2026/01/24 14:25:06 by pbret            ###   ########.fr        #
+#    Updated: 2026/01/26 15:01:39 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-
-NAME		= serializer
+NAME		= identify
 SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= Serializer.class.cpp \
-			Data.class.cpp \
+SRCS		= Base.class.cpp \
 			main.cpp
 
 OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
