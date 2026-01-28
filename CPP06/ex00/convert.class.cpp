@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/23 14:44:26 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 11:26:51 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	printChar(const std::string str)
 void	printInt(const std::string str)
 {
 	int	i = std::atoi(str.c_str());
+
 	if (i == 0 && str.find('0') == std::string::npos)
 	{
 		std::cout << "atoi failed" << std::endl;

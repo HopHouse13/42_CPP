@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 17:55:50 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/26 18:39:34 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 11:47:43 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Base::~Base()
 {
-	std::cout << "Destrucor Base called" << std::endl;
+	std::cout << "Destructor Base called" << std::endl;
 }
 
 Base*	generate()
@@ -41,7 +41,6 @@ Base*	generate()
 		std::cout << "error during generation" << std::endl;
 		return (NULL);
 	}
-	return (new Base());
 }
 
 void	identify(Base* p)

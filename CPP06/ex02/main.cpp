@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:05:35 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/26 18:40:37 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 11:49:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	main()
 {
 	std::srand(static_cast<unsigned int>(time(NULL))); // initiliser la seed du random
+
+	std::cout << time(NULL) << std::endl;
 
 	Base*	p = generate();
 	Base&	r = *p;
