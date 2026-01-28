@@ -16,8 +16,6 @@ int	main()
 {
 	std::srand(static_cast<unsigned int>(time(NULL))); // initiliser la seed du random
 
-	std::cout << time(NULL) << std::endl;
-
 	Base*	p = generate();
 	Base&	r = *p;
 
