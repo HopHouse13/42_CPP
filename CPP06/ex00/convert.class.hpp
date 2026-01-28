@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:48 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/23 14:44:48 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 12:07:11 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& rhs);
 		ScalarConverter&	operator=(const ScalarConverter& rhs);
-		virtual				~ScalarConverter() = 0; // destructeur abstrait pure -> class abstraite
+		virtual				~ScalarConverter() = 0; // destructeur abstrait pure -> class abstraite -> non instanciable
 };
 
 void	printTypes(const std::string str, int type);

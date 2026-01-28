@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:47:40 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/24 16:15:40 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 12:40:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	main()
 
 	std::cout	<< std::endl << "--- SERIALIZER ---" << std::endl << std::endl
 				<< std::left <<std::setw(12) << "ptr serial: " << ptrDataSerial << std::endl;
-
-	//Data*		ptrDataFinal = NULL;
 
 	Data*		ptrDataFinal = Serializer::deserialize(ptrDataSerial);
 	

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:01:18 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/28 11:26:51 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/28 12:03:43 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	isFloat(const std::string str)
 	if (str == "inff" || str == "+inff" || str == "-inff" || str == "nanf" || str == "+nanf" || str == "-nanf") // nan -> Not a Number / inff, +nanf, -nanf existe mais ne sont pas demandes a etre geres.
 		return (true);
 	errno = 0;
-	std::strtof(str.c_str(), &ptrEnd); // strtof arrete la converstion des au 2eme '.' ex: 4.4.4f
+	std::strtof(str.c_str(), &ptrEnd); // strtof arrete la converstion des le 2eme '.' ex: 4.4.4f
 	if ((*ptrEnd == 'f' || *ptrEnd == 'F') && *(ptrEnd + 1) == '\0' && str.find('.') != std::string::npos && errno != ERANGE) // find "." pour eviter les 4f
 		return (true);
 	return (false);
@@ -88,8 +88,8 @@ bool	isDouble(const std::string str)
 	if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan" || str == "+nan" || str == "-nan")
 		return (true);
 	errno = 0; // reset de la globale pour que stdtod modifie errno si overflow/underflow
-	std::strtod(str.c_str(), &ptrEnd); // strtod arrete la converstion des au 2eme '.' ex: 4.4.4 -> invalid
-	if (*ptrEnd == '\0' && str.find('.') != std::string::npos && errno != ERANGE) // strtod modifie errno si overflow
+	std::strtod(str.c_str(), &ptrEnd); // strtod arrete la converstion des le 2eme '.' ex: 4.4.4 -> invalid
+	if (*ptrEnd == '\0' && str.find('.') != std::string::npos && errno != ERANGE) // strtod modifie errno si overflow/underflow
 		return (true);
 	return (false);
 }
@@ -111,7 +111,7 @@ void	printTypes(const std::string str, int type)
 		printDouble(str);
 		break;
 	default:
-		std::cout << "Error: invalid input type. Must be of type character, integer, float or double" << std::endl; // a ameliorer
+		std::cout << "Error: invalid input type. Must be of type character, integer, float or double" << std::endl;
 		break;
 	}
 }
@@ -121,7 +121,7 @@ void	printChar(const std::string str)
 	char	c = static_cast<char>(str[0]); // static_cast est verifie lors de la compilation != dynamic_cast
 	std::cout	<< "char: \'" << c << "\'" << std::endl
 				<< "int: " << static_cast<int>(c) << std::endl
-				<< std::fixed << std::setprecision(1) << "float: " << static_cast<float>(c) << "f" << std::endl //std::fixed est une manipulateur de flux. il serre a affichier les float en deximale fixe 42.0f (!= affichage scientifique avec une exposant 42e+01f)
+				<< std::fixed << std::setprecision(1) << "float: " << static_cast<float>(c) << "f" << std::endl // std::fixed est une manipulateur de flux. Empeche les float/double de s'afficher en affichage scientifique (affichage scientifique avec un exposant 42e+01f)
 				<< "double: " << static_cast<double>(c) << std::endl;
 }
 
