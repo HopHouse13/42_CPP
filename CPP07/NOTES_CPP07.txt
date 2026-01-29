@@ -1,0 +1,76 @@
+--- TEMPLATES ---
+
+(modele) particulariter du c++ (n'existe pas en C)
+
+Les fonctions/struct/class peuvent etre templates.
+
+Les templates sevent avec construire des modeles de bout de code qui est capable de s'adapter a plusieurs type differents.
+(si on respectes les regles etablit pour les templates)
+
+
+exemple symtaxe fonction simple:
+
+								template<typename T>
+								T	max(T x, T y)
+								{
+									return (x >= y ? x : y);
+								}
+
+Il est possible de les passer les parametre par ref (&) plus leger pour la memoire. 
+Et donc aussi ses parametre peuvent etre en const pour plus de securite.
+exemple:
+
+								template<typename T>
+								T const &	max(T const & x, T const & y)
+								{
+									return (x >= y ? x : y);
+								}
+
+
+Lors de la compilation, le compilateur va remplacer les "trous" de type selon les types lors de l'instanciation du template.
+Cela va difnir dans quel type va fonctionner la fonction/class/struct lors de l'execution.
+
+Il existe deux manieres d'instancier un template:
+
+								EXPLICITE->	on definit clairement quel type on va utiliser
+											ex: max<int>(x, y)
+								IMPLICITE->	les types des parametres d'entrees definissent le type qui va etre utiliser\
+											ex: max(x, y)
+
+Il est possible de construire des class templates.
+Par exemple, class de liste qui utilise le meme type dans toute sa structure.
+exemple:
+
+								templates<typename T>
+								class Liste
+								{
+									public:
+										List<T>(T const & constent);
+										Liste<T>(Liste<T> const & list);
+										~List<T>();
+
+									private:
+										T	_content;
+										List<T> * _next;
+								};
+
+Il existe pleins de templates lib -> stl (standard template librairy)
+fichier template -> <name>.tpp
+
+
+Le type par defaut pour un template est defini lors de sa declaration:
+
+								sans type par defaut->	template<typename T>
+								type par default->		template<typename T = float>
+
+Pour utiliser le type par default, il y a une symtaxe specifique lors de l'appel de un template:
+
+							max<>(x, y);
+
+
+Par defaut le compilateur utilisera le type apres le '=' de la delcaration. Dans ce cas float.
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>> Specialisation (a revoir) complexe a apprehender
