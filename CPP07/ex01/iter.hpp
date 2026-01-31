@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 15:51:57 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/30 19:06:31 by pbret            ###   ########.fr       */
+/*   Updated: 2026/01/31 15:28:20 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 # include <iostream>
 # include <string>
-# include <typeinfo>
 # include <climits>
+# include <cstdlib>
+# include <ctime>
+#include <iomanip>
 
 template<typename T, typename F>
-void	iter(T & array, size_t len, F function)
+void	iter(T * array, size_t len, F function)
 {
 	size_t	i = 0;
 
@@ -27,35 +29,17 @@ void	iter(T & array, size_t len, F function)
 		function(array[i++]);
 }
 
-template<typename T>
-void	modify(T var)
+void	multiplyByTwo(int & v)
 {
-	if (typeid(T) == typeid(int))
-	{
-		std::cout <<"INT\n";
-		decrement(*var);
-	}
-	else if (typeid(T) == typeid(char))
-	{
-		std::cout <<"char\n";
-		upper(*var);
-	}
+		v *= 2;
 }
 
-int	decrement(int & v)
+void	upperChar(std::string & s)
 {
-	if (v > INT_MIN)
-		v--;
-	else
-		std::cout << "Error: invalid value" << std::endl;
-	return (v);
-}
+	std::string	tmp;
 
-std::string	upper(std::string & c)
-{
-	for(int i = 0; c[i]; i++)
-		std::toupper(c[i]);
-	return (c);
+	for(size_t i = 0; i < s.length(); i++)
+		s[i] = std::toupper(s[i]);
 }
 
 #endif
