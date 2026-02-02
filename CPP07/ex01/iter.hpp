@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 15:51:57 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/31 15:28:20 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/02 16:38:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ void	multiplyByTwo(int & v)
 
 void	upperChar(std::string & s)
 {
-	std::string	tmp;
-
 	for(size_t i = 0; i < s.length(); i++)
-		s[i] = std::toupper(s[i]);
+	{
+		if (i % 2)
+			s[i] = std::tolower(s[i]);
+		else
+			s[i] = std::toupper(s[i]);
+	}
 }
 
 #endif
