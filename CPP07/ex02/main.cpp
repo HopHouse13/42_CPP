@@ -6,11 +6,11 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:39:36 by pbret             #+#    #+#             */
-/*   Updated: 2026/01/31 17:05:34 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/03 19:54:19 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Array.hpp>
+#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -60,5 +60,16 @@ int main(int, char**)
 		numbers[i] = rand();
 	}
 	delete [] mirror;//
-	return 0;
+	
+	//////////////////////////////////////
+	Array<int>	ArrayInt(10);
+
+	for (int i = 0; i < 10; i++)
+		/*ArrayInt.setArray(i, (i*2));*/ ArrayInt[i] = (i*2);
+	for (int i = 0; i < 10; i++)
+		std::cout << "[" << i <<"] " << ArrayInt[i] << std::endl;
+	//int * a = new int();
+	//std::cout << "test:" << *a << std::endl;
+	//delete a;
+	return (0);
 }
