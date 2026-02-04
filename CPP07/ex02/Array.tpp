@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:39:23 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/03 19:55:05 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/04 19:40:30 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ void	Array<T>::setArray(T value, unsigned int index)
 {
 	if (index < this->_size)
 		this->_array[index] = value; // est ce que j'utlise l'operateur de surcharge =? PAUL AIDE MOI
+}
+
+template<typename T>
+void	Array<T>::setArray(T const value, unsigned int const index) const
+{
+	if (index < this->_size)
+		this->_array[index] = value;
 }

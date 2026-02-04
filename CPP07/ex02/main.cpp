@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:39:36 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/03 19:54:19 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/04 20:08:25 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
 #define MAX_VAL 750
+
 int main(int, char**)
 {
+	std::cout << "--- Suject main ---" << std::endl;
 	Array<int> numbers(MAX_VAL);
 	int* mirror = new int[MAX_VAL];
 	srand(time(NULL));
@@ -61,15 +63,20 @@ int main(int, char**)
 	}
 	delete [] mirror;//
 	
-	//////////////////////////////////////
+	std::cout	<< "--- My main ---" << std::endl;
 	Array<int>	ArrayInt(10);
 
 	for (int i = 0; i < 10; i++)
 		/*ArrayInt.setArray(i, (i*2));*/ ArrayInt[i] = (i*2);
 	for (int i = 0; i < 10; i++)
 		std::cout << "[" << i <<"] " << ArrayInt[i] << std::endl;
-	//int * a = new int();
-	//std::cout << "test:" << *a << std::endl;
-	//delete a;
+
+	std::string tab[] = {"Fallout" , "Breaking Bad", "Stars Wars", "anticonstitutionnellement", "quarante deux"};
+	Array<std::string> ArrayChar(5);
+	
+	for (int i = 0; i < 5; i++)
+		ArrayChar.setArray(tab[i], i);
+	for (int i = 0; i < 5; i++)
+		std::cout << "[" << i <<"] " << ArrayChar[i] << std::endl;
 	return (0);
 }
