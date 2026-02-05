@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:09:06 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/02 16:38:56 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/05 14:48:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main( void ) 
 {
 	/// CHAR ARRAY ///
-	std::string	arrayChar[4] = {"bonjour", "j'adore quarante deux", "4 + 2 = 42", "denver a une paire de lunette de folie"};
+	std::string	arrayChar[4] = {"bonjour", "j'adore quarante deux", "4 + 2 = 42", "denver a une paire de lunette de folie"};	
 
 	std::cout << "Orignal:";
 	for (int i = 0; i < 4; i++)

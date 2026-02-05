@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:38:59 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/04 19:40:40 by pab              ###   ########.fr       */
+/*   Updated: 2026/02/05 14:56:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ class Array
 		Array();
 		Array(unsigned int n);
 		Array(Array const & copy);
-		Array &	operator=(Array const & rhs);
-		T &		operator[](unsigned int index);	
+		Array &					operator=(Array const & rhs);
 		~Array();
 
+		T &						operator[](unsigned int index);
+		T const &				operator[](unsigned int index) const;
 		unsigned int const &	size() const;
-		void		setArray(T value, unsigned int index);
-		void		setArray(T value, unsigned int index) const;
+		void					setArray(T value, unsigned int index);
+		//void					setArray(T value, unsigned int index) const;
+
 		class Index : public std::exception
 		{
 			public:
