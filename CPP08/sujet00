@@ -1,0 +1,15 @@
+ Un premier exercice facile est le meilleur moyen de partir du bon pied.
+
+Écrivez un modèle de fonction easyfind qui accepte un type T. Il prend deux paramètres :
+le premier est de type T, et le second est un entier.
+
+En supposant que T est un conteneur d'entiers, cette fonction doit trouver la première occurrence
+du deuxième paramètre dans le premier paramètre. (std::find)
+
+Si aucune occurrence n'est trouvée, vous pouvez soit lancer une exception (throw), soit renvoyer une valeur erreur
+de votre choix.
+
+Si vous avez besoin d'inspiration, analysez le comportement des conteneurs standard.
+
+Bien sûr, implémentez et soumettez vos propres tests pour vous assurer que tout fonctionne comme prévu.
+Vous n'avez pas besoin de gérer les conteneurs associatifs.
