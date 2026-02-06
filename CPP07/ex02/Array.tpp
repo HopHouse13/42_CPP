@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:39:23 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/05 14:56:57 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/06 15:58:14 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ Array<T>::~Array()
 template<typename T>
 T &		Array<T>::operator[](unsigned int index)
 {
-	//std::cout << "no const" << std::endl;
+	//std::cout << "function operator [] no const" << std::endl;
 	if (index >= this->_size)
 		throw Index();
 	return (this->_array[index]);
@@ -67,7 +67,7 @@ T &		Array<T>::operator[](unsigned int index)
 template<typename T>
 T const &		Array<T>::operator[](unsigned int index) const
 {
-	//std::cout << "const" << std::endl;
+	//std::cout << "function operator [] const" << std::endl;
 	if (index >= this->_size)
 		throw Index();
 	return (this->_array[index]);
@@ -89,12 +89,5 @@ template<typename T>
 void	Array<T>::setArray(T value, unsigned int index)
 {
 	if (index < this->_size)
-		this->_array[index] = value; // est ce que j'utlise l'operateur de surcharge =? PAUL AIDE MOI la reponse est non. c'est l'operateur = standard des types premitives
+		this->_array[index] = value;
 }
-
-//template<typename T>
-//void	Array<T>::setArray(T const value, unsigned int const index) const
-//{
-//	if (index < this->_size)
-//		this->_array[index] = value;
-//}

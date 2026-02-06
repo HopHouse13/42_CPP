@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 15:38:59 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/05 14:56:49 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/06 15:21:27 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Array
 		T const &				operator[](unsigned int index) const;
 		unsigned int const &	size() const;
 		void					setArray(T value, unsigned int index);
-		//void					setArray(T value, unsigned int index) const;
 
 		class Index : public std::exception
 		{
