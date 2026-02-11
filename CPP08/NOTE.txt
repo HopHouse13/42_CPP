@@ -1,0 +1,22 @@
+STL : standard template librairy
+
+ -> les conteneurs (listes)
+ -> les algo (outils)
+
+les listes sont generalement des template -> prennent un type.
+Il faut l'instancier.
+exemple:
+
+		std::list<int>		list1;
+
+
+Pour naviger/ acceder les elements dans les conteneurs, on utilise des iterator.
+
+Un iterator est un objet. Cela ressemble a un pointeur vers un element du conteneur.
+ Il faut qu'il soit instancier avec le "type" du conteneur utilise.
+ On le retrouve dans le namespece des conteneur pour l'instancier.
+ exemple:
+
+		std::list<int>::iterator			it;
+ou
+		std::vector<int>::const_iterator	it_const;

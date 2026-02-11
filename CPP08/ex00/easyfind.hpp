@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:37:00 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/06 19:15:59 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/10 15:44:20 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <vector>
 
 
-//template<typename T>
-//typename T::iterator	easyfind(T const contener, int const value); // typename signifie que 'T:iterator'est bien le type de retour (un iterator d'un contener de type primitif) 
+template<typename T>
+typename T::iterator	easyfind(T const & contener, int const & value); // typename signifie que 'T:iterator'est bien le type de retour (un iterator d'un contener de type primitif) 
 
 
 
