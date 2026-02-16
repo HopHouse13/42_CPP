@@ -1,0 +1,32 @@
+Développez une classe Span pouvant stocker un maximum de N entiers. N est une variable int non signée
+et sera le seul paramètre passé au constructeur.
+
+Cette classe aura une fonction membre appelée addNumber() pour ajouter un seul nombre
+à la Span. Elle sera utilisée pour la remplir. Toute tentative d'ajouter un nouvel élément alors qu'il y a
+déjà N éléments stockés doit lever une exception.
+Ensuite, implémentez deux fonctions membres : shortestSpan() et longestSpan().
+Elles trouveront respectivement l'intervalle (ou la distance, si
+vous préférez) le plus court ou le plus long entre tous les nombres stockés, et le renverront.
+
+S'il n'y a pas de nombres stockés, ou s'il n'y en a qu'un seul, aucun intervalle ne peut être trouvé.
+Dans ce cas, lancez une exception.
+
+Bien sûr, vous écrirez vos propres tests, qui seront beaucoup plus approfondis que ceux
+ci-dessous. Testez votre intervalle avec au moins 10 000 nombres. Plus il y en a, mieux c'est.
+
+
+Enfin, il serait formidable de pouvoir remplir votre Span à l'aide d'une série d'itérateurs.
+
+Effectuer des milliers d'appels à addNumber() est très fastidieux. Implémentez une fonction membre
+pour ajouter plusieurs nombres à votre Span en un seul appel.
+
+Si vous ne savez pas comment faire, étudiez les conteneurs. Certaines fonctions membres
+acceptent une série d'itérateurs afin d'ajouter une séquence d'éléments au conteneur.
+
+\\\
+
+
+2 conditions d'exception:
+
+- si rajout de nouveau elements alors la list a deja ete constituee (a confirmer)
+- si on tente d'appeler shortestSpan() ou longestSpan() et qu'il n ya pas de valeur stockee.

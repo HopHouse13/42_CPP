@@ -1,6 +1,9 @@
 ==============================
 STD::VECTOR
 ==============================
+Un vecteur est une séquence dynamique qui peut grandir ou rétrécir automatiquement.
+Il stocke ses éléments de manière contiguë en mémoire,
+ce qui permet un accès rapide aux éléments.
 
 size()           [C++98]
 Retourne le nombre d’éléments actuellement stockés.
@@ -69,6 +72,10 @@ Réduit la capacité pour correspondre à la taille actuelle.
 ==============================
 STD::DEQUE
 ==============================
+Un deque (prononcé "deck") est une double-ended queue qui permet l'ajout 
+et la suppression efficaces d'éléments en tête ou en queue de la structure.
+Il est similaire à un vector, mais il offre une efficacité accrue pour
+les opérations de déplacement en tête.
 
 push_back()      [C++98]
 Ajoute un élément à la fin.
@@ -125,6 +132,9 @@ Construit un élément directement à la fin.
 ==============================
 STD::LIST
 ==============================
+Une liste doublement chaînée qui permet une insertion
+et une suppression rapides d'éléments à n'importe quel endroit de la liste.
+Cependant, l'accès aux éléments n'est pas aussi rapide qu'avec un vecteur.
 
 push_back()      [C++98]
 Ajoute un élément à la fin.
@@ -190,6 +200,8 @@ Construit un élément à la fin.
 ==============================
 STD::MAP
 ==============================
+Une carte est une structure de données associant des clés à des valeurs.
+Chaque clé est unique, et les données sont généralement triées par clé.
 
 insert()         [C++98]
 Insère une paire clé/valeur.
@@ -201,6 +213,8 @@ find()           [C++98]
 Recherche une clé et retourne un itérateur.
 
 count()          [C++98]
+Une file est une structure de données de type FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
 Retourne 1 si la clé existe, sinon 0.
 
 operator[]       [C++98]
@@ -237,6 +251,8 @@ Construit une paire clé/valeur directement.
 ==============================
 STD::SET
 ==============================
+Un ensemble est une collection d'éléments uniques, triés par défaut.
+Il garantit que chaque élément est unique et offre une recherche efficace.
 
 insert()         [C++98]
 Insère une valeur unique.
@@ -278,6 +294,8 @@ Construit un élément directement.
 ==============================
 STD::STACK
 ==============================
+Une pile est une structure de données de type LIFO (Last-In, First-Out),
+souvent utilisée pour gérer des opérations de type pile.
 
 push()           [C++98]
 Ajoute un élément au sommet.
@@ -289,7 +307,8 @@ top()            [C++98]
 Accède à l’élément au sommet.
 
 size()           [C++98]
-Retourne le nombre d’éléments.
+Retourne le nombre d’éléments.FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
 
 empty()          [C++98]
 Indique si la stack est vide.
@@ -301,6 +320,8 @@ Construit un élément directement au sommet.
 ==============================
 STD::QUEUE
 ==============================
+Une file est une structure de données de type FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
 
 push()           [C++98]
 Ajoute un élément à la fin.
