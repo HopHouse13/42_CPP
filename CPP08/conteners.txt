@@ -3,7 +3,8 @@ STD::VECTOR
 ==============================
 Un vecteur est une séquence dynamique qui peut grandir ou rétrécir automatiquement.
 Il stocke ses éléments de manière contiguë en mémoire,
-ce qui permet un accès rapide aux éléments.
+ce qui permet un accès rapide aux éléments. 
+Possibilité aux éléments via un index. -> v[1]
 
 size()           [C++98]
 Retourne le nombre d’éléments actuellement stockés.

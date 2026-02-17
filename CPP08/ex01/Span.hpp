@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:30:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/17 13:51:14 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/17 19:57:02 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 # define SPAN_HPP
 
 # include <iostream>
+# include <vector>
 
 class Span
 {
 	public:
 		Span();
+		~Span();
 		Span(unsigned int n);
 		Span(Span const & copy);
 		Span &	operator=(Span const & rhs);
-		~Span();
 
-		void			addNumber(unsigned int v);
-		unsigned int	shortestSpan() const;
-		unsigned int	longestSpan() const; // const inutile vu qu'il y a pas de param a modifier sauf si ca fonctionne aussi pour les variables privees
+		void						addNumber(unsigned int v);
+		std::vector<int> const &	getList() const;
+		//unsigned int	shortestSpan() const;
+		//unsigned int	longestSpan() const; // const inutile vu qu'il y a pas de param a modifier sauf si ca fonctionne aussi pour les variables privees
 
 	private:
-		unsigned int	_n;
+		unsigned int		_n;
+		std::vector<int>	_listNumbers;
 };
 
 #endif
