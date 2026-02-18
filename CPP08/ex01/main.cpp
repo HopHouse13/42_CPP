@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 19:22:43 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/17 20:06:33 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/18 18:49:37 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ int	main()
 {
 	Span	test(3);
 
-	test.addNumber(1);
-	test.addNumber(2);
-	test.addNumber(3);
+	test.addNumber(10);
+	test.addNumber(4);
+	test.addNumber(1999);
 
+	Span test1 = test;
 	try
 	{
-		for (int i = 0; i < 4; i++)	
-			std::cout << test.getList().at(i) << std::endl; // at -> Accède à un élément avec vérification des limites (exception si hors range).
+		std::cout << "value short:" << test1.shortestSpan() << std::endl;
+		for (int i = 0; i < 3; i++)	
+			std::cout << test1.getList().at(i) << std::endl; // at -> Accède à un élément avec vérification des limites (exception si hors range).
 	} // j'ai fais une getter sauf que c'est plus simple d'utiliser un iterator
 	catch(const std::exception& e)
 	{

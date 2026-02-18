@@ -29,4 +29,4 @@ acceptent une série d'itérateurs afin d'ajouter une séquence d'éléments au 
 2 conditions d'exception:
 
 - si rajout de nouveau elements alors la list a deja ete constituee (a confirmer)
-- si on tente d'appeler shortestSpan() ou longestSpan() et qu'il n ya pas de valeur stockee.
+- si on tente d'appeler shortestSpan() ou longestSpan() et qu'il n ya pas de valeur stockee. valeur 1
