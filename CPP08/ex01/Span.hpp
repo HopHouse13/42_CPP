@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:30:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/18 16:47:36 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:31:50 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ class Span
 
 		void						addNumber(unsigned int v);
 		int	shortestSpan() const;
-		//int	longestSpan() const; // const inutile vu qu'il y a pas de param a modifier sauf si ca fonctionne aussi pour les variables privees
+		int	longestSpan() const;
+		void	generateList(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end);
 		std::vector<int> const &	getList() const;
 		
 		class SpanFull : public std::exception

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:31:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/18 18:49:14 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/19 20:14:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ Span::Span(Span const & copy) : _n(copy._n), _listNumbers(copy._listNumbers) // 
 
 Span &	Span::operator=(Span const & rhs)
 {
+	std::cout << "Assignement operator overload called" << std::endl;
 	if(this != &rhs)
 	{
 		this->_n = rhs._n;
@@ -51,31 +52,50 @@ void	Span::addNumber(unsigned int v)
 
 int	Span::shortestSpan() const
 {
-	// verif si deux elem
-	// creer un vector tmp
-	// trier
-	// trouver le 1er ecart
-	// boucle pour check chaque ecart avec condition si la valeur trouvee et plus petit que l'ecart sotcker
-	// renvoyer l'ecart
 	if (this->_listNumbers.size() < 2)
 		throw NeedTwoElem();
 
 	std::vector<int>	tmp = this->_listNumbers;
+	
 	std::sort(tmp.begin(), tmp.end());
 
-	int	span = tmp[1] - tmp[0];
-	int	dif;
-	for (std::vector<int>::const_iterator it = tmp.begin()++; it != tmp.end() - 1; it++)
+	int	span = tmp.at(1) - tmp.at(0);
+	for (unsigned int i = 0; i < tmp.size() -1; i++)
 	{
-		//std::cout << "Comparing: " << *(it+1) << " - " << *it << std::endl;  
-		dif = *(it+1) - *it;
+		int dif = tmp.at(i+1) - tmp.at(i);
 		if (dif < span)
-		{	
 			span = dif;
-			//std::cout << "value Span:" << span << std::endl;
-		}
 	}
 	return (span);
+}
+
+int	Span::longestSpan() const
+{
+	if (this->_listNumbers.size() < 2)
+		throw NeedTwoElem();
+
+	std::vector<int>	tmp = this->_listNumbers;
+
+	std::sort(tmp.begin(), tmp.end());
+
+	int	span = tmp.at(1) - tmp.at(0);
+	for (unsigned int i = 0; i < tmp.size() -1; i++)
+	{
+		int dif = tmp.at(i+1) - tmp.at(i);
+		if (dif > span)
+			span = dif;
+	}
+	return (span);
+}
+
+void	Span::generateList(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end)
+{
+	std::cout << "value add new elem: " << (end - start) << std::endl;
+	std::cout << "value size old elem: " << this->_listNumbers.size() << std::endl;
+	std::cout << "value total elem: " << ((end - start) + this->_listNumbers.size()) << std::endl;
+	if (((end - start) + this->_listNumbers.size()) > this->_n) // dans vector tu peux faire la difference entre deux iterateurs qui donnera le nombre d'elem entre les deux.
+		throw SpanFull();
+	this->_listNumbers.insert(this->_listNumbers.end(), start, end);
 }
 
 const char *	Span::SpanFull::what() const throw()
@@ -89,8 +109,7 @@ const char *	Span::NeedTwoElem::what() const throw()
 }
 
 
-
 std::vector<int> const &	Span::getList() const // pas dans le sujet
 {
-	return (this->_listNumbers);
+	return (this->_listNumbers); // non protege car un contener meme vide est valide par contre si tu essaies d'acceder a une value -> seg fault
 }
