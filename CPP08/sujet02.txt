@@ -1,0 +1,18 @@
+Il est maintenant temps de passer à des choses plus sérieuses. Développons quelque chose d'étrange.
+
+Le conteneur std::stack est très pratique. Malheureusement, c'est l'un des seuls conteneurs STL qui n'est PAS itérable. C'est vraiment dommage.
+Mais pourquoi devrions-nous l'accepter ? Surtout si nous pouvons nous permettre de massacrer la
+pile d'origine pour créer les fonctionnalités manquantes.
+Pour réparer cette injustice, vous devez rendre le conteneur std::stack itérable.
+Écrivez une classe MutantStack. Elle sera implémentée en termes de std::stack.
+Elle offrira toutes ses fonctions membres, plus une fonctionnalité supplémentaire : les itérateurs.
+Bien sûr, vous écrirez et soumettrez vos propres tests pour vous assurer que tout fonctionne comme
+prévu
+
+Si vous l'exécutez une première fois avec votre MutantStack, puis une deuxième fois en remplaçant le
+MutantStack par, par exemple, un std::list, les deux résultats devraient être identiques. Bien sûr,
+ lorsque vous testez un autre conteneur, mettez à jour le code ci-dessous avec les fonctions membres correspondantes
+(push() peut devenir push_back()).
+
+
+sous-jacent
