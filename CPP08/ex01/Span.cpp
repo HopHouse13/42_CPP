@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:31:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/19 20:14:12 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/20 13:25:14 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int	Span::longestSpan() const
 
 void	Span::generateList(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end)
 {
-	std::cout << "value add new elem: " << (end - start) << std::endl;
-	std::cout << "value size old elem: " << this->_listNumbers.size() << std::endl;
-	std::cout << "value total elem: " << ((end - start) + this->_listNumbers.size()) << std::endl;
+	//std::cout << "value add new elem: " << (end - start) << std::endl;
+	//std::cout << "value size old elem: " << this->_listNumbers.size() << std::endl;
+	//std::cout << "value total elem: " << ((end - start) + this->_listNumbers.size()) << std::endl;
 	if (((end - start) + this->_listNumbers.size()) > this->_n) // dans vector tu peux faire la difference entre deux iterateurs qui donnera le nombre d'elem entre les deux.
 		throw SpanFull();
 	this->_listNumbers.insert(this->_listNumbers.end(), start, end);

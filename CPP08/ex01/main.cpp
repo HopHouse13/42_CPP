@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 19:22:43 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/19 20:17:16 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/20 13:28:09 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main()
 
 	try
 	{	
-
-
 		contener1.addNumber(-1);
 		contener1.addNumber(0);
 		contener1.addNumber(42);
@@ -56,6 +54,7 @@ int	main()
 		
 		//for (std::vector<int>::const_iterator it = contener1.getList().begin(); it != contener1.getList().end(); it++)
 		//	std::cout << *it << std::endl;
+		contener1.addNumber(0); // erreur car le nombre d'element dans le conteneur depasse _n (nombre max)
 	}
 	catch(const std::exception& e)
 	{
