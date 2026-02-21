@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 13:34:44 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/20 17:56:44 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 14:17:25 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 		template<typename T, typename Container>
 		MutantStack<T, Container> const & MutantStack<T, Container>::operator=(MutantStack const & rhs)
 		{
+  			std::cout << "Assignment operator overload called" << std::endl;
 			if (this != &rhs)
 				std::stack<T, Container>::operator=(rhs);
 			return (*this);
@@ -40,7 +41,7 @@
 		template<typename T, typename Container>
 		typename MutantStack<T, Container>::iterator	MutantStack<T, Container>::begin()
 		{
-			return (this->c.begin());
+			return (this->c.begin()); // "c" reprensente le container sous-jacent de stack
 		}
 		
 		template<typename T, typename Container>

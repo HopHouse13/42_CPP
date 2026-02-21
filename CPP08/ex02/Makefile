@@ -11,16 +11,15 @@
 # **************************************************************************** #
 
 NAME		= MutantStack
-SRCS_DIR	= sources
 OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp
 
-OBJS		= $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 CC			= c++
 RM			= rm -rf	
-CFLAGS		= -Wall -Werror -Wextra -std=c++98 #-Wconversion -Iincludes -I$(SRCS_DIR) -MMD -ggdb
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 #-Wconversion -Iincludes -MMD -ggdb
 
-$(OBJ_DIR)/%.o : $(SRCS_DIR)/%.cpp
+$(OBJ_DIR)/%.o : %.cpp
 			@mkdir -p $(@D)
 			@$(CC) -g $(CFLAGS) -c $< -o $@
 

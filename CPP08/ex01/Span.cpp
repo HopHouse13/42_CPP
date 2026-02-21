@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:31:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/20 13:25:14 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 14:37:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Span::Span(Span const & copy) : _n(copy._n), _listNumbers(copy._listNumbers) // 
 
 Span &	Span::operator=(Span const & rhs)
 {
-	std::cout << "Assignement operator overload called" << std::endl;
+	std::cout << "Assignment operator overload called" << std::endl;
 	if(this != &rhs)
 	{
 		this->_n = rhs._n;
@@ -107,7 +107,6 @@ const char *	Span::NeedTwoElem::what() const throw()
 {
 	return ("Need to have at least two elements");
 }
-
 
 std::vector<int> const &	Span::getList() const // pas dans le sujet
 {
