@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:31:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/21 16:23:15 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 17:14:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Span::Span(unsigned int n) : _n(n)
 	std::cout << "Constructor with a maximum elements called" << std::endl;
 }
 
-Span::Span(Span const & copy) : _n(copy._n), _listNumbers(copy._listNumbers) // on utlise l'operateur de surcharge '=' de vector
+Span::Span(Span const & copy) : _n(copy._n), _listNumbers(copy._listNumbers) 
 {
 	std::cout << "Copy constructor with a maximum elements called" << std::endl;
 }
@@ -38,7 +38,7 @@ Span &	Span::operator=(Span const & rhs)
 	if(this != &rhs)
 	{
 		this->_n = rhs._n;
-		this->_listNumbers = rhs._listNumbers;
+		this->_listNumbers = rhs._listNumbers; 	// on utlise l'operateur de surcharge '=' de vector
 	}
 	return (*this);
 }
@@ -60,7 +60,7 @@ int	Span::shortestSpan() const
 	std::sort(tmp.begin(), tmp.end());
 
 	int	span = tmp.at(1) - tmp.at(0); // .at() accede directement a l'element en verifiant les limites -> renvoie une exception si hors limite
-	for (unsigned int i = 0; i < tmp.size() -1; i++)
+	for (unsigned int i = 1; i < tmp.size() -1; i++)
 	{
 		int dif = tmp.at(i+1) - tmp.at(i);
 		if (dif < span)
@@ -79,7 +79,7 @@ int	Span::longestSpan() const
 	std::sort(tmp.begin(), tmp.end());
 
 	int	span = tmp.at(1) - tmp.at(0);
-	for (unsigned int i = 0; i < tmp.size() -1; i++)
+	for (unsigned int i = 1; i < tmp.size() -1; i++)
 	{
 		int dif = tmp.at(i+1) - tmp.at(i);
 		if (dif > span)
