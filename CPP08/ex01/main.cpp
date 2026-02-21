@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 19:22:43 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/20 13:28:09 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 16:37:41 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 int	main()
 {
-	Span	contener1(100000);
+	Span	container1(100000);
 
 	try
 	{	
-		contener1.addNumber(-1);
-		contener1.addNumber(0);
-		contener1.addNumber(42);
+		container1.addNumber(-1);
+		container1.addNumber(0);
+		container1.addNumber(42);
 
-		Span	contener2(contener1);
-		Span	contener3;
-		contener3 = contener2;
+		Span	container2(container1);
+		Span	container3;
+		container3 = container2;
 
-		std::cout << "value short:" << contener3.shortestSpan() << std::endl;
-		std::cout << "value long:" << contener3.longestSpan() << std::endl;
 		for (int i = 0; i < 3; i++)	
-			std::cout << contener3.getList().at(i) << std::endl; // at -> Accède à un élément avec vérification des limites (exception si hors range).
+			std::cout << container3.getList().at(i) << std::endl; // at -> Accède à un élément avec vérification des limites (exception si hors range).
+
+		std::cout << std::endl << "shortest span value: " << container3.shortestSpan() << std::endl;
+		std::cout << "longest span value: " << container3.longestSpan() << std::endl << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -38,23 +39,24 @@ int	main()
 
 	try
 	{
-		std::vector<int>	contenerTmp;
+		std::vector<int>	containerTmp;
 
 		std::srand(static_cast<int>(time(NULL)));
 		for (int i = 0; i < 99997; i++)
-			contenerTmp.push_back(std::rand() % 1000000);
+			containerTmp.push_back(std::rand() % 1000000);
 
-		std::vector<int>::const_iterator start = contenerTmp.begin();
-		std::vector<int>::const_iterator end = contenerTmp.end();
+		std::vector<int>::const_iterator start = containerTmp.begin();
+		std::vector<int>::const_iterator end = containerTmp.end();
 
-		contener1.generateList(start, end);
+		container1.generateList(start, end);
 
-		std::cout << "value short:" << contener1.shortestSpan() << std::endl;
-		std::cout << "value long:" << contener1.longestSpan() << std::endl;
+		//for (std::vector<int>::const_iterator it = container1.getList().begin(); it != container1.getList().end(); it++)
+		//	std::cout << *it << " ";
 		
-		//for (std::vector<int>::const_iterator it = contener1.getList().begin(); it != contener1.getList().end(); it++)
-		//	std::cout << *it << std::endl;
-		contener1.addNumber(0); // erreur car le nombre d'element dans le conteneur depasse _n (nombre max)
+		std::cout << std::endl << "shortest span value: " << container1.shortestSpan() << std::endl;
+		std::cout << "longest span value: " << container1.longestSpan() << std::endl << std::endl;
+		
+		container1.addNumber(0); // on tente de creer un 100 001 eme element -> erreur car le nombre d'element dans le conteneur depasse _n (nombre max)
 	}
 	catch(const std::exception& e)
 	{

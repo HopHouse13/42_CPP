@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:30:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/19 16:31:50 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 15:54:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ class Span
 		Span &	operator=(Span const & rhs);
 
 		void						addNumber(unsigned int v);
-		int	shortestSpan() const;
-		int	longestSpan() const;
-		void	generateList(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end);
-		std::vector<int> const &	getList() const;
+		int							shortestSpan() const;
+		int							longestSpan() const;
+		void						generateList(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end);
+		std::vector<int> const &	getList() const; // non demande par le sujet -> afficher les containers
 		
 		class SpanFull : public std::exception
 		{
@@ -45,8 +45,8 @@ class Span
 		};
 		
 	private:
-		unsigned int		_n;
-		std::vector<int>	_listNumbers;
+		unsigned int		_n; // nb max d'elements dans le container
+		std::vector<int>	_listNumbers; // le container en question
 };
 
 #endif

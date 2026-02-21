@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 18:31:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/21 14:37:23 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/21 16:23:15 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	Span::shortestSpan() const
 	
 	std::sort(tmp.begin(), tmp.end());
 
-	int	span = tmp.at(1) - tmp.at(0);
+	int	span = tmp.at(1) - tmp.at(0); // .at() accede directement a l'element en verifiant les limites -> renvoie une exception si hors limite
 	for (unsigned int i = 0; i < tmp.size() -1; i++)
 	{
 		int dif = tmp.at(i+1) - tmp.at(i);
@@ -95,7 +95,7 @@ void	Span::generateList(std::vector<int>::const_iterator start, std::vector<int>
 	//std::cout << "value total elem: " << ((end - start) + this->_listNumbers.size()) << std::endl;
 	if (((end - start) + this->_listNumbers.size()) > this->_n) // dans vector tu peux faire la difference entre deux iterateurs qui donnera le nombre d'elem entre les deux.
 		throw SpanFull();
-	this->_listNumbers.insert(this->_listNumbers.end(), start, end);
+	this->_listNumbers.insert(this->_listNumbers.end(), start, end); // .insert() serre a inserer un ou plusieurs elements a une position donnee dans une container. 1er param: position ou mettre le 1er element, 2eme param debut de la plage de valeur (iterateur), 3eme param fin de la plage de valeur
 }
 
 const char *	Span::SpanFull::what() const throw()
@@ -110,5 +110,5 @@ const char *	Span::NeedTwoElem::what() const throw()
 
 std::vector<int> const &	Span::getList() const // pas dans le sujet
 {
-	return (this->_listNumbers); // non protege car un contener meme vide est valide par contre si tu essaies d'acceder a une value -> seg fault
+	return (this->_listNumbers); // non protege car un container meme vide est valide par contre si tu essaies d'acceder a une value -> seg fault
 }
