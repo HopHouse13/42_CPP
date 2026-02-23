@@ -1,0 +1,54 @@
+Vous devez créer un programme qui affiche la valeur d'une certaine quantité de bitcoins
+à une date donnée.
+Ce programme doit utiliser une base de données CSV qui représente le prix du bitcoin
+au fil du temps. Cette base de données est fournie avec ce sujet.
+Le programme prendra une deuxième base de données en entrée, stockant les différents prix/dates
+à évaluer.
+Votre programme doit respecter les règles suivantes :
+• Le nom du programme est btc.
+• Votre programme doit prendre un fichier en argument.
+• Chaque ligne de ce fichier doit respecter le format suivant : « date | valeur ».
+• Une date valide sera toujours au format suivant : Année-Mois-Jour.
+• Une valeur valide doit être soit un nombre à virgule flottante, soit un entier positif compris entre 0 et 1000.
+
+
+Vous devez utiliser au moins un conteneur dans Votre code pour valider cet
+exercice. Vous devez gérer les erreurs éventuelles à l'aide d'un message d'erreur approprié.
+
+
+Voici un exemple de fichier input.txt :
+$> head input.txt
+date | valeur
+2011-01-03 | 3
+2011-01-03 | 2
+2011-01-03 | 1
+2011-01-03 | 1,2
+2011-01-09 | 1
+2012-01-11 | -1
+2001-42-42
+2012-01-11 | 1
+2012-01-11 | 2147483648
+$>
+Votre programme utilisera la valeur contenue dans votre fichier d'entrée.
+Votre programme doit afficher sur la sortie standard le résultat de la valeur multipliée
+par le taux de change correspondant à la date indiquée dans votre base de données.
+Si la date utilisée dans l'entrée n'existe pas dans votre base de données, vous
+devez utiliser la date la plus proche contenue dans votre base de données. Veillez à utiliser la
+date inférieure et non la date supérieure.
+Voici un exemple d'utilisation du programme.
+$> ./btc
+Erreur : impossible d'ouvrir le fichier.
+$> ./btc input.txt
+2011-01-03 => 3 = 0,9
+2011-01-03 => 2 = 0,6
+2011-01-03 => 1 = 0,3
+2011-01-03 => 1,2 = 0,36
+2011-01-09 => 1 = 0,32
+Erreur : ce n'est pas un nombre positif.
+Erreur : entrée incorrecte => 2001-42-42
+2012-01-11 => 1 = 7,1
+Erreur : nombre trop grand.
+$>
+Avertissement : le ou les conteneurs que vous utilisez pour valider cet exercice ne seront plus utilisables pour le reste de ce module.
+
+Traduit avec DeepL.com (version gratuite)

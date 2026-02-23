@@ -1,0 +1,346 @@
+==============================
+STD::VECTOR
+==============================
+Un vecteur est une séquence dynamique qui peut grandir ou rétrécir automatiquement.
+Il stocke ses éléments de manière contiguë en mémoire,
+ce qui permet un accès rapide aux éléments. 
+Possibilité aux éléments via un index. -> v[1]
+
+size()           [C++98]
+Retourne le nombre d’éléments actuellement stockés.
+
+capacity()       [C++98]
+Retourne la quantité de mémoire allouée (peut être supérieure à size).
+
+max_size()       [C++98]
+Retourne le nombre maximal théorique d’éléments que le vector peut contenir.
+
+empty()          [C++98]
+Retourne true si le vector est vide.
+
+reserve(n)       [C++98]
+Réserve suffisamment de mémoire pour contenir au moins n éléments.
+
+resize(n)        [C++98]
+Change la taille du vector (ajoute ou supprime des éléments).
+
+clear()          [C++98]
+Supprime tous les éléments du vector.
+
+operator[]       [C++98]
+Accède directement à un élément sans vérification des limites.
+
+at()             [C++98]
+Accède à un élément avec vérification des limites (exception si hors range).
+
+front()          [C++98]
+Retourne le premier élément.
+
+back()           [C++98]
+Retourne le dernier élément.
+
+data()           [C++11]
+Retourne un pointeur vers le tableau interne.
+
+push_back()      [C++98]
+Ajoute un élément à la fin.
+
+pop_back()       [C++98]
+Supprime le dernier élément.
+
+insert()         [C++98]
+Insère un ou plusieurs éléments à une position donnée.
+
+erase()          [C++98]
+Supprime un élément ou une plage d’éléments.
+
+assign()         [C++98]
+Remplace tout le contenu du vector.
+
+swap()           [C++98]
+Échange le contenu avec un autre vector.
+
+emplace()        [C++11]
+Construit un élément directement à une position donnée.
+
+emplace_back()   [C++11]
+Construit un élément directement à la fin.
+
+shrink_to_fit()  [C++11]
+Réduit la capacité pour correspondre à la taille actuelle.
+
+
+==============================
+STD::DEQUE
+==============================
+Un deque (prononcé "deck") est une double-ended queue qui permet l'ajout 
+et la suppression efficaces d'éléments en tête ou en queue de la structure.
+Il est similaire à un vector, mais il offre une efficacité accrue pour
+les opérations de déplacement en tête.
+
+push_back()      [C++98]
+Ajoute un élément à la fin.
+
+push_front()     [C++98]
+Ajoute un élément au début.
+
+pop_back()       [C++98]
+Supprime le dernier élément.
+
+pop_front()      [C++98]
+Supprime le premier élément.
+
+insert()         [C++98]
+Insère un élément à une position donnée.
+
+erase()          [C++98]
+Supprime un élément à une position donnée.
+
+operator[]       [C++98]
+Accès direct sans vérification.
+
+at()             [C++98]
+Accès sécurisé avec vérification.
+
+front()          [C++98]
+Retourne le premier élément.
+
+back()           [C++98]
+Retourne le dernier élément.
+
+size()           [C++98]
+Retourne le nombre d’éléments.
+
+empty()          [C++98]
+Indique si le deque est vide.
+
+clear()          [C++98]
+Supprime tous les éléments.
+
+swap()           [C++98]
+Échange le contenu avec un autre deque.
+
+emplace()        [C++11]
+Construit un élément à une position donnée.
+
+emplace_front()  [C++11]
+Construit un élément directement au début.
+
+emplace_back()   [C++11]
+Construit un élément directement à la fin.
+
+
+==============================
+STD::LIST
+==============================
+Une liste doublement chaînée qui permet une insertion
+et une suppression rapides d'éléments à n'importe quel endroit de la liste.
+Cependant, l'accès aux éléments n'est pas aussi rapide qu'avec un vecteur.
+
+push_back()      [C++98]
+Ajoute un élément à la fin.
+
+push_front()     [C++98]
+Ajoute un élément au début.
+
+pop_back()       [C++98]
+Supprime le dernier élément.
+
+pop_front()      [C++98]
+Supprime le premier élément.
+
+insert()         [C++98]
+Insère un élément avant une position donnée.
+
+erase()          [C++98]
+Supprime un élément via un itérateur.
+
+remove()         [C++98]
+Supprime toutes les occurrences d’une valeur donnée.
+
+remove_if()      [C++98]
+Supprime les éléments selon une condition.
+
+unique()         [C++98]
+Supprime les doublons consécutifs.
+
+sort()           [C++98]
+Trie les éléments de la liste.
+
+reverse()        [C++98]
+Inverse l’ordre des éléments.
+
+merge()          [C++98]
+Fusionne deux listes triées.
+
+splice()         [C++98]
+Déplace des éléments d’une liste vers une autre sans copie.
+
+size()           [C++98]
+Retourne le nombre d’éléments.
+
+empty()          [C++98]
+Indique si la liste est vide.
+
+clear()          [C++98]
+Supprime tous les éléments.
+
+swap()           [C++98]
+Échange le contenu avec une autre liste.
+
+emplace()        [C++11]
+Construit un élément à une position donnée.
+
+emplace_front()  [C++11]
+Construit un élément au début.
+
+emplace_back()   [C++11]
+Construit un élément à la fin.
+
+
+==============================
+STD::MAP
+==============================
+Une carte est une structure de données associant des clés à des valeurs.
+Chaque clé est unique, et les données sont généralement triées par clé.
+
+insert()         [C++98]
+Insère une paire clé/valeur.
+
+erase()          [C++98]
+Supprime un élément via sa clé ou un itérateur.
+
+find()           [C++98]
+Recherche une clé et retourne un itérateur.
+
+count()          [C++98]
+Une file est une structure de données de type FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
+Retourne 1 si la clé existe, sinon 0.
+
+operator[]       [C++98]
+Accède à la valeur associée à une clé ou la crée si elle n’existe pas.
+
+at()             [C++11]
+Accède à une valeur existante avec vérification.
+
+lower_bound()    [C++98]
+Retourne un itérateur vers le premier élément >= clé.
+
+upper_bound()    [C++98]
+Retourne un itérateur vers le premier élément > clé.
+
+equal_range()    [C++98]
+Retourne la paire (lower_bound, upper_bound).
+
+size()           [C++98]
+Retourne le nombre d’éléments.
+
+empty()          [C++98]
+Indique si la map est vide.
+
+clear()          [C++98]
+Supprime tous les éléments.
+
+swap()           [C++98]
+Échange le contenu avec une autre map.
+
+emplace()        [C++11]
+Construit une paire clé/valeur directement.
+
+
+==============================
+STD::SET
+==============================
+Un ensemble est une collection d'éléments uniques, triés par défaut.
+Il garantit que chaque élément est unique et offre une recherche efficace.
+
+insert()         [C++98]
+Insère une valeur unique.
+
+erase()          [C++98]
+Supprime une valeur.
+
+find()           [C++98]
+Recherche une valeur.
+
+count()          [C++98]
+Retourne 1 si la valeur existe.
+
+lower_bound()    [C++98]
+Retourne le premier élément >= valeur.
+
+upper_bound()    [C++98]
+Retourne le premier élément > valeur.
+
+equal_range()    [C++98]
+Retourne la paire d’itérateurs correspondant à la valeur.
+
+size()           [C++98]
+Retourne le nombre d’éléments.
+
+empty()          [C++98]
+Indique si le set est vide.
+
+clear()          [C++98]
+Supprime tous les éléments.
+
+swap()           [C++98]
+Échange le contenu avec un autre set.
+
+emplace()        [C++11]
+Construit un élément directement.
+
+
+==============================
+STD::STACK
+==============================
+Une pile est une structure de données de type LIFO (Last-In, First-Out),
+souvent utilisée pour gérer des opérations de type pile.
+
+push()           [C++98]
+Ajoute un élément au sommet.
+
+pop()            [C++98]
+Supprime l’élément au sommet.
+
+top()            [C++98]
+Accède à l’élément au sommet.
+
+size()           [C++98]
+Retourne le nombre d’éléments.FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
+
+empty()          [C++98]
+Indique si la stack est vide.
+
+emplace()        [C++11]
+Construit un élément directement au sommet.
+
+
+==============================
+STD::QUEUE
+==============================
+Une file est une structure de données de type FIFO (First-In, First-Out),
+couramment utilisée pour gérer des opérations de type file d'attente.
+
+push()           [C++98]
+Ajoute un élément à la fin.
+
+pop()            [C++98]
+Supprime l’élément au début.
+
+front()          [C++98]
+Accède au premier élément.
+
+back()           [C++98]
+Accède au dernier élément.
+
+size()           [C++98]
+Retourne le nombre d’éléments.
+
+empty()          [C++98]
+Indique si la queue est vide.
+
+emplace()        [C++11]
+Construit un élément directement.
