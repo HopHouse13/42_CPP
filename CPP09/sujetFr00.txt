@@ -49,6 +49,21 @@ Erreur : entrée incorrecte => 2001-42-42
 2012-01-11 => 1 = 7,1
 Erreur : nombre trop grand.
 $>
+
 Avertissement : le ou les conteneurs que vous utilisez pour valider cet exercice ne seront plus utilisables pour le reste de ce module.
 
-Traduit avec DeepL.com (version gratuite)
+
+Annees bissextile
+2012
+2016
+2020
+
+les valeurs -> double
+
+base de donne 2009 -> 2022
+
+Regle parsing file param:
+
+- format date -> yyyy-mm-dd
+- si la date existe -> annee bissextile (2012,2016,2020)
+- valeur a virgule entre 0 - 1000

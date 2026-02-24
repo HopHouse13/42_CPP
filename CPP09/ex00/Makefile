@@ -6,13 +6,14 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 16:59:56 by pbret             #+#    #+#              #
-#    Updated: 2026/02/23 18:50:50 by pbret            ###   ########.fr        #
+#    Updated: 2026/02/24 19:24:28 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= btc
 OBJ_DIR 	= obj_$(NAME)
-SRCS		= main.cpp
+SRCS		= main.cpp \
+			BitcoinExchange.cpp
 
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
