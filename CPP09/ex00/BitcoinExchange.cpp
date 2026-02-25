@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/24 19:48:13 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/25 15:20:31 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,77 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 	return *this;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
+//int	btcExchange::_checkValue(std::string data)
+//{
+	
+
+//	return (SUCCESS);
+//}
+
+//int	btcExchange::_checkDate(std::string data)
+//{
+	
+
+//	return (SUCCESS);
+//}
+
+int	btcExchange::_parsingLine(std::string line)
+{
+	//- format date -> yyyy-mm-dd
+	//- si la date existe -> annee bissextile (2012,2016,2020)
+	//- valeur a virgule entre 0 - 1000
+	int		posDate;
+	int		posValue;
+	bool	flagBar = false;
+	for (int i = 0; i < line.size(); i++)
+	{
+		if (line[i] == '|')
+			flagBar = true;
+		if (line[i] != ' ')
+			posDate = i;
+		if ()
+	}
+	std::string	date = line.substr(i, 10);
+	std::string	value;
+
+	if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+int	btcExchange::_handleExchange(std::string input)
+{
+	std::ifstream	file(input);
+	if (!file.is_open())
+	{
+		std::cout << "Le fichier passe en argument du programme n'a pas pu etre ouvert" << std::endl;
+		return (FAILURE);
+	}
+
+	std::string	line;
+	while (std::getline(file, line))
+	{
+		if (_parsingLine(line) == SUCCESS)
+		{
+			std::cout << "parsing SUCCESS\t";
+		}
+	}
+	return (SUCCESS);	
+}
+
+void	btcExchange::_displayData()
+{
+	std::map<std::string, double>::const_iterator	it = _data.begin();
+	std::map<std::string, double>::const_iterator	End = _data.end();
+	while (it != End)
+	{
+		std::cout << it->first << "," << (*it).second << std::endl;
+		it++;
+	}
+}
+
 int	btcExchange::_initData()
 {
 	std::ifstream	data("./data.csv");
@@ -60,16 +131,10 @@ int	btcExchange::_initData()
 
 int	btcExchange::btcCalculate(std::string input)
 {
-	if (_initData() == SUCCESS)
-	{
-		std::map<std::string, double>::const_iterator	it = _data.begin();
-		std::map<std::string, double>::const_iterator	End = _data.end();
-		while (it != End)
-		{
-			std::cout << it->first << "," << (*it).second << std::endl;
-			it++;
-		}
-	}
-	(void)input;
+	if (_initData() != SUCCESS)
+		return (FAILURE);
+	_displayData();
+	_handleExchange(input);
+
 	return (SUCCESS);
 }
