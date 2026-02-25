@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/25 15:20:31 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/25 17:34:18 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,31 @@ int	btcExchange::_parsingLine(std::string line)
 	int		posDate;
 	int		posValue;
 	bool	flagBar = false;
-	for (int i = 0; i < line.size(); i++)
+	for (size_t i = 1; i < line.size(); i++)
 	{
 		if (line[i] == '|')
+		{
 			flagBar = true;
+			continue;
+		}
 		if (line[i] != ' ')
 			posDate = i;
-		if ()
+		if (flagBar == true && line[i] != ' ')
+			posValue = i;
 	}
-	std::string	date = line.substr(i, 10);
-	std::string	value;
+	std::cout << "date flag: " << line[posDate] << "\t" << "value flag: " << line[posValue] << "\n";
+	std::string	date = line.substr(posDate, 10);
+	std::string	value = line.substr(posValue);
 
-	if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
-		return (FAILURE);
+	//std::cout << "date: " << date << "\t" << "value: " << value << "\n";
+	//if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
+	//	return (FAILURE);
 	return (SUCCESS);
 }
 
 int	btcExchange::_handleExchange(std::string input)
 {
-	std::ifstream	file(input);
+	std::ifstream	file(input.c_str());
 	if (!file.is_open())
 	{
 		std::cout << "Le fichier passe en argument du programme n'a pas pu etre ouvert" << std::endl;
@@ -90,7 +96,7 @@ int	btcExchange::_handleExchange(std::string input)
 	{
 		if (_parsingLine(line) == SUCCESS)
 		{
-			std::cout << "parsing SUCCESS\t";
+			//std::cout << "parsing SUCCESS\t";
 		}
 	}
 	return (SUCCESS);	
@@ -133,7 +139,7 @@ int	btcExchange::btcCalculate(std::string input)
 {
 	if (_initData() != SUCCESS)
 		return (FAILURE);
-	_displayData();
+	//_displayData();
 	_handleExchange(input);
 
 	return (SUCCESS);
