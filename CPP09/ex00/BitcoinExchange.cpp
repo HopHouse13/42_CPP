@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/25 17:34:18 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/26 14:06:30 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,61 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 //	return (SUCCESS);
 //}
 
-//int	btcExchange::_checkDate(std::string data)
-//{
-	
+int	btcExchange::_checkDate(std::string data)
+{
+	int	posYear;
+	int	posMouth;
+	int	posDay;
+	int	flag;
 
-//	return (SUCCESS);
-//}
+	for (int i = 0; i < data.size(); i++)
+	{
+		
+	}
+
+	if (data < "2009-01-02" || data > "2022-03-29")
+	std::cout << ""
+	return (SUCCESS);
+}
 
 int	btcExchange::_parsingLine(std::string line)
 {
 	//- format date -> yyyy-mm-dd
 	//- si la date existe -> annee bissextile (2012,2016,2020)
 	//- valeur a virgule entre 0 - 1000
-	int		posDate;
-	int		posValue;
-	bool	flagBar = false;
-	for (size_t i = 1; i < line.size(); i++)
+	
+	int		posDate = -1;
+	int		posValue = -1;
+	int		flag = 0;
+	for (size_t i = 0; i < line.size(); i++)
 	{
-		if (line[i] == '|')
+		if (line[i] == '|' && flag == 1)
+			flag = 2;
+		if (line[i] >= '0' && line[i] <= '9' && flag == 0)
 		{
-			flagBar = true;
-			continue;
-		}
-		if (line[i] != ' ')
 			posDate = i;
-		if (flagBar == true && line[i] != ' ')
+			flag = 1;
+		}
+		if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-') && flag == 2)
+		{
 			posValue = i;
+			flag = 3;
+		}
 	}
-	std::cout << "date flag: " << line[posDate] << "\t" << "value flag: " << line[posValue] << "\n";
-	std::string	date = line.substr(posDate, 10);
-	std::string	value = line.substr(posValue);
+	if (posDate == -1 || posValue == -1)
+	{
+		std::cout << "Error: invalid format line" << std::endl;
+		return (FAILURE);
+	}
+	{
+		//std::cout << "date flag: " << line[posDate] << "\t" << "value flag: " << line[posValue] << "\n";
+		std::string	date = line.substr(posDate, 10);
+		std::string	value = line.substr(posValue);
+		std::cout << "date: " << date << "\t" << "value: " << value << "\n";
 
-	//std::cout << "date: " << date << "\t" << "value: " << value << "\n";
-	//if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
-	//	return (FAILURE);
+		//if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
+		//	return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
@@ -96,7 +117,7 @@ int	btcExchange::_handleExchange(std::string input)
 	{
 		if (_parsingLine(line) == SUCCESS)
 		{
-			//std::cout << "parsing SUCCESS\t";
+			//std::cout << "parsing SUCCESS\n";
 		}
 	}
 	return (SUCCESS);	
