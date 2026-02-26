@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/26 14:06:30 by pab              ###   ########.fr       */
+/*   Updated: 2026/02/26 21:06:45 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 btcExchange::btcExchange()
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 btcExchange::~btcExchange()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 btcExchange::btcExchange(btcExchange const & copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	this->_data = copy._data;
 }
 
 btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 {
-	std::cout << "Assignment operator overload called" << std::endl;
+	//std::cout << "Assignment operator overload called" << std::endl;
 	if (this != &rhs)
 		this->_data = rhs._data;
 	return *this;
@@ -38,27 +38,46 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-//int	btcExchange::_checkValue(std::string data)
+//int	btcExchange::_checkValue(std::string value)
 //{
 	
 
 //	return (SUCCESS);
 //}
 
-int	btcExchange::_checkDate(std::string data)
+int	btcExchange::_checkDate(std::string date)
 {
-	int	posYear;
-	int	posMouth;
-	int	posDay;
-	int	flag;
+	int		posYear;
+	int		posMouth;
+	int		posDay;
+	bool	flag = false;
 
-	for (int i = 0; i < data.size(); i++)
+	for (size_t i = 0; i < date.size(); i++)
 	{
-		
+		if (date[i] == '-' && flag == true)
+			flag = false;
+		else if (date[i] >= '0' && date[i] <= '9' && i < 4 && flag == false) // yyyy
+		{
+			posYear = i;
+			flag = true;
+		}
+		else if (date[i] >= '0' && date[i] <= '9' && i > 4 && i < 7 && flag == false) // mm
+		{
+			posMouth = i;
+			flag = true;
+		}
+		else if (date[i] >= '0' && date[i] <= '9' && i > 7 && flag == false) // dd
+		{
+			posDay = i;
+			flag = true;
+		}
 	}
-
-	if (data < "2009-01-02" || data > "2022-03-29")
-	std::cout << ""
+	// je pense que je me suis fais chier pour rien, faut juste donner la positoin en brute dans les substr.
+	std::string	year = date.substr(posYear, 4);
+	std::string	mouth = date.substr(posMouth, 2);
+	std::string	day = date.substr(posDay);
+	std::cout << "checkDate "<< year << "\t"<< mouth << "\t"<< day << std::endl;
+	// "2009-01-02" "2022-03-29"
 	return (SUCCESS);
 }
 
@@ -73,14 +92,14 @@ int	btcExchange::_parsingLine(std::string line)
 	int		flag = 0;
 	for (size_t i = 0; i < line.size(); i++)
 	{
-		if (line[i] == '|' && flag == 1)
-			flag = 2;
 		if (line[i] >= '0' && line[i] <= '9' && flag == 0)
 		{
 			posDate = i;
 			flag = 1;
 		}
-		if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-') && flag == 2)
+		else if (line[i] == '|' && flag == 1)
+			flag = 2;
+		else if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-') && flag == 2)
 		{
 			posValue = i;
 			flag = 3;
@@ -91,15 +110,13 @@ int	btcExchange::_parsingLine(std::string line)
 		std::cout << "Error: invalid format line" << std::endl;
 		return (FAILURE);
 	}
-	{
-		//std::cout << "date flag: " << line[posDate] << "\t" << "value flag: " << line[posValue] << "\n";
 		std::string	date = line.substr(posDate, 10);
 		std::string	value = line.substr(posValue);
 		std::cout << "date: " << date << "\t" << "value: " << value << "\n";
 
-		//if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
+		 if (_checkDate(date) == SUCCESS)/* || _checkValue(value) != SUCCESS)*/
+		 	std::cout << "checkDate -> SUCCESS\n";
 		//	return (FAILURE);
-	}
 	return (SUCCESS);
 }
 
@@ -113,6 +130,7 @@ int	btcExchange::_handleExchange(std::string input)
 	}
 
 	std::string	line;
+	std::getline(file, line); // premiere ligne pour l'ignorer "date | value"
 	while (std::getline(file, line))
 	{
 		if (_parsingLine(line) == SUCCESS)

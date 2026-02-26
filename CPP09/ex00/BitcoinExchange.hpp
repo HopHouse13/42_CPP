@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/25 14:57:03 by pbret            ###   ########.fr       */
+/*   Updated: 2026/02/26 19:04:15 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fstream>
 # include <utility>
 # include <cstdlib>
+# include <iterator>
 
 # define FAILURE  1
 # define SUCCESS  0

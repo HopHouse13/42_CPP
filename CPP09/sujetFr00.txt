@@ -59,7 +59,7 @@ Annees bissextile
 2020
 
 les valeurs -> double
-
+	
 base de donne 2009 -> 2022
 
 Regle parsing file param:
