@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/01 18:48:16 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/01 20:26:58 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	btcExchange::_checkDate(std::string date)
 	if ((date[4] != '-' || date[7] != '-')) // check si les deux '-' sont aux bons endroits
 		flag = false;
 
-	int	year = std::stoi(date.substr(0, 4).c_str());
-	int	mouth = std::stoi(date.substr(5, 2).c_str());
-	int	day = std::stoi(date.substr(8).c_str());
+	int	year = std::atoi(date.substr(0, 4).c_str());
+	int	mouth = std::atoi(date.substr(5, 2).c_str());
+	int	day = std::atoi(date.substr(8).c_str());
 
 	std::cout << "checkDate "<< year << "-" << mouth << "-" << day << std::endl;
 
@@ -66,7 +66,6 @@ int	btcExchange::_checkDate(std::string date)
 
 	bool	mouth30 = false;
 	bool	mouth31 = false;
-	bool	leapYeau = false;
 
 	if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11)
 		mouth30 = true;
@@ -76,9 +75,10 @@ int	btcExchange::_checkDate(std::string date)
 	if ((mouth30 == true && day > 30) && day < 1)
 		flag = false;
 	if ((mouth31 == true && day > 31) && day < 1)
-		flag = true;
-	if (mouth == 2 && (year % 4)
-	
+		flag = false;
+	if (mouth == 2 && day == 29 && year % 4 != 0)
+		flag = false;
+
 	if (flag == false)
 	{
 		std::cout << "Error: invalid date" << std::endl;
@@ -160,7 +160,7 @@ int	btcExchange::_parsingLine(std::string line)
 	}
 		std::string	date = line.substr(posDate, 10);
 		std::string	value = line.substr(posValue);
-		std::cout << "date: " << date << "\t" << "value: " << value << "\n";
+		//std::cout << "date: " << date << "\t" << "value: " << value << "\n";
 
 		if (_checkDate(date) != SUCCESS)/* || _checkValue(value) != SUCCESS)*/
 			return (FAILURE);
