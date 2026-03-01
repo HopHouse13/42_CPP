@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/02/26 21:06:45 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/01 18:48:16 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,53 +45,101 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 //	return (SUCCESS);
 //}
 
+
 int	btcExchange::_checkDate(std::string date)
 {
-	int		posYear;
-	int		posMouth;
-	int		posDay;
-	bool	flag = false;
+	bool	flag = true;
 
-	for (size_t i = 0; i < date.size(); i++)
+	if ((date[4] != '-' || date[7] != '-')) // check si les deux '-' sont aux bons endroits
+		flag = false;
+
+	int	year = std::stoi(date.substr(0, 4).c_str());
+	int	mouth = std::stoi(date.substr(5, 2).c_str());
+	int	day = std::stoi(date.substr(8).c_str());
+
+	std::cout << "checkDate "<< year << "-" << mouth << "-" << day << std::endl;
+
+	if (year < 2009 || year > 2022)
+		flag = false;
+	if (mouth < 1 || mouth > 12)
+		flag = false;
+
+	bool	mouth30 = false;
+	bool	mouth31 = false;
+	bool	leapYeau = false;
+
+	if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11)
+		mouth30 = true;
+	else
+		mouth31 = true;
+
+	if ((mouth30 == true && day > 30) && day < 1)
+		flag = false;
+	if ((mouth31 == true && day > 31) && day < 1)
+		flag = true;
+	if (mouth == 2 && (year % 4)
+	
+	if (flag == false)
 	{
-		if (date[i] == '-' && flag == true)
-			flag = false;
-		else if (date[i] >= '0' && date[i] <= '9' && i < 4 && flag == false) // yyyy
-		{
-			posYear = i;
-			flag = true;
-		}
-		else if (date[i] >= '0' && date[i] <= '9' && i > 4 && i < 7 && flag == false) // mm
-		{
-			posMouth = i;
-			flag = true;
-		}
-		else if (date[i] >= '0' && date[i] <= '9' && i > 7 && flag == false) // dd
-		{
-			posDay = i;
-			flag = true;
-		}
+		std::cout << "Error: invalid date" << std::endl;
+		return (FAILURE);
 	}
-	// je pense que je me suis fais chier pour rien, faut juste donner la positoin en brute dans les substr.
-	std::string	year = date.substr(posYear, 4);
-	std::string	mouth = date.substr(posMouth, 2);
-	std::string	day = date.substr(posDay);
-	std::cout << "checkDate "<< year << "\t"<< mouth << "\t"<< day << std::endl;
-	// "2009-01-02" "2022-03-29"
 	return (SUCCESS);
 }
+
+//int	btcExchange::_checkDate(std::string date)
+//{
+//	int		posYear;
+//	int		posMouth;
+//	int		posDay;
+//	bool	flag = false;
+
+//	for (size_t i = 0; i < date.size(); i++)
+//	{
+//		if (date[i] == '-' && flag == true)
+//			flag = false;
+//		else if (date[i] >= '0' && date[i] <= '9' && i < 4 && flag == false) // yyyy
+//		{
+//			posYear = i;
+//			flag = true;
+//		}
+//		else if (date[i] >= '0' && date[i] <= '9' && i > 4 && i < 7 && flag == false) // mm
+//		{
+//			posMouth = i;
+//			flag = true;
+//		}
+//		else if (date[i] >= '0' && date[i] <= '9' && i > 7 && flag == false) // dd
+//		{
+//			posDay = i;
+//			flag = true;
+//		}
+//	}
+//	// je pense que j'ai fais un truc trop complique
+//	std::string	year = date.substr(posYear, 4);
+//	std::string	mouth = date.substr(posMouth, 2);
+//	std::string	day = date.substr(posDay);
+//	std::cout << "checkDate "<< year << "-"<< mouth << "-"<< day << std::endl;
+//	// "2009-01-02" "2022-03-29"
+//	return (SUCCESS);
+//}
 
 int	btcExchange::_parsingLine(std::string line)
 {
 	//- format date -> yyyy-mm-dd
 	//- si la date existe -> annee bissextile (2012,2016,2020)
 	//- valeur a virgule entre 0 - 1000
-	
+
 	int		posDate = -1;
 	int		posValue = -1;
 	int		flag = 0;
+	
 	for (size_t i = 0; i < line.size(); i++)
 	{
+		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
+		{
+			flag = 0;
+			break;
+		}
 		if (line[i] >= '0' && line[i] <= '9' && flag == 0)
 		{
 			posDate = i;
@@ -105,7 +153,7 @@ int	btcExchange::_parsingLine(std::string line)
 			flag = 3;
 		}
 	}
-	if (posDate == -1 || posValue == -1)
+	if (flag != 3)
 	{
 		std::cout << "Error: invalid format line" << std::endl;
 		return (FAILURE);
@@ -114,9 +162,10 @@ int	btcExchange::_parsingLine(std::string line)
 		std::string	value = line.substr(posValue);
 		std::cout << "date: " << date << "\t" << "value: " << value << "\n";
 
-		 if (_checkDate(date) == SUCCESS)/* || _checkValue(value) != SUCCESS)*/
-		 	std::cout << "checkDate -> SUCCESS\n";
-		//	return (FAILURE);
+		if (_checkDate(date) != SUCCESS)/* || _checkValue(value) != SUCCESS)*/
+			return (FAILURE);
+		std::cout << "checkDate -> SUCCESS\n";
+		
 	return (SUCCESS);
 }
 
@@ -130,7 +179,12 @@ int	btcExchange::_handleExchange(std::string input)
 	}
 
 	std::string	line;
-	std::getline(file, line); // premiere ligne pour l'ignorer "date | value"
+	std::getline(file, line);
+	if (line.compare("date | valeur") != 0) // check le header du fichier passe en arg (premiere ligne)
+	{
+		std::cout << "Error: invalid header" << std::endl;
+		return (FAILURE);
+	}
 	while (std::getline(file, line))
 	{
 		if (_parsingLine(line) == SUCCESS)
