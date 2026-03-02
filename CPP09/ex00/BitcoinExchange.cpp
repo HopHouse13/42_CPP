@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/01 20:26:58 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/02 18:32:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	btcExchange::_checkDate(std::string date)
 	int	mouth = std::atoi(date.substr(5, 2).c_str());
 	int	day = std::atoi(date.substr(8).c_str());
 
-	std::cout << "checkDate "<< year << "-" << mouth << "-" << day << std::endl;
+	std::cout << "PARSING-Date ["<< year << "][" << mouth << "][" << day << "]" << std::endl;
 
 	if (year < 2009 || year > 2022)
 		flag = false;
@@ -129,42 +129,55 @@ int	btcExchange::_parsingLine(std::string line)
 	//- si la date existe -> annee bissextile (2012,2016,2020)
 	//- valeur a virgule entre 0 - 1000
 
-	int		posDate = -1;
-	int		posValue = -1;
-	int		flag = 0;
+	int		posDate = 0;
+	int		posValue = 0;
+	int		countDate = 0;
+	int		countValue = 0;
+	int		nbPipe = 0;
+	int		nbComma = 0;
+	int		nbDash = 0;
+	bool	flag = false;
 	
 	for (size_t i = 0; i < line.size(); i++)
 	{
 		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
 		{
-			flag = 0;
+			flag = false;
 			break;
 		}
-		if (line[i] >= '0' && line[i] <= '9' && flag == 0)
+		if (line[i] == '|')
+			nbPipe++;
+		if (line[i] == ',')
+			nbComma++;
+		if (line[i] == '-')
+			nbDash++;
+		if (((line[i] >= '0' && line[i] <= '9') || line[i] == '-') && flag == false)
 		{
-			posDate = i;
-			flag = 1;
+			if (countDate == 0)
+				posDate = i;
+			countDate++;
 		}
-		else if (line[i] == '|' && flag == 1)
-			flag = 2;
-		else if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-') && flag == 2)
+		else if (line[i] == '|' && flag == false)
+			flag = true;
+		else if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-' || line[i] == ',') && flag == true)
 		{
-			posValue = i;
-			flag = 3;
+			if (countValue == 0)
+				posValue = i;
+			countValue++;
 		}
 	}
-	if (flag != 3)
+	if (flag == false || nbPipe != 1 || nbComma != 1 || nbDash != 2)
 	{
 		std::cout << "Error: invalid format line" << std::endl;
 		return (FAILURE);
 	}
-		std::string	date = line.substr(posDate, 10);
-		std::string	value = line.substr(posValue);
-		//std::cout << "date: " << date << "\t" << "value: " << value << "\n";
+	std::string	date = line.substr(posDate, countDate);
+	std::string	value = line.substr(posValue, countValue);
+	std::cout << "date [" << date << "] " << "value [" << value << "]\n";
 
-		if (_checkDate(date) != SUCCESS)/* || _checkValue(value) != SUCCESS)*/
-			return (FAILURE);
-		std::cout << "checkDate -> SUCCESS\n";
+	if (_checkDate(date) != SUCCESS)/* || _checkValue(value) != SUCCESS)*/
+		return (FAILURE);
+	std::cout << "checkDate -> SUCCESS\n";
 		
 	return (SUCCESS);
 }
