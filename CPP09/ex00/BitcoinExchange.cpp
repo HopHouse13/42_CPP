@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/03 15:46:15 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/03 20:14:21 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,24 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 
 int	btcExchange::_checkValue(std::string value)
 {
-	if (value.empty())
-		return (FAILURE);
 	for (size_t i = 0; i < value.size(); i++)
 	{
 		if ((value[i] < '0' || value[i] > '9') && value[i] != ',')
-		return (FAILURE);
+			return (FAILURE);
+		if (value[i] == ',')
+			value[i] = '.'; // atof comprends uniquement '.'
 	}
 	double	v = std::atof(value.c_str());
+	std::cout << "value Value: " << v << std::endl;
 	if (v < 0 || v > 1000)
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-
 int	btcExchange::_checkDate(std::string date)
 {
-	bool	flag = true;
-
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-') // check si les deux '-' sont aux bons endroits
-		flag = false;
+		return (FAILURE);
 
 	int	year = std::atoi(date.substr(0, 4).c_str());
 	int	mouth = std::atoi(date.substr(5, 2).c_str());
@@ -68,65 +66,29 @@ int	btcExchange::_checkDate(std::string date)
 	std::cout << "PARSING-Date ["<< year << "][" << mouth << "][" << day << "]" << std::endl;
 
 	if (year < 2009 || year > 2022)
-		flag = false;
+		return (FAILURE);
 	if (mouth < 1 || mouth > 12)
-		flag = false;
+		return (FAILURE);
 
 	bool	mouth30 = false;
 	bool	mouth31 = false;
+	bool	february = false;
 
 	if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11)
 		mouth30 = true;
+	else if (mouth == 2)
+		february = true;
 	else
 		mouth31 = true;
 
-	if (mouth30 == true && (day < 1 || day > 30))
-		flag = false;
-	if (mouth31 == true && (day < 1 || day > 31))
-		flag = false;
-	if (mouth == 2 && day == 29 && year % 4 != 0)
-		flag = false;
-
-	if (flag == false)
+	if (february == true && (day < 1 || day > 29 || (day == 29 && year % 4 != 0 )))
+		return (FAILURE);
+	else if (mouth30 == true && (day < 1 || day > 30))
+		return (FAILURE);
+	else if (mouth31 == true && (day < 1 || day > 31))
 		return (FAILURE);
 	return (SUCCESS);
 }
-
-//int	btcExchange::_checkDate(std::string date)
-//{
-//	int		posYear;
-//	int		posMouth;
-//	int		posDay;
-//	bool	flag = false;
-
-//	for (size_t i = 0; i < date.size(); i++)
-//	{
-//		if (date[i] == '-' && flag == true)
-//			flag = false;
-//		else if (date[i] >= '0' && date[i] <= '9' && i < 4 && flag == false) // yyyy
-//		{
-//			posYear = i;
-//			flag = true;
-//		}
-//		else if (date[i] >= '0' && date[i] <= '9' && i > 4 && i < 7 && flag == false) // mm
-//		{
-//			posMouth = i;
-//			flag = true;
-//		}
-//		else if (date[i] >= '0' && date[i] <= '9' && i > 7 && flag == false) // dd
-//		{
-//			posDay = i;
-//			flag = true;
-//		}
-//	}
-//	// je pense que j'ai fais un truc trop complique
-//	std::string	year = date.substr(posYear, 4);
-//	std::string	mouth = date.substr(posMouth, 2);
-//	std::string	day = date.substr(posDay);
-//	std::cout << "checkDate "<< year << "-"<< mouth << "-"<< day << std::endl;
-//	// "2009-01-02" "2022-03-29"
-//	return (SUCCESS);
-//}
 
 int	btcExchange::_parsingLine(std::string line)
 {
@@ -134,11 +96,6 @@ int	btcExchange::_parsingLine(std::string line)
 	//- si la date existe -> annee bissextile (2012,2016,2020)
 	//- valeur a virgule entre 0 - 1000
 
-	//int		posDate = 0;
-	//int		posValue = 0;
-	int		posDash = 0;
-	//int		countDate = 0;
-	//int		countValue = 0;
 	int		nbPipe = 0;
 	int		nbComma = 0;
 	int		nbDash = 0;
@@ -147,15 +104,13 @@ int	btcExchange::_parsingLine(std::string line)
 
 	if (line.size() < 14)
 		flag = false;
+
 	for (size_t i = 0; flag == true && i < line.size(); i++) //check si il y a le bon nombre d'element
 	{
 		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
 			flag = false;
 		if (line[i] == '|')
-		{
 			nbPipe++;
-			posDash = i;
-		}
 		if (line[i] == ',')
 			nbComma++;
 		if (line[i] == '-')
@@ -163,56 +118,27 @@ int	btcExchange::_parsingLine(std::string line)
 		if (line[i] == ' ')
 			nbSpace++;
 	}
-	//for (size_t i = 0; flag == true && i != posDash && i < line.size(); i++)
-	//{
-	//	if (line[i] == ' ')
-	//		flag = false;
-	//	if (((line[i] >= '0' && line[i] <= '9') || line[i] == '-'))
-	//	{
-	//		if (countDate == 0)
-	//			posDate = i;
-	//		countDate++;
-	//	}
-	//}
-	//for (size_t i = 0; i < line.size(); i++)
-	//{
-	//	if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
-	//	{
-	//		flag = false;
-	//		break;
-	//	}
-	//	if (line[i] == '|')
-	//		nbPipe++;
-	//	if (line[i] == ',')
-	//		nbComma++;
-	//	if (line[i] == '-')
-	//		nbDash++;
-	//	if (((line[i] >= '0' && line[i] <= '9') || line[i] == '-' || line[i] == ' ') && flag == false)
-	//	{
-	//		if (countDate == 0)
-	//			posDate = i;
-	//		countDate++;
-	//	}
-	//	else if (line[i] == '|' && flag == false)
-	//		flag = true;
-	//	else if (((line[i] >= '0' && line[i] <= '9') || line[i] == '+' || line[i] == '-' || line[i] == ',') && flag == true)
-	//	{
-	//		if (countValue == 0)
-	//			posValue = i;
-	//		countValue++;
-	//	}
-	//}
+
 	if (flag == false || nbPipe != 1 || nbComma > 1 || nbDash != 2 || nbSpace != 2)
 	{
-		std::cout << "Error: invalid format line" << std::endl;
+		std::cout << "Error: invalid line format" << std::endl;
 		return (FAILURE);
 	}
+
 	std::string	date = line.substr(0, 10);
-	std::string	value = line.substr(14);
+	std::string	value = line.substr(13);
 	std::cout << "date [" << date << "] " << "value [" << value << "]\n";
 
-	if (_checkDate(date) != SUCCESS || _checkValue(value) != SUCCESS)
-		return (FAILURE);	
+	if (_checkDate(date) != SUCCESS)
+	{
+		std::cout << "Error: invalid date" << std::endl;
+		return (FAILURE);
+	}
+	if (_checkValue(value) != SUCCESS)
+	{
+		std::cout << "Error: invalid value" << std::endl;
+		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
@@ -227,7 +153,7 @@ int	btcExchange::_handleExchange(std::string input)
 
 	std::string	line;
 	std::getline(file, line);
-	if (line.compare("date | valeur") != 0) // check le header du fichier passe en arg (premiere ligne)
+	if (line.compare("date | value") != 0) // check le header du fichier passe en arg (premiere ligne)
 	{
 		std::cout << "Error: invalid header" << std::endl;
 		return (FAILURE);
@@ -235,7 +161,7 @@ int	btcExchange::_handleExchange(std::string input)
 	while (std::getline(file, line))
 	{
 		if (_parsingLine(line) != SUCCESS)
-			std::cout << "Error: invalid format" << std::endl;
+			continue;
 		// fonction de comparaison
 	}
 	return (SUCCESS);	
@@ -264,7 +190,7 @@ int	btcExchange::_initData()
 	std::string line;
 	while(std::getline(data, line))
 	{
-		if (line[0] == '2') // traitement uniquement les lignes avec les dates
+		if (line.empty() == false && line[0] == '2') // traitement uniquement les lignes avec les dates
 		{
 			std::string	key = line.substr(0, 10);
 			double value = std::atof(line.substr(11).c_str()); // j'ai mis du temps trouver ca
