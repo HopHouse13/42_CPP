@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/04 16:35:51 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/04 19:06:23 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
- 
+
 int	btcExchange::_checkValue(std::string value)
 {
 	std::string	tmpV = value;
@@ -75,8 +75,6 @@ int	btcExchange::_checkDate(std::string date)
 	int	mouth = std::atoi(date.substr(5, 2).c_str());
 	int	day = std::atoi(date.substr(8).c_str());
 
-	//std::cout << "PARSING-Date ["<< year << "][" << mouth << "][" << day << "]" << std::endl;
-
 	if (year < 2009 || year > 2022)
 		flag = false;
 	if (mouth < 1 || mouth > 12)
@@ -107,16 +105,17 @@ int	btcExchange::_checkDate(std::string date)
 	return (SUCCESS);
 }
 
+//- format date -> yyyy-mm-dd
+//- si la date existe -> annee bissextile (2012,2016,2020)
+//- valeur a virgule entre 0 - 1000
 int	btcExchange::_parsingLine(std::string line)
 {
-	//- format date -> yyyy-mm-dd
-	//- si la date existe -> annee bissextile (2012,2016,2020)
-	//- valeur a virgule entre 0 - 1000
 
 	int		nbPipe = 0;
 	int		nbComma = 0;
 	int		nbDash = 0;
 	int		nbSpace = 0;
+	size_t	posPipe = 0;
 	bool	flag = true;
 
 	if (line.size() < 14)
@@ -127,7 +126,12 @@ int	btcExchange::_parsingLine(std::string line)
 		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
 			flag = false;
 		if (line[i] == '|')
+		{
+			if (line[i -1] != ' ' || line[i + 1] != ' ')
+				flag = false;
+			posPipe = i;
 			nbPipe++;
+		}
 		if (line[i] == ',')
 			nbComma++;
 		if (line[i] == '-')
@@ -142,9 +146,8 @@ int	btcExchange::_parsingLine(std::string line)
 		return (FAILURE);
 	}
 
-	std::string	date = line.substr(0, 10);
-	std::string	value = line.substr(13);
-	//std::cout << "date [" << date << "] " << "value [" << value << "]\n";
+	std::string	date = line.substr(0, posPipe - 1);
+	std::string	value = line.substr(posPipe + 2);
 
 	if (_checkDate(date) != SUCCESS)
 		return (FAILURE);
@@ -158,7 +161,7 @@ int	btcExchange::_handleExchange(std::string input)
 	std::ifstream	file(input.c_str());
 	if (!file.is_open())
 	{
-		std::cout << "Le fichier passe en argument du programme n'a pas pu etre ouvert" << std::endl;
+		std::cout << "Error: could not open input file" << std::endl;
 		return (FAILURE);
 	}
 
@@ -196,7 +199,7 @@ int	btcExchange::_initData()
 	std::ifstream	data("./data.csv");
 	if (!data.is_open())
 	{
-		std::cout << "Le fichier \"./data.csv/\" n'a pas pu etre ouvert" << std::endl;
+		std::cout << "Error: could not open file \"./data.csv\"" << std::endl;
 		return (FAILURE);
 	}
 	
