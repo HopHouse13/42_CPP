@@ -6,13 +6,13 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/04 19:06:23 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/09 19:06:26 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./BitcoinExchange.hpp"
 
-btcExchange::btcExchange()
+btcExchange::btcExchange() : _date(""), _value(-1)
 {
 	//std::cout << "Default constructor called" << std::endl;
 }
@@ -26,14 +26,20 @@ btcExchange::btcExchange(btcExchange const & copy)
 {
 	//std::cout << "Copy constructor called" << std::endl;
 	this->_data = copy._data;
+	this->_date = copy._date;
+	this->_value = copy._value;
 }
 
 btcExchange const &	btcExchange::operator=(btcExchange const & rhs)
 {
 	//std::cout << "Assignment operator overload called" << std::endl;
 	if (this != &rhs)
+	{
 		this->_data = rhs._data;
-	return *this;
+		this->_date = rhs._date;
+		this->_value = rhs._value;
+	}
+	return (*this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +68,7 @@ int	btcExchange::_checkValue(std::string value)
 			std::cout << "Error: too large a number [" << value << "]" << std::endl;
 		return (FAILURE);
 	}
+	this->_value = v;
 	return (SUCCESS);
 }
 
@@ -75,7 +82,7 @@ int	btcExchange::_checkDate(std::string date)
 	int	mouth = std::atoi(date.substr(5, 2).c_str());
 	int	day = std::atoi(date.substr(8).c_str());
 
-	if (year < 2009 || year > 2022)
+	if (year < 2009/* || year > 2022*/)
 		flag = false;
 	if (mouth < 1 || mouth > 12)
 		flag = false;
@@ -101,7 +108,9 @@ int	btcExchange::_checkDate(std::string date)
 	if (flag == false)
 	{
 		std::cout << "Error: invalid date [" << date << "]" << std::endl;
+		return (FAILURE);
 	}
+	this->_date = date;
 	return (SUCCESS);
 }
 
@@ -140,6 +149,17 @@ int	btcExchange::_parsingLine(std::string line)
 			nbSpace++;
 	}
 
+//2010-10-22 | 3,5
+//2010-10-22 | 3,5 -
+//2010-10-22 |3,5 |
+//2010e-10-22 | 3,5
+//2010-10-22 | 3,-5
+//2010-10-22 | -3,5
+//2010-10-22 | 365666
+//2010-42-22 | 3,5
+//20104-10-22 | 3,5
+//2022-5-04 | 3,5
+
 	if (flag == false || nbPipe != 1 || nbComma > 1 || nbDash > 3 || nbSpace != 2)
 	{
 		std::cout << "Error: bad input [" << line << "]" << std::endl;
@@ -154,6 +174,23 @@ int	btcExchange::_parsingLine(std::string line)
 	if (_checkValue(value) != SUCCESS)
 		return (FAILURE);
 	return (SUCCESS);
+}
+
+void	btcExchange::_calculate()
+{
+	std::map<std::string, double>::iterator	it = _data.lower_bound(_date);
+
+	if (it == _data.end())
+		it--;
+	else if ((it != _data.begin() && it->first != _date))
+		it--;
+
+	std::ostringstream oss; // oss est un flux de sortie
+	oss /*<< std::fixed << std::setprecision(2)*/ << (_value * it->second); // le produit de la multiplication est traité avec différents filtres pour le formater correctement
+	std::string	product = oss.str(); // le flux de sortie est converti en string et stocké dans 'product'
+	std::replace(product.begin(), product.end(), '.', ','); // Puis dans la string, les '.' sont remplacés par ','
+
+	std::cout << _date << " => " << _value << " = " << product << std::endl;
 }
 
 int	btcExchange::_handleExchange(std::string input)
@@ -179,8 +216,9 @@ int	btcExchange::_handleExchange(std::string input)
 		if (_parsingLine(line) != SUCCESS)
 			continue;
 		// fonction de comparaison
+		_calculate();
 	}
-	return (SUCCESS);	
+	return (SUCCESS);
 }
 
 void	btcExchange::_displayData()
@@ -212,6 +250,11 @@ int	btcExchange::_initData()
 			double value = std::atof(line.substr(11).c_str()); // j'ai mis du temps trouver ca
 			_data.insert(std::make_pair(key, value));
 		}
+	}
+	if (_data.empty())
+	{
+		std::cout << "Error: the database is empty" << std::endl;
+		return (FAILURE);
 	}
 	return (SUCCESS);
 }

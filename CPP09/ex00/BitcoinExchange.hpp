@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 18:54:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/01 18:25:25 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/09 16:57:27 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <utility>
 # include <cstdlib>
 # include <iterator>
+# include <string>
+# include <sstream>
+# include <iomanip>
+# include <algorithm>
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -35,6 +39,8 @@ class btcExchange
 
 	private:
 		std::map<std::string, double>	_data;
+		std::string						_date;
+		double							_value;
 
 		int		_initData();
 		void	_displayData();
@@ -42,6 +48,7 @@ class btcExchange
 		int		_parsingLine(std::string line);
 		int		_checkDate(std::string date);
 		int		_checkValue(std::string value);
+		void	_calculate();
 };
 // ne pas oublier de rajouter les const
 
