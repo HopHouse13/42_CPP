@@ -1,0 +1,41 @@
+Vous devez créer un programme avec les contraintes suivantes :
+• Le nom du programme est RPN.
+• Votre programme doit prendre en argument une expression mathématique polonaise inversée.
+• Les nombres utilisés dans cette opération et passés en argument seront toujours inférieurs
+à 10. Le calcul lui-même, mais aussi le résultat, ne tiennent pas compte de cette règle.
+• Votre programme doit traiter cette expression et afficher le résultat correct sur la
+sortie standard.
+• Si une erreur se produit pendant l'exécution du programme, un message d'erreur doit être
+affiché sur la sortie d'erreur standard.
+• Votre programme doit être capable de gérer les opérations avec les tokens suivants : « + - / * ».
+Vous devez utiliser au moins un conteneur dans votre code pour valider cet
+exercice.
+11
+C++ - Module 09 STL
+Vous n'avez pas besoin de gérer les parenthèses ou les nombres décimaux.
+Voici un exemple d'utilisation standard :
+$> ./RPN « 8 9 * 9 - 9 - 9 - 4 - 1 + »
+42
+$> ./RPN « 7 7 * 7 - »
+42
+$> ./RPN « 1 2 * 2 / 2 * 2 4 - + »
+0
+$> ./RPN « (1 + 1) »
+Erreur
+$>
+Avertissement : le ou les conteneurs que vous avez utilisés dans l'exercice précédent sont
+interdits ici. Le ou les conteneurs que vous avez utilisés pour valider cet exercice
+ne seront pas utilisables pour le reste de ce module.
+
+
+regles:
+
+- chiffres 0-9 
+- /0 -> error
+
+2	
+2	*
+2	/
+2	*
+4	-
+	+
