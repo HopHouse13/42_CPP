@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/09 19:06:26 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/10 12:30:30 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	btcExchange::_checkValue(std::string value)
 	std::string	tmpV = value;
 	for (size_t i = 0; i < tmpV.size(); i++)
 	{
-		if (tmpV[i] == '-' && i != 0)
+		if (tmpV[i] == '-' && (i != 0 || i + 1 >= tmpV.size()))
 		{
 			std::cout << "Error: invalid number [" << value << "]" << std::endl;
 			return (FAILURE);
@@ -79,30 +79,30 @@ int	btcExchange::_checkDate(std::string date)
 		flag = false;
 
 	int	year = std::atoi(date.substr(0, 4).c_str());
-	int	mouth = std::atoi(date.substr(5, 2).c_str());
+	int	month = std::atoi(date.substr(5, 2).c_str());
 	int	day = std::atoi(date.substr(8).c_str());
 
 	if (year < 2009/* || year > 2022*/)
 		flag = false;
-	if (mouth < 1 || mouth > 12)
+	if (month < 1 || month > 12)
 		flag = false;
 
-	bool	mouth30 = false;
-	bool	mouth31 = false;
+	bool	month30 = false;
+	bool	month31 = false;
 	bool	february = false;
 
-	if (mouth == 4 || mouth == 6 || mouth == 9 || mouth == 11)
-		mouth30 = true;
-	else if (mouth == 2)
+	if (month == 4 || month == 6 || month == 9 || month == 11)
+		month30 = true;
+	else if (month == 2)
 		february = true;
 	else
-		mouth31 = true;
+		month31 = true;
 
 	if (february == true && (day < 1 || day > 29 || (day == 29 && year % 4 != 0 )))
 		flag = false;
-	else if (mouth30 == true && (day < 1 || day > 30))
+	else if (month30 == true && (day < 1 || day > 30))
 		flag = false;
-	else if (mouth31 == true && (day < 1 || day > 31))
+	else if (month31 == true && (day < 1 || day > 31))
 		flag = false;
 
 	if (flag == false)
@@ -149,17 +149,6 @@ int	btcExchange::_parsingLine(std::string line)
 			nbSpace++;
 	}
 
-//2010-10-22 | 3,5
-//2010-10-22 | 3,5 -
-//2010-10-22 |3,5 |
-//2010e-10-22 | 3,5
-//2010-10-22 | 3,-5
-//2010-10-22 | -3,5
-//2010-10-22 | 365666
-//2010-42-22 | 3,5
-//20104-10-22 | 3,5
-//2022-5-04 | 3,5
-
 	if (flag == false || nbPipe != 1 || nbComma > 1 || nbDash > 3 || nbSpace != 2)
 	{
 		std::cout << "Error: bad input [" << line << "]" << std::endl;
@@ -186,7 +175,7 @@ void	btcExchange::_calculate()
 		it--;
 
 	std::ostringstream oss; // oss est un flux de sortie
-	oss /*<< std::fixed << std::setprecision(2)*/ << (_value * it->second); // le produit de la multiplication est traité avec différents filtres pour le formater correctement
+	oss /*<< std::fixed << std::setprecision(2)*/ << (_value * it->second); // le produit de la multiplication est traité avec différents "filtres" pour le formater correctement
 	std::string	product = oss.str(); // le flux de sortie est converti en string et stocké dans 'product'
 	std::replace(product.begin(), product.end(), '.', ','); // Puis dans la string, les '.' sont remplacés par ','
 
@@ -204,7 +193,7 @@ int	btcExchange::_handleExchange(std::string input)
 
 	std::string	line;
 	std::getline(file, line);
-	if (line.compare("date | value") != 0) // check le header du fichier passe en arg (premiere ligne)
+	if (line != "date | value") // check le header du fichier passe en arg (premiere ligne)
 	{
 		std::cout << "Error: invalid header" << std::endl;
 		return (FAILURE);
@@ -215,7 +204,6 @@ int	btcExchange::_handleExchange(std::string input)
 			continue;
 		if (_parsingLine(line) != SUCCESS)
 			continue;
-		// fonction de comparaison
 		_calculate();
 	}
 	return (SUCCESS);
