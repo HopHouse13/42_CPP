@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:06:50 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/10 17:13:12 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/11 18:17:47 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ class Rpn
 		Rpn(Rpn const & copy);
 		Rpn & operator=(Rpn const & rhs);
 
-		void	calculate();
-
+		int		Calculation();
 
 	private:
-		int	parse();
-		//_addValue(double value);
+		void	_handleOperation(char operatorSign);
 
 		std::string	const	_raw;
 		std::stack<double>	_values;

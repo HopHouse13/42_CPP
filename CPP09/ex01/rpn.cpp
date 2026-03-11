@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/11 15:50:23 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/11 18:17:37 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,45 @@ Rpn & Rpn::operator=(Rpn const & rhs)
 
 ////////////////////////////////////////////////////////////////////////
 
-int	Rpn::parse()
+void	Rpn::_handleOperation(char operatorSign)
+{
+	double	result;
+
+	if (operatorSign == '+')
+	{
+		result = _values.top();
+		_values.pop();
+		result += _values.top();
+		_values.pop();
+		_values.push(result);
+	}
+	else if (operatorSign == '-')
+	{
+		result = _values.top();
+		_values.pop();
+		result -= _values.top();
+		_values.pop();
+		_values.push(result);
+	}
+	else if (operatorSign == '*')
+	{
+		result = _values.top();
+		_values.pop();
+		result *= _values.top();
+		_values.pop();
+		_values.push(result);
+	}
+	else
+	{
+		result = _values.top();
+		_values.pop();
+		result /= _values.top();
+		_values.pop();
+		_values.push(result);
+	}
+}
+
+int	Rpn::Calculation()
 {
 	if (_raw.empty())
 	{
@@ -76,10 +114,14 @@ int	Rpn::parse()
 		if (_raw[i] >= '0' && _raw[i] <= '9')
 		{
 			countV++;
-			_values.push(_raw[i] - 48);
+			_values.push(_raw[i] - '0');
 		}
 		else if (_raw[i] == '+' || _raw[i] == '-' || _raw[i] == '*' || _raw[i] == '/')
-			countO++;
+			{
+				countO++;
+				if (_values.size() >= 2)
+					_handleOperation(_raw[i]);
+			}
 		else
 		{
 			std::cout << "Error: invalid character [" << _raw[i] << "]" << std::endl;
@@ -92,11 +134,8 @@ int	Rpn::parse()
 		std::cout << "Error: invalid expression RPN -> operands/operators mismatch" << std::endl;
 		return (FAILLURE);
 	}
+
+	std::cout << "size: " << _values.size() << "\tresult: " << _values.top() << std::endl;
 	return (SUCCESS);
 }
 
-void	Rpn::calculate()
-{
-	if (parse() == FAILLURE)
-		std::cout << "parsing fail\n";
-}
