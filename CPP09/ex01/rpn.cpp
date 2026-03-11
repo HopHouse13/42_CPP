@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/10 19:10:40 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/11 15:50:23 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,28 @@ int	Rpn::parse()
 	}
 	int		countV = 0;
 	int		countO = 0;
-	bool	even = 0;
-// a refaire la logique de l' espace
-	if (_raw[0] == ' ')
-		
+	bool	evenSpace = false;
 
+	if (_raw[0] == ' ')
+		evenSpace = true;
 	for (int i = 0; i < static_cast<int>(_raw.size()); i++) // size renvoit un size_t
 	{
-		//if (_raw[i] == ' ')
-		//{
-		//	if (even == -1)
-		//		even = i % 2;
-		//	else if (i % 2 != even)
-		//	{
-		//		std::cout << "Error: invalid input -> consecutive spaces are not allowed" << std::endl;
-		//		return (FAILLURE);
-		//	}
-		//	continue;
+		if (_raw[i] == ' ')
+		{
+			if ((evenSpace == true && i % 2 != 0) || (evenSpace == false && i % 2 != 1))
+			{
+				std::cout << "Error: invalid input -> consecutive spaces are not allowed" << std::endl;
+				return (FAILLURE);
+			}
+			continue ;
 		}
-		else if (_raw[i] >= '0' && _raw[i] <= '9')
+		if (_raw[i] != ' ' && ((evenSpace == true && i % 2 == 0) || (evenSpace == false && i % 2 == 1)))
+		{
+			std::cout << "Error: invalid input -> consecutive operands/operators are not allowed" << std::endl;
+			return (FAILLURE);
+		}
+
+		if (_raw[i] >= '0' && _raw[i] <= '9')
 		{
 			countV++;
 			_values.push(_raw[i] - 48);
@@ -83,11 +86,17 @@ int	Rpn::parse()
 			return (FAILLURE);
 		}
 	}
+
+	if (countV != (countO + 1) || countV < 2 || countO < 1)
+	{
+		std::cout << "Error: invalid expression RPN -> operands/operators mismatch" << std::endl;
+		return (FAILLURE);
+	}
 	return (SUCCESS);
 }
 
 void	Rpn::calculate()
 {
 	if (parse() == FAILLURE)
-		std::cout << "TEST\n";
+		std::cout << "parsing fail\n";
 }
