@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/11 18:17:37 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/12 15:06:03 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@ Rpn::~Rpn()
 Rpn::Rpn(Rpn const & copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->_values = copy._values;
+	this-> _stackValues = copy. _stackValues;
 }
 
 Rpn & Rpn::operator=(Rpn const & rhs)
 {
 	std::cout << "Assignment operator overload called" << std::endl;
 	if (this != &rhs)
-		this->_values = rhs._values;
+	{
+		this-> _stackValues = rhs._stackValues;
+		this->_raw = rhs._raw;
+	}
 	return (*this);
 }
 
@@ -45,53 +48,55 @@ Rpn & Rpn::operator=(Rpn const & rhs)
 
 void	Rpn::_handleOperation(char operatorSign)
 {
-	double	result;
+	double	value1;
+	double	value2;
 
 	if (operatorSign == '+')
 	{
-		result = _values.top();
-		_values.pop();
-		result += _values.top();
-		_values.pop();
-		_values.push(result);
+		value2 = _stackValues.top();
+		 _stackValues.pop();
+		value1 = _stackValues.top();
+		 _stackValues.pop();
+		 _stackValues.push(value1 + value2);
 	}
 	else if (operatorSign == '-')
 	{
-		result = _values.top();
-		_values.pop();
-		result -= _values.top();
-		_values.pop();
-		_values.push(result);
+		value2 = _stackValues.top();
+		 _stackValues.pop();
+		value1 = _stackValues.top();
+		 _stackValues.pop();
+		 _stackValues.push(value1 - value2);
 	}
 	else if (operatorSign == '*')
 	{
-		result = _values.top();
-		_values.pop();
-		result *= _values.top();
-		_values.pop();
-		_values.push(result);
+		value2 = _stackValues.top();
+		 _stackValues.pop();
+		value1 = _stackValues.top();
+		 _stackValues.pop();
+		 _stackValues.push(value1 * value2);
 	}
 	else
 	{
-		result = _values.top();
-		_values.pop();
-		result /= _values.top();
-		_values.pop();
-		_values.push(result);
+		value2 = _stackValues.top();
+		 _stackValues.pop();
+		value1 = _stackValues.top();
+		 _stackValues.pop();
+		 _stackValues.push(value1 / value2);
 	}
 }
 
 int	Rpn::Calculation()
 {
-	if (_raw.empty())
-	{
-		std::cout << "Error: input is empty" << std::endl;
-		return (FAILLURE);
-	}
 	int		countV = 0;
 	int		countO = 0;
 	bool	evenSpace = false;
 
+	if (_raw.empty() || _raw.find_first_not_of(' ') == std::string::npos)
+	{
+		std::cout << "Error: input is empty" << std::endl;
+		return (FAILLURE);
+	}
+	
 	if (_raw[0] == ' ')
 		evenSpace = true;
 	for (int i = 0; i < static_cast<int>(_raw.size()); i++) // size renvoit un size_t
@@ -114,14 +119,19 @@ int	Rpn::Calculation()
 		if (_raw[i] >= '0' && _raw[i] <= '9')
 		{
 			countV++;
-			_values.push(_raw[i] - '0');
+			 _stackValues.push(_raw[i] - '0');
 		}
 		else if (_raw[i] == '+' || _raw[i] == '-' || _raw[i] == '*' || _raw[i] == '/')
+		{
+			countO++;
+			if (_raw[i] == '/' && _stackValues.top() == 0)
 			{
-				countO++;
-				if (_values.size() >= 2)
-					_handleOperation(_raw[i]);
+				std::cout << "Error: cannot divide by zero" << std::endl;
+				return (FAILLURE);
 			}
+			if ( _stackValues.size() >= 2)
+				_handleOperation(_raw[i]);
+		}
 		else
 		{
 			std::cout << "Error: invalid character [" << _raw[i] << "]" << std::endl;
@@ -135,7 +145,7 @@ int	Rpn::Calculation()
 		return (FAILLURE);
 	}
 
-	std::cout << "size: " << _values.size() << "\tresult: " << _values.top() << std::endl;
+	std::cout << "size: " << _stackValues.size() << "\tresult: " << _stackValues.top() << std::endl;
 	return (SUCCESS);
 }
 

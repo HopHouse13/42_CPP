@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:06:50 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/11 18:17:47 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/12 15:06:34 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ class Rpn
 	private:
 		void	_handleOperation(char operatorSign);
 
-		std::string	const	_raw;
-		std::stack<double>	_values;
+		std::string			_raw;
+		std::stack<double>	_stackValues;
 };
 
 
