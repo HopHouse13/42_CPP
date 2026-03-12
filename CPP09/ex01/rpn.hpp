@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:06:50 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/12 15:06:34 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/12 16:19:13 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ class Rpn
 		Rpn(std::string const raw);
 		~Rpn();
 		Rpn(Rpn const & copy);
-		Rpn & operator=(Rpn const & rhs);
+		Rpn & 	operator=(Rpn const & rhs);
 
 		int		Calculation();
 
 	private:
-		void	_handleOperation(char operatorSign);
+		int					_handleOperation(char operatorSign);
 
 		std::string			_raw;
 		std::stack<double>	_stackValues;
 };
-
 
 #endif

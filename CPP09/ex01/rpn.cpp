@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/12 15:06:03 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/12 16:39:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Rpn::~Rpn()
 Rpn::Rpn(Rpn const & copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this-> _stackValues = copy. _stackValues;
+	this->_stackValues = copy._stackValues;
 }
 
 Rpn & Rpn::operator=(Rpn const & rhs)
@@ -38,7 +38,7 @@ Rpn & Rpn::operator=(Rpn const & rhs)
 	std::cout << "Assignment operator overload called" << std::endl;
 	if (this != &rhs)
 	{
-		this-> _stackValues = rhs._stackValues;
+		this->_stackValues = rhs._stackValues;
 		this->_raw = rhs._raw;
 	}
 	return (*this);
@@ -46,7 +46,7 @@ Rpn & Rpn::operator=(Rpn const & rhs)
 
 ////////////////////////////////////////////////////////////////////////
 
-void	Rpn::_handleOperation(char operatorSign)
+int	Rpn::_handleOperation(char operatorSign)
 {
 	double	value1;
 	double	value2;
@@ -54,35 +54,41 @@ void	Rpn::_handleOperation(char operatorSign)
 	if (operatorSign == '+')
 	{
 		value2 = _stackValues.top();
-		 _stackValues.pop();
+		_stackValues.pop();
 		value1 = _stackValues.top();
-		 _stackValues.pop();
-		 _stackValues.push(value1 + value2);
+		_stackValues.pop();
+		_stackValues.push(value1 + value2);
 	}
 	else if (operatorSign == '-')
 	{
 		value2 = _stackValues.top();
-		 _stackValues.pop();
+		_stackValues.pop();
 		value1 = _stackValues.top();
-		 _stackValues.pop();
-		 _stackValues.push(value1 - value2);
+		_stackValues.pop();
+		_stackValues.push(value1 - value2);
 	}
 	else if (operatorSign == '*')
 	{
 		value2 = _stackValues.top();
-		 _stackValues.pop();
+		_stackValues.pop();
 		value1 = _stackValues.top();
-		 _stackValues.pop();
-		 _stackValues.push(value1 * value2);
+		_stackValues.pop();
+		_stackValues.push(value1 * value2);
 	}
 	else
 	{
 		value2 = _stackValues.top();
-		 _stackValues.pop();
+		_stackValues.pop();
 		value1 = _stackValues.top();
-		 _stackValues.pop();
-		 _stackValues.push(value1 / value2);
+		_stackValues.pop();
+		if (value1 == 0 || value2 == 0)
+		{
+			std::cout << "Error: cannot divide by zero" << std::endl;
+			return (FAILLURE);
+		}
+		_stackValues.push(value1 / value2);
 	}
+	return (SUCCESS);
 }
 
 int	Rpn::Calculation()
@@ -119,18 +125,17 @@ int	Rpn::Calculation()
 		if (_raw[i] >= '0' && _raw[i] <= '9')
 		{
 			countV++;
-			 _stackValues.push(_raw[i] - '0');
+			_stackValues.push(_raw[i] - '0');
 		}
 		else if (_raw[i] == '+' || _raw[i] == '-' || _raw[i] == '*' || _raw[i] == '/')
 		{
 			countO++;
-			if (_raw[i] == '/' && _stackValues.top() == 0)
+			if (_stackValues.size() >= 2)
 			{
-				std::cout << "Error: cannot divide by zero" << std::endl;
-				return (FAILLURE);
+			std::cout << "nb values stack: " << _stackValues.size() << std::endl;
+				if (_handleOperation(_raw[i]) == FAILLURE)
+					return (FAILLURE);
 			}
-			if ( _stackValues.size() >= 2)
-				_handleOperation(_raw[i]);
 		}
 		else
 		{
