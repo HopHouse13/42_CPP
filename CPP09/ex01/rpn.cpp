@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/12 16:39:01 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/15 16:53:37 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 Rpn::Rpn()
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 }
 
 Rpn::Rpn(std::string const raw) : _raw(raw)
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 }
 
 Rpn::~Rpn()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 Rpn::Rpn(Rpn const & copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	this->_stackValues = copy._stackValues;
+	this->_raw = copy._raw;
 }
 
 Rpn & Rpn::operator=(Rpn const & rhs)
 {
-	std::cout << "Assignment operator overload called" << std::endl;
+	// std::cout << "Assignment operator overload called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_stackValues = rhs._stackValues;
@@ -81,11 +82,8 @@ int	Rpn::_handleOperation(char operatorSign)
 		_stackValues.pop();
 		value1 = _stackValues.top();
 		_stackValues.pop();
-		if (value1 == 0 || value2 == 0)
-		{
-			std::cout << "Error: cannot divide by zero" << std::endl;
+		if (/*value1 == 0 ||*/ value2 == 0) // (0 / 2) = 0 ; (2 / 0) = inf
 			return (FAILLURE);
-		}
 		_stackValues.push(value1 / value2);
 	}
 	return (SUCCESS);
@@ -130,12 +128,18 @@ int	Rpn::Calculation()
 		else if (_raw[i] == '+' || _raw[i] == '-' || _raw[i] == '*' || _raw[i] == '/')
 		{
 			countO++;
-			if (_stackValues.size() >= 2)
+			if (countV < 2 || countO >= countV)
 			{
-			std::cout << "nb values stack: " << _stackValues.size() << std::endl;
-				if (_handleOperation(_raw[i]) == FAILLURE)
-					return (FAILLURE);
+				std::cout << "Error: invalid expression RPN -> operands/operators mismatch" << std::endl;
+				return (FAILLURE);
+			}	
+			if (_handleOperation(_raw[i]) == FAILLURE)
+			{
+				std::cout << "Error: cannot divide by zero" << std::endl;
+				return (FAILLURE);
 			}
+			countV--; // car 2 valeurs sont brulées mais une valeur est creée (le resultat de l'operation) 
+			countO--;
 		}
 		else
 		{
@@ -144,13 +148,13 @@ int	Rpn::Calculation()
 		}
 	}
 
-	if (countV != (countO + 1) || countV < 2 || countO < 1)
+	if (_stackValues.size() > 1 || countO > 0)
 	{
 		std::cout << "Error: invalid expression RPN -> operands/operators mismatch" << std::endl;
 		return (FAILLURE);
 	}
 
-	std::cout << "size: " << _stackValues.size() << "\tresult: " << _stackValues.top() << std::endl;
+	std::cout << "result: " << _stackValues.top() << std::endl;
 	return (SUCCESS);
 }
 
