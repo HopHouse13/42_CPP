@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rpn.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 14:06:50 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/16 13:50:09 by pbret            ###   ########.fr       */
+/*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
+/*   Updated: 2026/03/17 16:56:02 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
 
 # include <iostream>
-# include <stack>
-# include <string>
+# include <cstdlib>
+# include <vector>
+# include <deque>
 
 # define SUCCESS 0
-# define FAILLURE 1
+# define FAILURE 1
 
-class Rpn
+class SortDeque
 {
 	public:
-		Rpn();
-		Rpn(std::string const raw);
-		~Rpn();
-		Rpn(Rpn const & copy);
-		Rpn &	operator=(Rpn const & rhs);
-
-		int		Calculation();
+		SortDeque();
+		~SortDeque();
+		SortDeque(SortDeque const & copy);
+		SortDeque const  &	operator=(SortDeque const & rhs);
+	
+		int handleSort(char **raw, int ac);
 
 	private:
-		int					_handleOperation(char operatorSign);
+		int	initList(char **raw, int ac);
 
-		std::string			_raw;
-		std::stack<double>	_stackValues;
+		//char**			_raw;
+		//int				_ac;
+		std::deque<int>	_list;
+
 };
 
 #endif

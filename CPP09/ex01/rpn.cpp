@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/15 16:53:37 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/16 14:00:13 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,3 @@ int	Rpn::Calculation()
 	std::cout << "result: " << _stackValues.top() << std::endl;
 	return (SUCCESS);
 }
-
