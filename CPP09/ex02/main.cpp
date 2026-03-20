@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/19 17:00:55 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/20 12:05:29 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 
 	if (parsing(av) == false)
 		std::cerr << "Error: invalid input. All elements must be positive integers." << std::endl;
+
+	int	nbElement = ac - 1;
+	int	depth = depth(nbElement);
 
 	SortDeque	SortDeque;
 	SortDeque.handleSortDeque(av, ac);
