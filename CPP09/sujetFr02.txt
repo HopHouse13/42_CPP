@@ -1,0 +1,56 @@
+Vous devez créer un programme respectant les contraintes suivantes :
+• Le nom du programme est PmergeMe.
+• Votre programme doit pouvoir utiliser une suite d'entiers positifs comme argument.
+• Votre programme doit utiliser l'algorithme de tri par insertion avec fusion pour trier la suite d'entiers positifs.
+Pour clarifier les choses, oui, vous devez utiliser l'algorithme de Ford-Johnson.
+(source : Art Of Computer Programming, Vol. 3. Merge Insertion,
+page 184.)
+• Si une erreur se produit pendant l'exécution du programme, un message d'erreur doit s'afficher
+sur le flux d'erreurs standard.
+Vous devez utiliser au moins deux conteneurs différents dans votre code pour
+valider cet exercice. Votre programme doit être capable de traiter au
+moins 3 000 entiers différents.
+
+Il est fortement recommandé d'implémenter votre algorithme pour chaque conteneur
+et d'éviter ainsi d'utiliser une fonction générique.
+Voici quelques consignes supplémentaires concernant les informations que vous devez afficher ligne par ligne
+sur la sortie standard :
+• Sur la première ligne, vous devez afficher un texte explicite suivi de la séquence d'entiers positifs
+non triée.
+• Sur la deuxième ligne, vous devez afficher un texte explicite suivi de la séquence d'entiers positifs
+triée.
+• Sur la troisième ligne, vous devez afficher un message explicite indiquant le temps mis
+par votre algorithme, en précisant le premier conteneur utilisé pour trier la suite d'entiers positifs.
+• Sur la dernière ligne, vous devez afficher un texte explicite indiquant le temps mis par
+votre algorithme, en précisant le deuxième conteneur utilisé pour trier la suite d'entiers positifs.
+Le format d'affichage du temps mis pour effectuer votre tri
+Le format d'affichage du temps utilisé pour effectuer votre tri
+est libre, mais la précision choisie doit permettre de voir clairement la
+différence entre les deux conteneurs utilisés.
+Voici un exemple d'utilisation standard :
+
+$> ./PmergeMe 3 5 9 7 4
+Before: 3 5 9 7 4
+After: 3 4 5 7 9
+Time to process a range of 5 elements with std::[..] : 0.00031 us
+Time to process a range of 5 elements with std::[..] : 0.00014 us
+$> ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+Before: 141 79 526 321 [...]
+After: 79 141 321 526 [...]
+Time to process a range of 3000 elements with std::[..] : 62.14389 us
+Time to process a range of 3000 elements with std::[..] : 69.27212 us
+$> ./PmergeMe "-1" "2"
+Error
+$> # For OSX USER:
+$> ./PmergeMe `jot -r 3000 1 100000 | tr '\n' ' '`
+[...]
+$>
+
+Dans cet exemple, l'indication du temps est volontairement inhabituelle.
+Vous devez bien sûr indiquer le temps nécessaire à l'exécution de toutes vos
+opérations, tant pour le tri que pour la gestion des données.
+
+Attention : les conteneurs que vous avez utilisés dans les exercices précédents sont
+interdits ici.
+La gestion des erreurs liées aux doublons est laissée à votre
+appréciation.

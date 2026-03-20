@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:54 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/20 12:00:15 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/20 19:33:57 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 # include <iostream>
 # include <cstdlib>
+# include <limits>
+# include <cmath>
 
 # define SUCCESS 0
 # define FAILURE 1
 
 bool	parsing(char ** av);
+int		depthCount(int nbElem);
 
-int		depth(char ** av);
 #endif
