@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/20 17:45:19 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/22 15:33:18 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ int	main(int ac, char **av)
 	}
 	
 	int	nbElement = ac - 1;
-	int	depth = depthCount(nbElement);
-	std::cout << "value lvl: " << depth << std::endl;
+	int	depthMax = depthCount(nbElement);
 	
-	SortDeque	SortDeque(av, nbElement, depth);
+	SortDeque	SortDeque(av, nbElement, depthMax);
 	SortDeque.handleSortDeque();
 
 	//SortVector	SortVector;
@@ -47,5 +46,5 @@ int	main(int ac, char **av)
 
 // - parsing -> only digits positifs
 // - init. _main
-// - cb de niveau de recurtion : compter cb de valeur + cb de niveau de profondeur en doublant le bn de valeurs dans les paires a chaque niveau de recurtion
+// - cb de niveau de recursion : compter cb de valeur + cb de niveau de profondeur en doublant le bn de valeurs dans les paires a chaque niveau de recursion
 // - affichage du main avant le sort

@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/20 19:53:46 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/22 18:08:02 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ class SortDeque
 		int handleSortDeque();
 
 	private:
-		int		initMain(char **raw, int nbElem);
 		void	handleOutsidePairs();
+		void	handleSwap();
+		void	swap(size_t sizePack, size_t position);
+		void	recursion();
 
 		std::deque<int>	_main;
 		std::deque<int>	_pend;
 		int				_nbElem;
+		int				_depthMax;
 		int				_depth;
 
 };
+
+std::ostream& operator<<(std::ostream& os, std::deque<int> const& d);
 
 #endif
