@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/22 18:08:02 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/23 14:55:39 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class SortDeque
 		void	handleSwap();
 		void	swap(size_t sizePack, size_t position);
 		void	recursion();
+		void	pushPendToMain();
+
 
 		std::deque<int>	_main;
 		std::deque<int>	_pend;

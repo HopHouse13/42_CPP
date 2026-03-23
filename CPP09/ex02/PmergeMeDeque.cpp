@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/22 18:16:03 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/23 19:50:17 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ std::ostream& operator<<(std::ostream& os, std::deque<int> const& list) // opera
 void	SortDeque::swap(size_t sizePack, size_t position)
 {
 	int		tmp;
-	size_t	nbSwap = sizePack; // nb d'elements a swap
+	size_t	nbSwap = sizePack; // nb d'elements a swap (la  totalite des index de la paire)
 
 	while (nbSwap)
 	{
-		tmp = _main.at(position);
-		_main.at(position) = _main.at(position + sizePack);
-		_main.at(position + sizePack) = tmp;
-		position--;
-		nbSwap--;
+		tmp = _main.at(position); // stock dans tmp la valeur de l'index le plus a droite de la premiere paire
+		_main.at(position) = _main.at(position + sizePack); // cette meme index prend la valeur de "meme"index de la paire suivante
+		_main.at(position + sizePack) = tmp; // l'index le plus a droite de la seconde paire prend la valeur de l'index le plus a droite du premiere paire.
+		position--; // decremente de 1 l'index a swap
+		nbSwap--; // decremente de 1 le nombre de swap a effectuer
 	}
 }
 
@@ -75,14 +75,14 @@ void	SortDeque::handleSwap()
  
 	for (size_t i = sizePack - 1; i + sizePack < _main.size(); i += sizePack * 2) // -1 a sizePack car i est un index donc au lvl 1 on veut comparer idx 0 avec idx 1 puis au lvl 2 on compare idx1 avec idx 3 etc
 	{
-		if (_main[i] > _main[i + sizePack])
+		if (_main[i] > _main[i + sizePack]) // comparaison entre la valeur de l'index de la paire le plus a droite avec celle de l'index de la paire suivant la plus a droite
 			swap(sizePack, i);
-	}
+	} // incrementation de i de sizePack * 2 pour passer la comparaison des 2 autres paires suivantes
 }
 
 void	SortDeque::handleOutsidePairs()
 {
-	size_t	sizePair = static_cast<size_t>(pow(2, _depth)); // taille de la paire par rapport a la profo+ndeur
+	size_t	sizePair = static_cast<size_t>(pow(2, _depth)); // taille de la paire par rapport a la profondeur
 	size_t	nbOut = _main.size() % sizePair; // nb d'element endehors des paires
 
 	while (nbOut)
@@ -94,6 +94,17 @@ void	SortDeque::handleOutsidePairs()
 	std::cout << "values pend: " << _pend << std::endl;
 }
 
+void	SortDeque::pushPendToMain()
+{
+	if (_pend.size() == 0)
+		return ;
+	while (_pend.size() != 0)
+	{
+		_main.push_back(_pend.front());
+		_pend.pop_front();
+	}
+}
+
 void	SortDeque::recursion()
 {
 	if (_depth <= _depthMax)
@@ -103,6 +114,8 @@ void	SortDeque::recursion()
 		_depth++;
 		recursion();
 	}
+	pushPendToMain();
+	//insersion();
 }
 
 
