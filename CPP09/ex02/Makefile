@@ -6,7 +6,7 @@
 #    By: pbret <pbret@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 16:59:56 by pbret             #+#    #+#              #
-#    Updated: 2026/03/20 14:28:13 by pbret            ###   ########.fr        #
+#    Updated: 2026/03/24 18:50:47 by pbret            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
 			PmergeMeCommon.cpp \
 			PmergeMeDeque.cpp \
-			PmergeMeVector.cpp
+			PmergeMeVector.cpp \
+			Elem.cpp
 
 OBJS		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
