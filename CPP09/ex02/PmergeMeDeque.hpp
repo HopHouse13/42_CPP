@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 14:53:12 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 15:33:17 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class SortDeque
 		void	recursion();
 		void	labeling(size_t sizePack);
 		void	distribution();
+		void	insersion();
 		//void	pushPendToMain();
 
 		class Elem

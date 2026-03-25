@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 14:15:14 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 15:24:57 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	initErnstJacobsthal();
+	//initErnstJacobsthal();
 	int	nbElement = ac - 1;
 	int	depthMax = depthCount(nbElement);
 	

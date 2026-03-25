@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 15:15:26 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 17:50:29 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,20 @@ void	SortDeque::handleOutsidePairs(size_t sizePack)
 		_main.pop_back();
 		nbOut--;
 	}
-	std::cout << "values pend: " << _pend << std::endl;
 }
 
 void	SortDeque::labeling(size_t sizePack)
 {
+	while (_pend.size() != 0) {
+		_main.push_back(_pend.front());
+		_pend.pop_front();
+	}
 	size_t	sizeElem = sizePack / 2; // taille de l'element
-	_labels.clear(); // clear _main pour chaque niveau de recursion
+	handleOutsidePairs(sizePack); // isole les valeurs qui sont hors paires pour ne pas les labeliser
+	//_labels.clear(); // clear _main pour chaque niveau de recursion
 	while (!_main.empty())
 	{
 		_labels.push_back(Elem());
-		std::cout << "value sizeElem: " << sizeElem << std::endl;
 		for (size_t i = 0; i < sizeElem && !_main.empty(); i++)
 		{
 			_labels.back().setSequence(_main.front());
@@ -118,30 +121,64 @@ void	SortDeque::labeling(size_t sizePack)
 		if (i % 2 != 0)
 			valueId++;
 	}
+	std::cout << std::endl << "LIST_LABELS" << std::endl;
+	std::cout << "SizeElem: " << sizeElem  << std::endl;
 	for (size_t i = 0; i < _labels.size(); i++)
-		std::cout << "value labels "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+		std::cout << " | " << "[" << _labels[i].getSequence() << "]" << _labels[i].getIdL() << _labels[i].getIdV();
+	std::cout << std::endl << "pend: " << _pend;
 }
 
 // Main: b1 + all a
 // pend: all b (sauf b1)
 void	SortDeque::distribution()
 {
-	for (size_t i = 0; !_labels.empty(); i++)
+	while (!_labels.empty())
 	{
-		if (i < 2 && _labels[i].getIdL() == 'b')
-			_mainLabeled.push_back(_labels.front());
-		else if (i < 2 && _labels[i].getIdL() == 'a')
-			_pendLabeled.push_back(_labels.front());
-		else if (_labels[i].getIdL() == 'a')
-			_mainLabeled.push_back(_labels.front());
-		else if (_labels[i].getIdL() == 'b')
-			_pendLabeled.push_back(_labels.front());
+		Elem current = _labels.front();
+
+		if (current.getIdV() == 1 && (current.getIdL() == 'a' || current.getIdL() == 'b'))
+			_mainLabeled.push_back(current);
+		else if (current.getIdL() == 'a')
+			_mainLabeled.push_back(current);
+		else
+			_pendLabeled.push_back(current);
+
 		_labels.pop_front();
 	}
+
+	std::cout << std::endl << std::endl << "MAIN-LABELED" << std::endl;
 	for (size_t i = 0; i < _mainLabeled.size(); i++)
-		std::cout << "_mainLabeled "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+		std::cout << " | " << "[" << _mainLabeled[i].getSequence() << "]" << _mainLabeled[i].getIdL() << _mainLabeled[i].getIdV();
+	std::cout << std::endl;
+	std::cout << "PEND-LABELED" << std::endl;
 	for (size_t i = 0; i < _pendLabeled.size(); i++)
-		std::cout << "_pendLabeled "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+		std::cout << " | " << "[" << _pendLabeled[i].getSequence() << "]" << _pendLabeled[i].getIdL() << _pendLabeled[i].getIdV();
+}
+
+void	SortDeque::insersion()
+{
+	while (!_pendLabeled.empty())
+	{
+		_mainLabeled.push_front(_pendLabeled.front());
+		_pendLabeled.pop_front();
+	}
+	
+	while (!_mainLabeled.empty())
+	{
+		std::deque<int>	sequenceCurrent = _mainLabeled.front().getSequence();
+		while (!sequenceCurrent.empty())
+		{
+			_main.push_back(sequenceCurrent.front());
+			sequenceCurrent.pop_front();
+		}
+		_mainLabeled.pop_front();
+	}
+
+	while (!_pend.empty())
+	{
+		_main.push_back(_pend.front());
+		_pend.pop_front();
+	}
 }
 
 //void	SortDeque::pushPendToMain()
@@ -163,16 +200,16 @@ void	SortDeque::recursion()
 		handleOutsidePairs(sizePack); // add les values dans _pend a chaque lvl de recursion
 		handleSwap(sizePack);
 		_depth++;
-		std::cout << _main << std::endl;
+		std::cout << _main << std::endl << "values pend: " << _pend << std::endl;
 		recursion();
 	}
 	labeling(sizePack);
 	distribution();
-
+	insersion();
+	std::cout << std::endl << std::endl << _main  << std::endl << "values pend: " << _pend << std::endl;
+	std::cout << std::endl << std::endl << "-------------------------------" << std::endl;
 	//pushPendToMain();
-	//insersion();
 }
-
 
 int SortDeque::handleSortDeque()
 {
@@ -184,7 +221,7 @@ int SortDeque::handleSortDeque()
 
 	recursion();
 	
-	std::cout << "After: " << _main << std::endl;
+	std::cout << std::endl << "After: " << _main << std::endl;
 
 	return (SUCCESS);
 }
