@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/24 20:04:07 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 12:27:14 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,18 @@ class SortDeque
 				Elem const &		operator=(Elem const & rhs);
 
 				std::deque<int> const &	getSequence() const;
-				char const &			getIdL() const;
-				size_t const &			getIdV() const;
 				void					setSequence(int value);
+				bool const &			getIdG() const;
+				void					setIdG(bool idG);
+				size_t const &			getIdV() const;
+				void					setIdV(size_t idV);
+
 				
 				
 			private:
 				std::deque<int>	_sequence;
+				bool			_idG; // a -> true ; b -> false
 				size_t			_idV;
-				char			_idL;
 		};
 
 		std::deque<int>		_main;

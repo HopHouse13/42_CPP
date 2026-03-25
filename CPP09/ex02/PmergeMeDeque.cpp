@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/24 20:09:44 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 12:40:31 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,31 @@ void	SortDeque::handleOutsidePairs(size_t sizePack)
 void	SortDeque::labeling(size_t sizePack)
 {
 	size_t	sizeElem = sizePack / 2; // taille de l'element
-	_labels.clear(); // clear _main pour chaue niveau de recursion
+	_labels.clear(); // clear _main pour chaque niveau de recursion
 	while (!_main.empty())
 	{
 		_labels.push_back(Elem());
+		std::cout << "value sizeElem: " << sizeElem << std::endl;
 		for (size_t i = 0; i < sizeElem && !_main.empty(); i++)
 		{
 			_labels.back().setSequence(_main.front());
-			_main.pop_front();
+			_main.pop_front(); // _main est clear au fur et a mesure pour pouvoir inserer dans le bon ordre apres
 		}
 	}
 
+	size_t	valueId = 1;
 	for (size_t i = 0; i < _labels.size(); i++)
-		std::cout << "value labels: " << _labels[i].getSequence() << "\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+	{
+		_labels[i].setIdV(valueId);
+		if (i % 2 == 0)
+			_labels[i].setIdG(false);
+		else
+			_labels[i].setIdG(true);
+		if (i % 2 != 0)
+			valueId++;
+	}
+	for (size_t i = 0; i < _labels.size(); i++)
+		std::cout << "value labels "<< i << ": " << _labels[i].getSequence() << "\tidL: " << _labels[i].getIdG() << "\tidV: " << _labels[i].getIdV() << std::endl;
 }
 
 //void	SortDeque::pushPendToMain()
