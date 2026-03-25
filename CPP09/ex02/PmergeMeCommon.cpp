@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:26 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/20 17:08:50 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 14:39:54 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,9 @@ int	depthCount(int nbElem)
 	}
 	return (lvl);
 }
+
+//void	initErnstJacobsthal()
+//{
+	
+//}
+

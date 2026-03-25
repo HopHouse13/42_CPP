@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/22 15:33:18 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 14:15:14 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(int ac, char **av)
 		std::cerr << "Error: invalid input. All elements must be positive integers." << std::endl;
 		return (1);
 	}
-	
+
+	initErnstJacobsthal();
 	int	nbElement = ac - 1;
 	int	depthMax = depthCount(nbElement);
 	

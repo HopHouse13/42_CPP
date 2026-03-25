@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 12:40:31 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 15:15:26 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,36 @@ void	SortDeque::labeling(size_t sizePack)
 	{
 		_labels[i].setIdV(valueId);
 		if (i % 2 == 0)
-			_labels[i].setIdG(false);
+			_labels[i].setIdL('b');
 		else
-			_labels[i].setIdG(true);
+			_labels[i].setIdL('a');
 		if (i % 2 != 0)
 			valueId++;
 	}
 	for (size_t i = 0; i < _labels.size(); i++)
-		std::cout << "value labels "<< i << ": " << _labels[i].getSequence() << "\tidL: " << _labels[i].getIdG() << "\tidV: " << _labels[i].getIdV() << std::endl;
+		std::cout << "value labels "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+}
+
+// Main: b1 + all a
+// pend: all b (sauf b1)
+void	SortDeque::distribution()
+{
+	for (size_t i = 0; !_labels.empty(); i++)
+	{
+		if (i < 2 && _labels[i].getIdL() == 'b')
+			_mainLabeled.push_back(_labels.front());
+		else if (i < 2 && _labels[i].getIdL() == 'a')
+			_pendLabeled.push_back(_labels.front());
+		else if (_labels[i].getIdL() == 'a')
+			_mainLabeled.push_back(_labels.front());
+		else if (_labels[i].getIdL() == 'b')
+			_pendLabeled.push_back(_labels.front());
+		_labels.pop_front();
+	}
+	for (size_t i = 0; i < _mainLabeled.size(); i++)
+		std::cout << "_mainLabeled "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
+	for (size_t i = 0; i < _pendLabeled.size(); i++)
+		std::cout << "_pendLabeled "<< i << ": [" << _labels[i].getSequence() << "]\tidL: " << _labels[i].getIdL() << "\tidV: " << _labels[i].getIdV() << std::endl;
 }
 
 //void	SortDeque::pushPendToMain()
@@ -145,6 +167,8 @@ void	SortDeque::recursion()
 		recursion();
 	}
 	labeling(sizePack);
+	distribution();
+
 	//pushPendToMain();
 	//insersion();
 }

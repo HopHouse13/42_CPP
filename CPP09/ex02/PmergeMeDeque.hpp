@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 12:27:14 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/25 14:53:12 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ class SortDeque
 		void	swap(size_t comparePack, size_t position);
 		void	recursion();
 		void	labeling(size_t sizePack);
-		void	pushPendToMain();
+		void	distribution();
+		//void	pushPendToMain();
 
 		class Elem
 		{
@@ -46,8 +47,8 @@ class SortDeque
 
 				std::deque<int> const &	getSequence() const;
 				void					setSequence(int value);
-				bool const &			getIdG() const;
-				void					setIdG(bool idG);
+				char const &			getIdL() const;
+				void					setIdL(char IdL);
 				size_t const &			getIdV() const;
 				void					setIdV(size_t idV);
 
@@ -55,13 +56,15 @@ class SortDeque
 				
 			private:
 				std::deque<int>	_sequence;
-				bool			_idG; // a -> true ; b -> false
+				char			_IdL; // a -> true ; b -> false
 				size_t			_idV;
 		};
 
 		std::deque<int>		_main;
 		std::deque<int>		_pend;
 		std::deque<Elem>	_labels;
+		std::deque<Elem>	_mainLabeled;
+		std::deque<Elem>	_pendLabeled;
 		int					_nbElem;
 		int					_depthMax;
 		int					_depth;
