@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeCommon.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:54 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 14:40:29 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/27 19:39:08 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 # include <cstdlib>
 # include <limits>
 # include <cmath>
+# include <iomanip>
 
-# define SUCCESS 0
-# define FAILURE 1
+# include "./PmergeMeDeque.hpp"
+# include "./PmergeMeVector.hpp"
 
 bool	parsing(char ** av);
 int		depthCount(int nbElem);
-//void	initErnstJaceobsthal();
+std::deque<double> const	initErnstJacobsthal(int nbValue);
 
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Display.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:55:16 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/24 19:10:34 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/27 15:56:11 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PMergeMeDeque.hpp"
+#include "PmergeMeDeque.hpp"
 
 std::ostream& operator<<(std::ostream& os, std::deque<int> const & list) // operateur de surcharge sur << et avec le flux std::cout
 {

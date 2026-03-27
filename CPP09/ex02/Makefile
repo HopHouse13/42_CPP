@@ -15,6 +15,7 @@ OBJ_DIR 	= obj_$(NAME)
 SRCS		= main.cpp \
 			PmergeMeCommon.cpp \
 			PmergeMeDeque.cpp \
+			Display.cpp \
 			PmergeMeVector.cpp \
 			Elem.cpp
 

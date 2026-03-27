@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeDeque.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 15:33:17 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/27 18:02:46 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include "./PmergeMeCommon.hpp"
-
 # include <deque>
+
+#include "./PmergeMeCommon.hpp"
 
 class SortDeque
 {
@@ -29,14 +29,14 @@ class SortDeque
 		int 				handleSortDeque();
 
 	private:
-		void	handleOutsidePairs(size_t sizePack);
+		void	pushMainRestToPend(size_t sizePack);
+		void	pushPendToMain();
 		void	handleSwap(size_t sizePack);
 		void	swap(size_t comparePack, size_t position);
 		void	recursion();
 		void	labeling(size_t sizePack);
 		void	distribution();
 		void	insersion();
-		//void	pushPendToMain();
 
 		class Elem
 		{

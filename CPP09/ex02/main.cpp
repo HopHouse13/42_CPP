@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 15:24:57 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/27 18:40:41 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./PmergeMeCommon.hpp"
-#include "./PmergeMeDeque.hpp"
 
 int	main(int ac, char **av)
 {
@@ -30,13 +29,13 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	//initErnstJacobsthal();
+	std::deque<double>	suitEJ = initErnstJacobsthal(30);
 	int	nbElement = ac - 1;
 	int	depthMax = depthCount(nbElement);
 	
 	SortDeque	SortDeque(av, nbElement, depthMax);
 	SortDeque.handleSortDeque();
-
+  
 	//SortVector	SortVector;
 	//SortVector.handleSortVector(av, ac);
 

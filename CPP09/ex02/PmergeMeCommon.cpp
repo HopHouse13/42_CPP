@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeCommon.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:26 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/25 14:39:54 by pbret            ###   ########.fr       */
+/*   Updated: 2026/03/27 19:38:58 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,21 @@ int	depthCount(int nbElem)
 	return (lvl);
 }
 
-//void	initErnstJacobsthal()
-//{
-	
-//}
+std::deque<double> const	initErnstJacobsthal(int nbValue)
+{
+	std::deque<double>	suitEJ;
+
+	if (nbValue == 0)
+		return (suitEJ);
+	suitEJ.push_back(0);
+	if (nbValue == 1)
+		return (suitEJ);
+	suitEJ.push_back(1);
+	for (double i = 2;  i < nbValue; i++)
+		suitEJ.push_back(suitEJ[i - 2] * 2 + suitEJ[i - 1]);
+
+	for (double i = 0; i < suitEJ.size(); i++)
+		std::cout << std::fixed << std::setprecision(0) << suitEJ[i] << std::endl;
+	return (suitEJ);
+}
 
