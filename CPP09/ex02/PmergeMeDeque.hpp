@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 18:02:46 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/28 20:36:45 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 
 #include "./PmergeMeCommon.hpp"
 
+class Elem; // signature de la class pour signifier au compilateur que cette class existe
+
 class SortDeque
 {
 	public:
 		SortDeque();
-		SortDeque(char **raw, int nbElem, int depth);
+		SortDeque(char **raw, int nbElem, int depth, std::deque<unsigned long long> suitEJ);
 		~SortDeque();
 		SortDeque(SortDeque const & copy);
 		SortDeque const  &	operator=(SortDeque const & rhs);
@@ -29,14 +31,16 @@ class SortDeque
 		int 				handleSortDeque();
 
 	private:
-		void	pushMainRestToPend(size_t sizePack);
-		void	pushPendToMain();
-		void	handleSwap(size_t sizePack);
-		void	swap(size_t comparePack, size_t position);
-		void	recursion();
-		void	labeling(size_t sizePack);
-		void	distribution();
-		void	insersion();
+
+		void								pushMainRestToPend(size_t sizePack);
+		void								pushPendToMain();
+		void								handleSwap(size_t sizePack);
+		void								swap(size_t comparePack, size_t position);
+		void								recursion();
+		void								labeling(size_t sizePack);
+		void								distribution();
+		std::deque<Elem>::const_iterator	findElemToInsert();
+		void								insersion();
 
 		class Elem
 		{
@@ -61,14 +65,15 @@ class SortDeque
 				size_t			_idV;
 		};
 
-		std::deque<int>		_main;
-		std::deque<int>		_pend;
-		std::deque<Elem>	_labels;
-		std::deque<Elem>	_mainLabeled;
-		std::deque<Elem>	_pendLabeled;
-		int					_nbElem;
-		int					_depthMax;
-		int					_depth;
+		std::deque<int>					_main;
+		std::deque<int>					_pend;
+		std::deque<Elem>				_labels;
+		std::deque<Elem>				_mainLabeled;
+		std::deque<Elem>				_pendLabeled;
+		int								_nbElem;
+		int								_depthMax;
+		int								_depth;
+		std::deque<unsigned long long>	_suitEJ;
 
 };
 

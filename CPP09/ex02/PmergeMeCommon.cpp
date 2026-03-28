@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:26 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 19:38:58 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/28 17:00:46 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,27 @@ int	depthCount(int nbElem)
 	return (lvl);
 }
 
-std::deque<double> const	initErnstJacobsthal(int nbValue)
+std::deque<unsigned long long> const	initErnstJacobsthal(size_t nbValue)
 {
-	std::deque<double>	suitEJ;
+	std::deque<unsigned long long>	suitEJ;
 
 	if (nbValue == 0)
 		return (suitEJ);
-	suitEJ.push_back(0);
+	suitEJ.push_back(3);
 	if (nbValue == 1)
 		return (suitEJ);
-	suitEJ.push_back(1);
-	for (double i = 2;  i < nbValue; i++)
-		suitEJ.push_back(suitEJ[i - 2] * 2 + suitEJ[i - 1]);
+	suitEJ.push_back(5);
+	for (size_t i = 2; i < nbValue; ++i)
+	{
+		unsigned long long	prev2 = suitEJ[i - 2];
+		unsigned long long	prev1 = suitEJ[i - 1];
 
-	for (double i = 0; i < suitEJ.size(); i++)
-		std::cout << std::fixed << std::setprecision(0) << suitEJ[i] << std::endl;
+		if (prev2 > (std::numeric_limits<unsigned long long>::max() - prev1) / 2) // check si le resultat de prev2 * 2 + prev1 ne depasse pas le max de unsigned long long
+		{
+			std::cerr << "Warning: Jacobsthal generation stopped to avoid overflow" << std::endl;
+			break ;
+		}
+		suitEJ.push_back(prev2 * 2 + prev1);
+	}
 	return (suitEJ);
 }
-

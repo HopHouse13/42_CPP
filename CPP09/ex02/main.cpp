@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 18:40:41 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/28 18:40:44 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	std::deque<double>	suitEJ = initErnstJacobsthal(30);
+	std::deque<unsigned long long>	suitEJ = initErnstJacobsthal(1026); //1026 valeu max pour pas avoir des inf
+
+	for (double i = 0; i < suitEJ.size(); i++)
+		std::cout << std::fixed << std::setprecision(0) << suitEJ[i] << std::endl;
+		
 	int	nbElement = ac - 1;
 	int	depthMax = depthCount(nbElement);
 	
-	SortDeque	SortDeque(av, nbElement, depthMax);
+	SortDeque	SortDeque(av, nbElement, depthMax, suitEJ);
 	SortDeque.handleSortDeque();
   
 	//SortVector	SortVector;

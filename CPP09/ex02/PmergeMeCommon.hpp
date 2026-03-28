@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:54 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 19:39:08 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/28 10:52:59 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 
 bool	parsing(char ** av);
 int		depthCount(int nbElem);
-std::deque<double> const	initErnstJacobsthal(int nbValue);
+std::deque<unsigned long long> const	initErnstJacobsthal(size_t nbValue);
 
 #endif

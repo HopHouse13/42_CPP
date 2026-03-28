@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 18:03:14 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/28 20:37:33 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ SortDeque::SortDeque()
 	//std::cout << "Default constructor SortDeque called" << std::endl;
 }
 
-SortDeque::SortDeque(char **raw, int nbElem, int depthMax) : _nbElem(nbElem), _depthMax(depthMax), _depth(0)
+SortDeque::SortDeque(char **raw, int nbElem, int depthMax, std::deque<unsigned long long> suitEJ)
+: _nbElem(nbElem), _depthMax(depthMax), _depth(0) , _suitEJ(suitEJ)
 {
 	//std::cout << "Default constructor SortDeque called" << std::endl;
 	for (int i = 1; i <= nbElem; i++)
@@ -140,33 +141,54 @@ void	SortDeque::distribution()
 	}
 }
 
+std::deque<Elem>::const_iterator	SortDeque::findElemToInsert()
+{
+	std::deque<Elem>::const_iterator	itElemToInsert
+
+	return();
+}
+
 void	SortDeque::insersion()
 {
-	while (!_pendLabeled.empty())
+	std::deque<Elem>::const_iterator	ElemToInsert = findElemToInsert();
+	if (!_pend.empty())
 	{
-		_mainLabeled.push_front(_pendLabeled.front());
-		_pendLabeled.pop_front();
+		
 	}
+	// trouver l'elem a inserer avec la suit Jacob
+	// init. un iterator de fin pour definir la plage du debut jusqu'a l'it de fin
+	// comparaison sur la plage + reperage du bon it pour le push
+	// push pend->main
+	// passe a l'elem precedent juqu'a le debut de _pend
+	// on passe a l'index de la valeur de la suite de jacob suivant 
+
+	//while (!_pendLabeled.empty())
+	//{
+	//	_mainLabeled.push_front(_pendLabeled.front());
+	//	_pendLabeled.pop_front();
+	//}
 	
-	while (!_mainLabeled.empty())
-	{
-		std::deque<int>	sequenceCurrent = _mainLabeled.front().getSequence();
-		while (!sequenceCurrent.empty())
-		{
-			_main.push_back(sequenceCurrent.front());
-			sequenceCurrent.pop_front();
-		}
-		_mainLabeled.pop_front();
-	}
+	//while (!_mainLabeled.empty())
+	//{
+	//	std::deque<int>	sequenceCurrent = _mainLabeled.front().getSequence();
+	//	while (!sequenceCurrent.empty())
+	//	{
+	//		_main.push_back(sequenceCurrent.front());
+	//		sequenceCurrent.pop_front();
+	//	}
+	//	_mainLabeled.pop_front();
+	//}
 }
 
 
 
 void	SortDeque::recursion()
 {
-	_depth++;
+	_depth++; // pour chaque appelle  de recursion -> 1 nouveau niveau de recursion
 	size_t	sizePack = static_cast<size_t>(pow(2, _depth)); // taille de la paire par rapport a la profondeur (1er appel -> _depth = 1(init. constructeur))
+	
 	std::cout << std::endl << std::endl << "--------------*PACK " << sizePack << "*-----------------" << std::endl;
+	
 	if (_depth < _depthMax) // _depth ne peut etre egale a Max car il commence par 1 (et non 0) donc si il devait etre egale a max, il y aurait un niveau de recursion en trop
 	{
 		std::cout << std::endl << "SWAP PAIRS" << std::endl;
@@ -179,9 +201,11 @@ void	SortDeque::recursion()
 	std::cout << std::endl << std::endl << "--------------*PACK " << sizePack << "*-----------------" << std::endl;
 
 	pushMainRestToPend(sizePack); // isole les valeurs qui sont hors paires pour ne pas les labeliser
+	
 	std::cout << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl << "sizePack: " << sizePack << std::endl;
 
 	labeling(sizePack);
+
 	std::cout << std::endl << "LABELING" << std::endl;
 	for (size_t i = 0; i < _labels.size(); i++)
 	{
@@ -191,7 +215,9 @@ void	SortDeque::recursion()
 			std::cout << " - ";
 		std::cout << _labels[i].getIdL() << _labels[i].getIdV() << "[" << _labels[i].getSequence() << "]";
 	}
+	
 	distribution();
+	
 	std::cout << std::endl << std::endl << "MAIN-LABELED" << std::endl;
 	for (size_t i = 0; i < _mainLabeled.size(); i++)
 	{
@@ -210,6 +236,7 @@ void	SortDeque::recursion()
 	insersion();
 
 	pushPendToMain();
+	
 	std::cout << std::endl << std::endl << "sizePack: " << sizePack << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 	std::cout << std::endl << std::endl << "---------------*END*------------------" << std::endl;
 	//pushPendToMain();
