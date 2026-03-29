@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 16:49:34 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/29 00:13:12 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/29 16:00:25 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,9 @@ size_t const &	Elem::getIdV() const
 void	Elem::setIdV(size_t idV)
 {
 	_idV = idV;
+}
+
+int	Elem::getLastValue() const
+{
+	return (_sequence.back());
 }

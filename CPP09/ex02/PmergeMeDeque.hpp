@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/29 00:42:18 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/29 16:26:36 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 				void					setIdL(char IdL);
 				size_t const &			getIdV() const;
 				void					setIdV(size_t idV);
-
+				int						getLastValue() const;
 				
 				
 			private:
@@ -53,15 +53,16 @@ class SortDeque
 
 	private:
 
-		void								pushMainRestToPend(size_t sizePack);
-		void								pushPendToMain();
-		void								handleSwap(size_t sizePack);
-		void								swap(size_t comparePack, size_t position);
-		void								recursion();
-		void								labeling(size_t sizePack);
-		void								distribution();
-		std::deque<Elem>::const_iterator	findElemToInsert(std::deque<unsigned long long>::const_iterator & itSuitEJ);
-		void								insersion();
+		void	pushMainRestToPend(size_t sizePack);
+		void	pushPendToMain();
+		void	handleSwap(size_t sizePack);
+		void	swap(size_t comparePack, size_t position);
+		void	recursion();
+		void	labeling(size_t sizePack);
+		void	distribution();
+		bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ);
+		bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ);
+		void	insersion();
 
 		std::deque<int>					_main;
 		std::deque<int>					_pend;
