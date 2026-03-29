@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/28 20:36:45 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/29 00:42:18 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,7 @@
 
 #include "./PmergeMeCommon.hpp"
 
-class Elem; // signature de la class pour signifier au compilateur que cette class existe
-
-class SortDeque
-{
-	public:
-		SortDeque();
-		SortDeque(char **raw, int nbElem, int depth, std::deque<unsigned long long> suitEJ);
-		~SortDeque();
-		SortDeque(SortDeque const & copy);
-		SortDeque const  &	operator=(SortDeque const & rhs);
-	
-		int 				handleSortDeque();
-
-	private:
-
-		void								pushMainRestToPend(size_t sizePack);
-		void								pushPendToMain();
-		void								handleSwap(size_t sizePack);
-		void								swap(size_t comparePack, size_t position);
-		void								recursion();
-		void								labeling(size_t sizePack);
-		void								distribution();
-		std::deque<Elem>::const_iterator	findElemToInsert();
-		void								insersion();
-
-		class Elem
+	class Elem
 		{
 			public:
 				Elem();
@@ -64,6 +39,29 @@ class SortDeque
 				char			_IdL; // a -> true ; b -> false
 				size_t			_idV;
 		};
+
+class SortDeque
+{
+	public:
+		SortDeque();
+		SortDeque(char **raw, int nbElem, int depth, std::deque<unsigned long long> suitEJ);
+		~SortDeque();
+		SortDeque(SortDeque const & copy);
+		SortDeque const  &	operator=(SortDeque const & rhs);
+	
+		int 				handleSortDeque();
+
+	private:
+
+		void								pushMainRestToPend(size_t sizePack);
+		void								pushPendToMain();
+		void								handleSwap(size_t sizePack);
+		void								swap(size_t comparePack, size_t position);
+		void								recursion();
+		void								labeling(size_t sizePack);
+		void								distribution();
+		std::deque<Elem>::const_iterator	findElemToInsert(std::deque<unsigned long long>::const_iterator & itSuitEJ);
+		void								insersion();
 
 		std::deque<int>					_main;
 		std::deque<int>					_pend;
