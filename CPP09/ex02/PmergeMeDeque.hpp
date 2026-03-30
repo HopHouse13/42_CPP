@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/29 16:26:36 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/30 19:16:53 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ class SortDeque
 		void	recursion();
 		void	labeling(size_t sizePack);
 		void	distribution();
-		bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ);
-		bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ);
+		//bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ);
+		//bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ);
+		int		startPendL(unsigned long long valueEJ);
+		int		startMainL(unsigned long long valueEJ);
+
 		void	insersion();
 
 		std::deque<int>					_main;
@@ -77,5 +80,7 @@ class SortDeque
 };
 
 std::ostream& operator<<(std::ostream& os, std::deque<int> const & list);
+std::ostream& operator<<(std::ostream& os, std::deque<Elem> const & list);
+
 
 #endif

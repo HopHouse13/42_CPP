@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:55:16 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/27 15:56:11 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/30 18:58:08 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,13 @@ std::ostream& operator<<(std::ostream& os, std::deque<int> const & list) // oper
 	return (os);
 }
 
-//std::ostream& operator<<(std::ostream& os, std::deque<SortDeque::Elem> const & d);
+std::ostream& operator<<(std::ostream& os, std::deque<Elem> const & list)
+{
+	for (size_t i = 0; i < list.size(); i++)
+	{
+		if (i > 0)
+			os << " * ";
+		os << list.at(i).getIdL() << list.at(i).getIdV() << "[" << list.at(i).getSequence() << "]";
+	}
+	return (os);
+}

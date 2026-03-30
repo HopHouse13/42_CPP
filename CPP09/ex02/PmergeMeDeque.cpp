@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/29 20:52:40 by pab              ###   ########.fr       */
+/*   Updated: 2026/03/30 21:05:33 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,88 +140,77 @@ void	SortDeque::distribution()
 		_labels.pop_front();
 	}
 }
+//////////////////////
 
-bool	SortDeque::startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ)
+int	SortDeque::startMainL(unsigned long long valueEJ)
 {
-	it_mainL = _mainLabeled.begin();
+	int	i = 0;
 
-	while (it_mainL != _mainLabeled.end())
+	if (_mainLabeled.empty())
+		return (-1);
+	while (i < static_cast<int>(_mainLabeled.size()))
 	{
-		if (*it_suitEJ == (*it_mainL).getIdV()) // bisarre   je compare un unsigned long long avec un size_t 
-			break ;
-		it_mainL++;
+		if (_mainLabeled[i].getIdL() == 'a' && _mainLabeled[i].getIdV() == valueEJ) // assure que l'id est bien 'a'et la valeur de la suite EJ
+			return (i);
+		i++;
 	}
-	if (it_mainL == _mainLabeled.end() && !_mainLabeled.empty())
-		it_mainL--;
-	else if (it_mainL == _mainLabeled.end() && _mainLabeled.empty())
-	{
-		std::cerr << "Error: aucune valeur Elem concorde avec une valeur de la suit EJ" << std::endl;
-		return (FAILURE);
-	}
-	return(SUCCESS);
+	return (static_cast<int>(_mainLabeled.size() - 1));
 }
 
-bool	SortDeque::startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ)
+int	SortDeque::startPendL(unsigned long long valueEJ)
 {
-	it_pendL = _pendLabeled.begin();
+	int	i = 0;
 
-	while (it_pendL != _pendLabeled.end())
+	if (_pendLabeled.empty())
+		return (-1);
+	while (i < static_cast<int>(_pendLabeled.size()))
 	{
-		if (*it_suitEJ == (*it_pendL).getIdV()) // bisarre   je compare un unsigned long long avec un size_t 
-			break ;
-		it_pendL++;
+		if (_pendLabeled[i].getIdV() == valueEJ)
+			return (i);
+		i++;
 	}
-	if (it_pendL == _pendLabeled.end() && !_pendLabeled.empty())
-		it_pendL--;
-	else if (it_pendL == _pendLabeled.end() && _pendLabeled.empty())
-	{
-		std::cerr << "Error: aucune valeur Elem concorde avec une valeur de la suit EJ" << std::endl;
-		return (FAILURE);
-	}
-	return(SUCCESS);
+	//if (_pendLabeled[0].getIdV() == 2)
+	//	return (0);
+	return (static_cast<int>(_pendLabeled.size() - 1)); // si _pendLabeled a plus que des elem id qui ne correspond pas a une valeur de la suit EJ -> return l'index du dernier elem
 }
 
-// trouver l'elem a inserer avec la suit Jacob
-// init. un iterator de fin pour definir la plage du debut jusqu'a l'it de fin
-// comparaison sur la plage + reperage du bon it pour le push
-// push pend->main
-// passe a l'elem precedent juqu'a le debut de _pend
-// on passe a l'index de la valeur de la suite de jacob suivant 
 void	SortDeque::insersion()
 {
-	std::deque<unsigned long long>::iterator	it_suitEJ = _suitEJ.begin();
-	std::deque<Elem>::iterator					it_pendL;
-	std::deque<Elem>::iterator					it_mainL;
-	
-	while (!_pendLabeled.empty())
-	{
-		if (startPendL(it_pendL, it_suitEJ) || startMainL(it_mainL, it_suitEJ))
-			return ;
-		while (true)
-		{
-			if ((*it_pendL).getLastValue() < (*it_mainL).getLastValue())
-			{
-				_mainLabeled.insert(it_mainL, (*it_pendL));
-				it_pendL = _pendLabeled.erase(it_pendL); // erase supp l'elem en position de l'it envoye. Il retourne l'it suivant
-				if (it_pendL != _pendLabeled.begin())
-					it_pendL--;
-				startMainL(it_mainL, it_suitEJ);
-			}
-			else if (it_mainL != _mainLabeled.begin())
-				it_mainL--;
-			if (it_pendL == _pendLabeled.begin())
-				break;
-		}
-		it_suitEJ++;
-		if (it_suitEJ == _suitEJ.end())
-		{
-			std::cout << "\nfin de suuit EJ" << std::endl;
-			break ;
-		}
-		//std::cout << "value suitEJ: " << *it_suitEJ << std::endl;
-		std::cout << _pendLabeled[0].getIdL() << _pendLabeled[0].getIdV() << std::endl;
 
+	int	i = 0; // suitEJ
+	int	j = 0; // _pendLabeled
+	int	toErase = 0; // save pose
+	int k = 0; // _mainLabeled
+	while (!_pendLabeled.empty() && i < static_cast<int>(_suitEJ.size()))
+	{
+		j = startPendL(_suitEJ[i]);
+		k = startMainL(_suitEJ[i]);
+		while (j >= 0 && k >= 0) // portection contre _mainLabeled ou _pendLabeled vide
+		{
+			if (_pendLabeled[j].getLastValue() < _mainLabeled[k].getLastValue())
+			{
+				_mainLabeled.insert(_mainLabeled.begin() + k,  _pendLabeled[j]);
+				toErase = j;
+				j--; // elem suivant du _pendLabeled a inserer
+				_pendLabeled.erase(_pendLabeled. begin() + toErase);
+				k = startMainL(_suitEJ[i]); // recalculter la plage avec le nouvel element tout junste insere
+				continue;
+			}
+			else if (k == 0)
+			{
+				_mainLabeled.insert(_mainLabeled.begin(), _pendLabeled[j]);
+				toErase = j;
+				j--;
+				_pendLabeled.erase(_pendLabeled. begin() + toErase);
+				k = startMainL(_suitEJ[i]);
+				continue;
+			}	
+			k--;
+		}
+		i++;
 	}
+	
+	std::cout << std::endl << "MAIN-LABELED AFTER PUSH" << std::endl << _mainLabeled << std::endl;
 
 	while (!_mainLabeled.empty())
 	{
@@ -236,6 +225,110 @@ void	SortDeque::insersion()
 
 	pushPendToMain();
 }
+
+//bool	SortDeque::startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ)
+//{
+//	it_mainL = _mainLabeled.begin();
+
+//	while (it_mainL != _mainLabeled.end())
+//	{
+//		if (*it_suitEJ == (*it_mainL).getIdV()) // bisarre   je compare un unsigned long long avec un size_t 
+//			break ;
+//		it_mainL++;
+//	}
+//	if (it_mainL == _mainLabeled.end() && !_mainLabeled.empty())
+//		it_mainL--;
+//	else if (it_mainL == _mainLabeled.end() && _mainLabeled.empty())
+//	{
+//		std::cerr << "Error: aucune valeur Elem concorde avec une valeur de la suit EJ" << std::endl;
+//		return (FAILURE);
+//	}
+//	return(SUCCESS);
+//}
+
+//bool	SortDeque::startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ)
+//{
+//	it_pendL = _pendLabeled.begin();
+
+//	while (it_pendL != _pendLabeled.end())
+//	{
+//		if (*it_suitEJ == (*it_pendL).getIdV()) // bisarre   je compare un unsigned long long avec un size_t 
+//			break ;
+//		it_pendL++;
+//	}
+//	if (it_pendL == _pendLabeled.end() && !_pendLabeled.empty())
+//		it_pendL--;
+//	else if (it_pendL == _pendLabeled.end() && _pendLabeled.empty())
+//	{
+//		std::cerr << "Error: aucune valeur Elem concorde avec une valeur de la suit EJ" << std::endl;
+//		return (FAILURE);
+//	}
+//	return(SUCCESS);
+//}
+
+//// trouver l'elem a inserer avec la suit Jacob
+//// init. un iterator de fin pour definir la plage du debut jusqu'a l'it de fin
+//// comparaison sur la plage + reperage du bon it pour le push
+//// push pend->main
+//// passe a l'elem precedent juqu'a le debut de _pend
+//// on passe a l'index de la valeur de la suite de jacob suivant 
+//void	SortDeque::insersion()
+//{
+//	std::deque<unsigned long long>::iterator	it_suitEJ = _suitEJ.begin();
+//	std::deque<Elem>::iterator					it_pendL;
+//	std::deque<Elem>::iterator					it_mainL;
+	
+//	while (!_pendLabeled.empty())
+//	{
+//		if (startPendL(it_pendL, it_suitEJ) || startMainL(it_mainL, it_suitEJ))
+//			return ;
+//		while (!_pendLabeled.empty())
+//		{/*std::cout << "sptartPendL: " << (*it_pendL).getIdL() << (*it_pendL).getIdV() << std::endl;*/
+//			if ((*it_pendL).getLastValue() < (*it_mainL).getLastValue())
+//			{
+//				_mainLabeled.insert(it_mainL, (*it_pendL));
+//				it_pendL = _pendLabeled.erase(it_pendL); // erase supp l'elem en position de l'it envoye. Il retourne l'it suivant
+//				if (it_pendL != _pendLabeled.begin())
+//					it_pendL--;
+//				startMainL(it_mainL, it_suitEJ);
+//			}
+//			if (it_mainL != _mainLabeled.begin())
+//				it_mainL--;
+//			else
+//				break ;
+//		}
+//		it_suitEJ++;
+//		if (it_suitEJ == _suitEJ.end())
+//		{
+//			std::cout << "\nfin de suuit EJ" << std::endl;
+//			break ;
+//		}
+//		//std::cout << "value suitEJ: " << *it_suitEJ << std::endl;
+//		//std::cout << _pendLabeled[0].getIdL() << _pendLabeled[0].getIdV() << std::endl;
+
+//	}
+	
+//	std::cout << std::endl << std::endl << "MAIN-LABELED AFTER PUSH" << std::endl;
+//	for (size_t i = 0; i < _mainLabeled.size(); i++)
+//	{
+//		if (i > 0)
+//			std::cout << " * ";
+//		std::cout << _mainLabeled[i].getIdL() << _mainLabeled[i].getIdV() << "[" << _mainLabeled[i].getSequence() << "]";
+//	}
+	
+//	while (!_mainLabeled.empty())
+//	{
+//		std::deque<int>	sequenceCurrent = _mainLabeled.front().getSequence();
+//		while (!sequenceCurrent.empty())
+//		{
+//			_main.push_back(sequenceCurrent.front());
+//			sequenceCurrent.pop_front();
+//		}
+//		_mainLabeled.pop_front();
+//	}
+
+//	pushPendToMain();
+//}
 
 
 
