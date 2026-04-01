@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/30 19:16:53 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/01 15:52:19 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class SortDeque
 {
 	public:
 		SortDeque();
-		SortDeque(char **raw, int nbElem, int depth, std::deque<unsigned long long> suitEJ);
+		SortDeque(char **raw, int nbElem, int depth, std::deque<unsigned long long> suitJ);
 		~SortDeque();
 		SortDeque(SortDeque const & copy);
 		SortDeque const  &	operator=(SortDeque const & rhs);
@@ -60,10 +60,10 @@ class SortDeque
 		void	recursion();
 		void	labeling(size_t sizePack);
 		void	distribution();
-		//bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitEJ);
-		//bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitEJ);
-		int		startPendL(unsigned long long valueEJ);
-		int		startMainL(unsigned long long valueEJ);
+		//bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitJ);
+		//bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitJ);
+		int		startPendL(unsigned long long valueJ);
+		int		startMainL(unsigned long long valueJ);
 
 		void	insersion();
 
@@ -75,7 +75,7 @@ class SortDeque
 		int								_nbElem;
 		int								_depthMax;
 		int								_depth;
-		std::deque<unsigned long long>	_suitEJ;
+		std::deque<unsigned long long>	_suitJ;
 
 };
 
