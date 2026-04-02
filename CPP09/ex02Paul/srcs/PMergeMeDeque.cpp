@@ -187,7 +187,7 @@ std::deque<elem2> insert_pend(std::deque<int> &main, int pack_size, int n_elem2s
 	size_t idx = 0;
 	idx += pack_size * 2;
 
-	// std::cout << "N_ELEM2S: " << n_elem2s << std::endl;
+	 std::cout << "N_ELEM2S: " << n_elem2s << std::endl;
 
 	if (n_elem2s % 2 != 0)
 	{
@@ -265,8 +265,8 @@ void begin_insertion(std::deque<elem2> &main, std::deque<elem2> &pend, std::dequ
 
 	while (elem2s != 0)
 	{
-		// std::cout << "Still " << elem2s << " elem2ents to push" << std::endl;
-		// std::cout << "Jacobstahl index is: " << *jacob_index << std::endl;
+		 std::cout << "Still " << elem2s << " elem2ents to push" << std::endl;
+		 std::cout << "Jacobstahl index is: " << *jacob_index << std::endl;
 
 		//Getting the elem2ent to push (corresponding to the Jacobstahl suite) --> Needs more work
 		std::deque<elem2>::iterator to_push = pend.begin();
@@ -274,7 +274,7 @@ void begin_insertion(std::deque<elem2> &main, std::deque<elem2> &pend, std::dequ
 			to_push++;
 		if (to_push == pend.end())
 			to_push--;
-		// std::cout << "The elem2 to push is: " << *to_push << std::endl;
+		 std::cout << "The elem2 to push is: " << *to_push << std::endl;
 
 		//Getting the search area
 		std::deque<elem2>::iterator area_start = main.begin();
@@ -287,12 +287,12 @@ void begin_insertion(std::deque<elem2> &main, std::deque<elem2> &pend, std::dequ
 				break;
 			area_end++;
 		}
-		// std::cout << "The search area is: " << *area_start << " ==> " << *area_end << std::endl;
+		 std::cout << "The search area is: " << *area_start << " ==> " << *area_end << std::endl;
 
 		//Actually makes the comparisons
 		while (area_start != main.end())
 		{
-			// std::cout << "Comparing: " << *to_push << " With: " << *area_start << std::endl;
+			 std::cout << "Comparing: " << *to_push << " With: " << *area_start << std::endl;
 			if ((*to_push).getValue()[pack_size - 1] < (*area_start).getValue()[pack_size - 1])
 			{
 				// std::cout << "Inserting" << std::endl;
@@ -311,9 +311,9 @@ void begin_insertion(std::deque<elem2> &main, std::deque<elem2> &pend, std::dequ
 		}
 		elem2s--;
 
-		// std::cout << std::endl << "MAIN after insertion:" << std::endl;
-		// for (size_t i = 0; i < main.size(); i++)
-		// 	std::cout << main[i] << std::endl;
+		 std::cout << std::endl << "MAIN after insertion:" << std::endl;
+		 for (size_t i = 0; i < main.size(); i++)
+		 	std::cout << main[i] << std::endl;
 	}
 }
 
@@ -331,18 +331,18 @@ void insertion(std::deque<int> &main, int depth)
 
 	clear_main(main);
 
-	// std::cout << std::endl << "MAIN/Depth: " << depth << std::endl;
-	// for (size_t i = 0; i < main2.size(); i++)
-	// 	std::cout << main2[i] << std::endl;
+	 std::cout << std::endl << "MAIN/Depth: " << depth << std::endl;
+	 for (size_t i = 0; i < main2.size(); i++)
+	 	std::cout << main2[i] << std::endl;
 
-	// std::cout << std::endl << "PEND/Depth: " << depth << std::endl;
-	// for (size_t i = 0; i < pend2.size(); i++)
-	// 	std::cout << pend2[i] << std::endl;
+	 std::cout << std::endl << "PEND/Depth: " << depth << std::endl;
+	 for (size_t i = 0; i < pend2.size(); i++)
+	 	std::cout << pend2[i] << std::endl;
 
-	// std::cout << std::endl << "REST/Depth: " << depth << std::endl;
-	// for (size_t i = 0; i < rest.size(); i++)
-	// 	std::cout << rest[i] << std::endl;
-	// std::cout << std::endl;
+	 std::cout << std::endl << "REST/Depth: " << depth << std::endl;
+	 for (size_t i = 0; i < rest.size(); i++)
+	 	std::cout << rest[i] << std::endl;
+	 std::cout << std::endl;
 
 	std::deque<int> jacob = jacobSeqD(10000);
 	// std::deque<int> jacob = calculate_insertion_order(jacob);
@@ -369,8 +369,8 @@ void reinit_main(std::deque<int> &main, std::deque<elem2> main2, std::deque<int>
 	for (size_t i = 0; i < rest.size(); i++)
 		main.push_back(rest[i]);
 
-	// std::cout << std::endl << "MAIN" << std::endl;
-	// for (size_t i = 0; i < main.size(); i++)
-	// 	std::cout << main[i] << " ";
-	// std::cout << std::endl;
+	 std::cout << std::endl << "MAIN" << std::endl;
+	 for (size_t i = 0; i < main.size(); i++)
+	 	std::cout << main[i] << " ";
+	 std::cout << std::endl;
 }
