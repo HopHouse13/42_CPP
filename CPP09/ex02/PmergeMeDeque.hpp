@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/01 15:52:19 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/03 15:21:25 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ class SortDeque
 		void	recursion();
 		void	labeling(size_t sizePack);
 		void	distribution();
-		//bool	startPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitJ);
-		//bool	startMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitJ);
-		int		startPendL(unsigned long long valueJ);
-		int		startMainL(unsigned long long valueJ);
+		//bool	borderPendL(std::deque<Elem>::iterator & it_pendL, std::deque<unsigned long long>::iterator & it_suitJ);
+		//bool	borderMainL(std::deque<Elem>::iterator & it_mainL, std::deque<unsigned long long>::iterator & it_suitJ);
+		int		borderPendL(unsigned long long valueJ);
+		int		borderMainL(unsigned long long valueJ);
 
 		void	insersion();
 
