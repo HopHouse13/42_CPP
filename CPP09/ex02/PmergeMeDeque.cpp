@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/03 17:25:16 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/04 18:37:19 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,22 @@ void	SortDeque::handleSwap(size_t sizePack)
 	} // incrementation de i de compareSize * 2 pour passer la comparaison de la paires suivantes
 }
 
-void	SortDeque::pushMainRestToPend(size_t sizePack)
+void	SortDeque::isolateOrphanValuesPair(size_t sizePack)
 {
 	size_t	nbRest = _main.size() % sizePack; // nb d'element endehors des paires
+	std::cout << "sizePack: "<< sizePack << std::endl << "nbRest: "<< nbRest << std::endl;
+	while (nbRest)
+	{
+		_pend.push_front(_main.back());
+		_main.pop_back();
+		nbRest--;
+	}
+}
+
+void	SortDeque::isolateOrphanValuesElem(size_t sizePack)
+{
+	size_t	nbRest = _main.size() % (sizePack / 2); // nb d'element endehors des paires
+	std::cout << "sizeElem: "<< sizePack / 2 << std::endl << "nbRest: "<< nbRest << std::endl;
 	while (nbRest)
 	{
 		_pend.push_front(_main.back());
@@ -150,7 +163,7 @@ int	SortDeque::borderMainL(unsigned long long valueJ)
 		return (-1);
 	while (i < static_cast<int>(_mainLabeled.size()))
 	{
-		if (_mainLabeled[i].getIdL() == 'a' && _mainLabeled[i].getIdV() == valueJ) // assure que l'id est bien 'a'et la valeur de la suite J
+		if (/*_mainLabeled[i].getIdL() == 'a' &&*/ _mainLabeled[i].getIdV() == valueJ) // assure que l'id est bien 'a'et la valeur de la suite J
 			return (i);
 		i++;
 	}
@@ -174,7 +187,7 @@ int	SortDeque::borderPendL(unsigned long long valueJ)
 	return (static_cast<int>(_pendLabeled.size() - 1)); // si _pendLabeled a plus que des elem id qui ne correspond pas a une valeur de la suit J -> return l'index du dernier elem
 }
 
-void	SortDeque::insersion()
+void	SortDeque::insertion()
 {
 
 	int	idxJ = 0; // suitJ
@@ -186,38 +199,28 @@ void	SortDeque::insersion()
 	{
 		idxP = borderPendL(_suitJ[idxJ]);
 		idxM = borderMainL(_suitJ[idxJ]);
-		std::cout << "Jacob Value: " << _suitJ.at(idxJ) << std::endl;
+		std::cout << std::endl << "--- Jacob LVL: " << _suitJ.at(idxJ) << std::endl;
 		while (idxP >= 0) // tant que l'ensemble des elem de la plage _pendLabeled vide
 		{
-			std::cout << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << " -> " <<  _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << std::endl;
-			if (_mainLabeled[idxM].getLastValue() < _pendLabeled[idxP].getLastValue())
-				//|| (_pendLabeled[idxP].getLastValue() == _mainLabeled[idxM].getLastValue() && idxM == 0)) // en cas d'egalité entre notre elem courant et le 1er elem de _mainLabeled
+			if (idxM >= 0 && _pendLabeled[idxP].getLastValue() < _mainLabeled[idxM].getLastValue()) // si idxM est a 0 -> aucun emplacement pour l'insertion a ete trouvé -> forcement l'elem courant doit se retrouver en premiere position de _mainLabeled
 			{
-				std::cout << "--- place found ---" << std::endl;
-				_mainLabeled.insert(_mainLabeled.begin() + idxM + 1,  _pendLabeled[idxP]);
-				toErase = idxP;
-				idxP--; // elem suivant du _pendLabeled a inserer
-				_pendLabeled.erase(_pendLabeled. begin() + toErase);
-				idxM = borderMainL(_suitJ[idxJ]); // recalculter la plage avec le nouvel element tout juste etre insere
+				std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " < " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]";
+				idxM--;
 				continue;
 			}
-			else if (idxM == 0) // en cas d'egalité entre notre elem courant et le 1er elem de _mainLabeled
-			{
-				_mainLabeled.insert(_mainLabeled.begin(), _pendLabeled[idxP]);
-				toErase = idxP;
-				idxP--;
-				_pendLabeled.erase(_pendLabeled. begin() + toErase);
-				idxM = borderMainL(_suitJ[idxJ]);
-				continue;
-			}
-			idxM--;
+			std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "] -> insertion there" << std::endl;
+			if (idxM >= 0)
+				std::cout << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " > " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << std::endl;
+			_mainLabeled.insert(_mainLabeled.begin() + idxM + 1,  _pendLabeled[idxP]); // insertion de l'elem courant a la position a droite de l'elem comparé (dans _mainLabeled)
+			toErase = idxP;
+			idxP--; // elem suivant du _pendLabeled a inserer
+			_pendLabeled.erase(_pendLabeled. begin() + toErase);
+			idxM = borderMainL(_suitJ[idxJ]); // recalcule de la plage avec le nouvel element tout juste insere
+			std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl;
 		}
-		std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl;
-		if (idxJ < static_cast<int>(_suitJ.size()))
+		if (idxJ < static_cast<int>(_suitJ.size())) // incrementation sur la prochaine valeur de la suite Jacob
 			idxJ++;
 	}
-	
-	std::cout << std::endl << std::endl << std::endl << "MAIN-LABELED FINAL" << std::endl << _mainLabeled << std::endl;
 
 	while (!_mainLabeled.empty())
 	{
@@ -229,8 +232,6 @@ void	SortDeque::insersion()
 		}
 		_mainLabeled.pop_front();
 	}
-
-	pushPendToMain();
 }
 
 void	SortDeque::recursion()
@@ -242,35 +243,38 @@ void	SortDeque::recursion()
 	{
 		std::cout << std::endl << std::endl << "--------------*PACK " << sizePack << "*-----------------" << std::endl;
 		std::cout << std::endl << "SWAP PAIRS" << std::endl;
-		pushMainRestToPend(sizePack); // add les values dans _pend a chaque lvl de recursion
+		isolateOrphanValuesPair(sizePack); // add les values dans _pend a chaque lvl de recursion
 		handleSwap(sizePack);
+		//pushPendToMain(); // inutile je pense
 		std::cout << std::endl << "sizePack: " << sizePack << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
-		//pushPendToMain(); // push _pend -> _main puis niveau suivant de recursion donc a la fin du swap il n y a plus rien dans _pend
 		recursion();
 	}
 	std::cout << std::endl << std::endl << "--------------*PACK " << sizePack << "*-----------------" << std::endl;
 	
-	pushPendToMain(); // ligne inutile a mon avis
-	
-	std::cout << "BEFORE ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
+	pushPendToMain();
 
-	pushMainRestToPend(sizePack); // isole les valeurs qui sont hors paires pour ne pas les labeliser
-	
-	std::cout << "AFTER ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
+	if ((sizePack * 2) <=  _main.size()) // si on peut pas avoir au moins deux paires, le proccessus d'insertion ne fera aucun changement
+	{
+		std::cout << "BEFORE ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 
-	labeling(sizePack);
+		isolateOrphanValuesElem(sizePack); // isole les valeurs avec les quelles un elem ne peux pas etre constitué. Elles ne seront pas labelisées/inserées
+	
+		std::cout << "AFTER ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 
-	std::cout << std::endl << "LABELING: " << _labels << std::endl;
-	
-	distribution();
-	
-	std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl << std::endl;
+		labeling(sizePack);
 
-	insersion();
+		std::cout << std::endl << "LABELING: " << _labels << std::endl;
 	
+		distribution();
+	
+		std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl << std::endl;
+
+		insertion();
+
+		pushPendToMain();
+	}
 	std::cout << std::endl << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 	std::cout << std::endl << "---------------*END*------------------" << std::endl;
-	//pushPendToMain();
 }
 
 int SortDeque::handleSortDeque()
