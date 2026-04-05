@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/04 18:21:19 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/05 12:47:57 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ class SortDeque
 		int								_nbElem;
 		int								_depthMax;
 		int								_depth;
-		std::deque<unsigned long long>	_suitJ;
+		std::deque<unsigned long long>	_suitJacob;
+		unsigned long long				_vJacob;
 
 };
 
