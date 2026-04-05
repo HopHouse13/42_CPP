@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/02 16:03:14 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/05 19:21:16 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ int	main(int ac, char **av)
 	int	depthMax = depthCount(nbElement);
 	
 	SortDeque	SortDeque(av, nbElement, depthMax, suitJ);
+	const std::clock_t	startTimeDeque = std::clock(); // renvoit un temps ecoulé en ticks
 	SortDeque.handleSortDeque();
-  
-	//SortVector	SortVector;
-	//SortVector.handleSortVector(av, ac);
+	const std::clock_t	endTimeDeque = std::clock();
 
+	//SortVector	SortVector;
+	const std::clock_t	startTimeVector = std::clock();
+	//SortVector.handleSortVector(av, ac);
+	const std::clock_t	endTimeVector = std::clock();
+
+	std::cout	<< "Time to process a range of " << nbElement << " elements with std::deque : "
+				<< std::fixed << std::setprecision(2) << 1000.0 * (endTimeDeque - startTimeDeque) / CLOCKS_PER_SEC << "ms" << std::endl // CLOCKS_PER_SEC reprensente ne ticks une seconde selon le systeme
+				<< "Time to process a range of " << nbElement << " elements with std::vector : "
+				<< std::fixed << std::setprecision(2) << 1000.0 * (endTimeVector - startTimeVector) / CLOCKS_PER_SEC << "ms" << std::endl;
+	
 	return (0);
 }
-
-// roadmap:
-
-// - parsing -> only digits positifs
-// - init. _main
-// - cb de niveau de recursion : compter cb de valeur + cb de niveau de profondeur en doublant le bn de valeurs dans les paires a chaque niveau de recursion
-// - affichage du main avant le sort

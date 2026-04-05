@@ -6,7 +6,7 @@
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/05 13:00:59 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/05 20:12:06 by pab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ SortDeque::SortDeque()
 }
 
 SortDeque::SortDeque(char **raw, int nbElem, int depthMax, std::deque<unsigned long long> suitJ)
-: _nbElem(nbElem), _depthMax(depthMax), _depth(0) , _suitJacob(suitJ), _vJacob(0)
+: _nbElem(nbElem), _depthMax(depthMax), _depth(0) , _suitJacob(suitJ)
 {
 	//std::cout << "Default constructor SortDeque called" << std::endl;
 	for (int i = 1; i <= nbElem; i++)
@@ -154,75 +154,76 @@ void	SortDeque::distribution()
 	}
 }
 
-int	SortDeque::borderMainL(unsigned long long valueJacob)
+void	SortDeque::RangesJacob(int idxJ, int *idxP, int *idxM)
 {
-	int	i = 0;
-
-	if (_mainLabeled.empty())
-		return (-1);
-	if (_vJacob > 0)
-		return (_vJacob);
-	while (i < static_cast<int>(_mainLabeled.size()))
+	for (int i = 0; i < static_cast<int>(_pendLabeled.size()); i++)
 	{
-		if (_mainLabeled[i].getIdL() == 'a' && _mainLabeled[i].getIdV() == valueJacob) // assure que l'id est bien 'a'et la valeur de la suite J
-			return (i);
-		i++;
+		if (_pendLabeled[i].getIdV() == _suitJacob[idxJ])
+			*idxP = i;
 	}
-	return (static_cast<int>(_mainLabeled.size() - 1));
+	if (*idxP < 0)
+			*idxP = static_cast<int>(_pendLabeled.size() - 1); // a la fin, il est possible qu'il y ai plus de IdV qui correspond a une valeur de Jacob -> on prend l'idx du dernier element
+
+	*idxM = -1;
+	for (int i = 0; i < static_cast<int>(_mainLabeled.size()); i++)
+	{
+		if (_mainLabeled[i].getIdL() == 'a' && _mainLabeled[i].getIdV() == _suitJacob[idxJ])
+			*idxM = i;
+	}
+	if (*idxM < 0)
+		*idxM = static_cast<int>(_mainLabeled.size() - 1); // idx du dernier element
+	std::cout << std::endl << "--- Jacob BORDER: " << _suitJacob.at(idxJ) << std::endl;
+	std::cout << std::endl << "RANGES:" << std::endl;
+	std::cout << "idxP: " << *idxP << " _pendLabeled: " << _pendLabeled[*idxP].getIdL() << _pendLabeled[*idxP].getIdV() << std::endl;
+	std::cout << "idxM: " << *idxM << " _mainLabeled: " << _mainLabeled[*idxM].getIdL() << _mainLabeled[*idxM].getIdV() << std::endl;
 }
 
-int	SortDeque::borderPendL(unsigned long long valueJacob)
+void	SortDeque::recalculateRange(int *idxP, int *idxM)
 {
-	int	i = 0;
-
-	if (_pendLabeled.empty())
-		return (-1);
-	if (_vJacob > 0)
-		return (_vJacob);
-	while (i < static_cast<int>(_pendLabeled.size()))
+	*idxM = -1;
+	for (int i = 0; i < static_cast<int>(_mainLabeled.size()); i++)
 	{
-		if (_pendLabeled[i].getIdV() == valueJacob)
-			return (i);
-		i++;
+		if (_mainLabeled[i].getIdL() == 'a' && _mainLabeled[i].getIdV() == _pendLabeled[*idxP].getIdV())
+			*idxM = i;
 	}
-	return (static_cast<int>(_pendLabeled.size() - 1)); // si _pendLabeled a plus que des elem id qui ne correspond pas a une valeur de la suit J -> return l'index du dernier elem
+	if (*idxM < 0)
+		*idxM = static_cast<int>(_mainLabeled.size() - 1); // idx du dernier element
+	std::cout << std::endl << "RANGES:" << std::endl;
+	std::cout << "idxP: " << *idxP << " _pendLabeled: " << _pendLabeled[*idxP].getIdL() << _pendLabeled[*idxP].getIdV() << std::endl;
+	std::cout << "idxM: " << *idxM << " _mainLabeled: " << _mainLabeled[*idxM].getIdL() << _mainLabeled[*idxM].getIdV() << std::endl;
 }
 
 void	SortDeque::insertion()
 {
 
-	int	idxJ = 0; // suitJ
-	int	idxP = 0; // _pendLabeled
+	int	idxJ = -1; // suitJ
+	int	idxP = -1; // _pendLabeled
 	int idxM = 0; // _mainLabeled
 	int	toErase = 0; // save pose trash
 
-	while (!_pendLabeled.empty() /*&& idxJ < static_cast<int>(_suitJacob.size())*/)
+	while (!_pendLabeled.empty())
 	{
-		//idxP = borderPendL(_suitJacob[idxJ]);
-		//idxM = borderMainL(_suitJacob[idxJ]);
-		if (idxJ < static_cast<int>(_suitJacob.size())) // incrementation sur la prochaine valeur de la suite Jacob
-			handleValueJacob(int idxJ++);
-		// std::cout << std::endl << "--- Jacob LVL: " << _suitJacob.at(idxJ) << std::endl;
+		if (++idxJ < static_cast<int>(_suitJacob.size())) // incrementation sur la prochaine valeur de la suite Jacob
+			RangesJacob(idxJ, &idxP, &idxM);
 		while (idxP >= 0) // tant que l'ensemble des elem de la plage _pendLabeled vide
 		{
 			if (idxM >= 0 && _pendLabeled[idxP].getLastValue() < _mainLabeled[idxM].getLastValue()) // si idxM est a 0 -> aucun emplacement pour l'insertion a ete trouvé -> forcement l'elem courant doit se retrouver en premiere position de _mainLabeled
 			{
-				// std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " < " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]";
+				 std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " < " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]";
 				idxM--;
 				continue;
 			}
-			// std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "] -> insertion there" << std::endl;
+			std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "] -> insertion there" << std::endl;
 			if (idxM >= 0)
-				// std::cout << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " > " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << std::endl;
+				 std::cout << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " > " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << std::endl;
 			_mainLabeled.insert(_mainLabeled.begin() + idxM + 1,  _pendLabeled[idxP]); // insertion de l'elem courant a la position a droite de l'elem comparé (dans _mainLabeled)
 			toErase = idxP;
 			idxP--; // elem suivant du _pendLabeled a inserer
 			_pendLabeled.erase(_pendLabeled. begin() + toErase);
-			idxM = borderMainL(_suitJacob[idxJ]); // recalcule de la plage avec le nouvel element tout juste insere
-			// std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl;
+			recalculateRange(&idxP, &idxM);
+			//std::cout << std::endl << "--- Jacob Range" << std::endl << "Range _pendLabeled -> " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << std::endl << "Range _mainLabeled -> " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV();
+			std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl;
 		}
-		//if (idxJ < static_cast<int>(_suitJacob.size())) // incrementation sur la prochaine valeur de la suite Jacob
-		//	idxJ++;
 	}
 
 	while (!_mainLabeled.empty())
@@ -257,8 +258,8 @@ void	SortDeque::recursion()
 	
 	pushPendToMain();
 
-	//if ((sizePair * 2) <=  _main.size()) // si on peut pas avoir au moins deux paires, le proccessus d'insertion ne fera aucun changement
-	//{
+	if (sizePair <=  _main.size()) // si on peut pas avoir au moins deux paires, le proccessus d'insertion ne fera aucun changement
+	{
 		std::cout << "BEFORE ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 
 		isolateOrphanValuesElem(sizePair); // isole les valeurs avec les quelles un elem ne peux pas etre constitué. Elles ne seront pas labelisées/inserées
@@ -276,7 +277,9 @@ void	SortDeque::recursion()
 		insertion();
 
 		pushPendToMain();
-	//}
+	}
+	else
+		std::cout << std::endl << "no need to insertion: not enough Elem to sort"<< std::endl;
 	std::cout << std::endl << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 	std::cout << std::endl << "------------------*END*---------------------" << std::endl;
 }
