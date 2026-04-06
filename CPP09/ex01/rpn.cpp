@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:14:28 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/16 14:00:13 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/06 18:01:09 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	Rpn::_handleOperation(char operatorSign)
 		_stackValues.pop();
 		value1 = _stackValues.top();
 		_stackValues.pop();
-		if (/*value1 == 0 ||*/ value2 == 0) // (0 / 2) = 0 ; (2 / 0) = inf
+		if (value2 == 0) // (0 / 2) = 0 ; (2 / 0) = inf
 			return (FAILLURE);
 		_stackValues.push(value1 / value2);
 	}
@@ -101,20 +101,20 @@ int	Rpn::Calculation()
 		return (FAILLURE);
 	}
 	
-	if (_raw[0] == ' ')
+	if (_raw[0] == ' ') // si le 1er index(0) est un ' ' -> tous les char aux index pair seront des ' '
 		evenSpace = true;
 	for (int i = 0; i < static_cast<int>(_raw.size()); i++) // size renvoit un size_t
 	{
 		if (_raw[i] == ' ')
 		{
-			if ((evenSpace == true && i % 2 != 0) || (evenSpace == false && i % 2 != 1))
+			if ((evenSpace == true && i % 2 != 0) || (evenSpace == false && i % 2 != 1)) // si evenSpace true -> ' ' doit etre sur un index pair, si il est false -> index impair
 			{
 				std::cout << "Error: invalid input -> consecutive spaces are not allowed" << std::endl;
 				return (FAILLURE);
 			}
 			continue ;
 		}
-		if (_raw[i] != ' ' && ((evenSpace == true && i % 2 == 0) || (evenSpace == false && i % 2 == 1)))
+		if (_raw[i] != ' ' && ((evenSpace == true && i % 2 == 0) || (evenSpace == false && i % 2 == 1))) // principe inverse pour les char non espaces
 		{
 			std::cout << "Error: invalid input -> consecutive operands/operators are not allowed" << std::endl;
 			return (FAILLURE);
