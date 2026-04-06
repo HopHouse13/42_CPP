@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeCommon.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:37:26 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/01 15:52:19 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 14:47:49 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ std::deque<unsigned long long> const	initErnstJacobsthal(size_t nbValue)
 
 		if (prev2 > (std::numeric_limits<unsigned long long>::max() - prev1) / 2) // check si le resultat de prev2 * 2 + prev1 ne depasse pas le max de unsigned long long
 		{
-			std::cerr << "Warning: Jacobsthal generation stopped to avoid overflow" << std::endl;
+			std::cout << "Jacobsthal suit genered" << std::endl;
 			break ;
 		}
 		suitJ.push_back(prev2 * 2 + prev1);

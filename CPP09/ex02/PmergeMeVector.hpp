@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:40:24 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/06 14:17:57 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/06 16:30:01 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ class SortVector
 		std::vector<ElemV>				_labels;
 		std::vector<ElemV>				_mainLabeled;
 		std::vector<ElemV>				_pendLabeled;
-		int								_nbElem;
 		int								_depthMax;
 		int								_depth;
 		std::deque<unsigned long long>	_suitJacob;

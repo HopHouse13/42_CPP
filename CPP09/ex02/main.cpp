@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/06 13:21:21 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/06 17:12:11 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 
 	//for (double i = 0; i < suitJ.size(); i++)
 	//	std::cout << std::fixed << std::setprecision(0) << suitJ[i] << std::endl;
-		
+
 	int	nbElement = ac - 1;
 	int	depthMax = depthCount(nbElement);
 	
@@ -48,10 +48,13 @@ int	main(int ac, char **av)
 	SortVector.handleSortVector();
 	const std::clock_t	endTimeVector = std::clock();
 
-	std::cout	<< "Time to process a range of " << nbElement << " elements with std::deque : "
-				<< std::fixed << std::setprecision(2) << 1000.0 * (endTimeDeque - startTimeDeque) / CLOCKS_PER_SEC << "ms" << std::endl // CLOCKS_PER_SEC reprensente ne ticks une seconde selon le systeme
+	std::cout	<< std::endl << "Time to process a range of " << nbElement << " elements with std::deque : "
+				<< std::fixed << std::setprecision(2) << 1000.0 * (endTimeDeque - startTimeDeque) / CLOCKS_PER_SEC << "ms" << std::endl // CLOCKS_PER_SEC reprensente les ticks qui correspond a une seconde selon le systeme
 				<< "Time to process a range of " << nbElement << " elements with std::vector : "
 				<< std::fixed << std::setprecision(2) << 1000.0 * (endTimeVector - startTimeVector) / CLOCKS_PER_SEC << "ms" << std::endl;
 	
 	return (0);
 }
+
+//a check
+// message d'erreur

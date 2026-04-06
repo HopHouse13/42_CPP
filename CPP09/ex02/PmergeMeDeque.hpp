@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/06 14:34:17 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/06 16:30:43 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ class SortDeque
 		std::deque<ElemD>				_labels;
 		std::deque<ElemD>				_mainLabeled;
 		std::deque<ElemD>				_pendLabeled;
-		int								_nbElem;
 		int								_depthMax;
 		int								_depth;
 		std::deque<unsigned long long>	_suitJacob;
