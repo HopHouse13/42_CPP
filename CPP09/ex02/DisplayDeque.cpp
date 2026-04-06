@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Display.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 18:55:16 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/04 17:40:31 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 14:35:31 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& os, std::deque<int> const & list) // oper
 	return (os);
 }
 
-std::ostream& operator<<(std::ostream& os, std::deque<Elem> const & list)
+std::ostream& operator<<(std::ostream& os, std::deque<ElemD> const & list)
 {
 	for (size_t i = 0; i < list.size(); i++)
 	{

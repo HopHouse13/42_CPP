@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:17 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/05 19:21:16 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 13:21:21 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./PmergeMeCommon.hpp"
+#include "./PmergeMeVector.hpp"
 
 int	main(int ac, char **av)
 {
@@ -42,9 +43,9 @@ int	main(int ac, char **av)
 	SortDeque.handleSortDeque();
 	const std::clock_t	endTimeDeque = std::clock();
 
-	//SortVector	SortVector;
+	SortVector	SortVector(av, nbElement, depthMax, suitJ);
 	const std::clock_t	startTimeVector = std::clock();
-	//SortVector.handleSortVector(av, ac);
+	SortVector.handleSortVector();
 	const std::clock_t	endTimeVector = std::clock();
 
 	std::cout	<< "Time to process a range of " << nbElement << " elements with std::deque : "

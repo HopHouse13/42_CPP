@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeDeque.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 14:19:41 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/05 20:12:06 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 14:34:35 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	SortDeque::labeling(size_t sizePair)
 	//_labels.clear(); // clear _main pour chaque niveau de recursion
 	while (!_main.empty())
 	{
-		_labels.push_back(Elem());
+		_labels.push_back(ElemD());
 		for (size_t i = 0; i < sizeElem && !_main.empty(); i++)
 		{
 			_labels.back().setSequence(_main.front());
@@ -141,7 +141,7 @@ void	SortDeque::distribution()
 {
 	while (!_labels.empty())
 	{
-		Elem current = _labels.front();
+		ElemD current = _labels.front();
 
 		if (current.getIdV() == 1 && (current.getIdL() == 'a' || current.getIdL() == 'b'))
 			_mainLabeled.push_back(current);
@@ -180,6 +180,8 @@ void	SortDeque::RangesJacob(int idxJ, int *idxP, int *idxM)
 
 void	SortDeque::recalculateRange(int *idxP, int *idxM)
 {
+	if (*idxP < 0) // si on idxP est a -1 -> _pendLabeled est vide il faut sortir de la boucle et passer a la valeur suivante de la suite Jacob
+		return ;
 	*idxM = -1;
 	for (int i = 0; i < static_cast<int>(_mainLabeled.size()); i++)
 	{
@@ -209,19 +211,21 @@ void	SortDeque::insertion()
 		{
 			if (idxM >= 0 && _pendLabeled[idxP].getLastValue() < _mainLabeled[idxM].getLastValue()) // si idxM est a 0 -> aucun emplacement pour l'insertion a ete trouvé -> forcement l'elem courant doit se retrouver en premiere position de _mainLabeled
 			{
-				 std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " < " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]";
+				 std::cout << std::endl << idxP << "/ " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " < " << idxM << "/ " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]";
 				idxM--;
 				continue;
 			}
-			std::cout << std::endl << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "] -> insertion there" << std::endl;
+			std::cout << std::endl << idxP << "/ " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "] -> insertion there" << std::endl;
 			if (idxM >= 0)
-				 std::cout << idxP << " " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " > " << idxM << " " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << std::endl;
-			_mainLabeled.insert(_mainLabeled.begin() + idxM + 1,  _pendLabeled[idxP]); // insertion de l'elem courant a la position a droite de l'elem comparé (dans _mainLabeled)
+				 std::cout << idxP << "/ " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << "[" <<  _pendLabeled[idxP].getSequence() << "]" << " > " << idxM << "/ " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV() << "["<< _mainLabeled[idxM].getSequence() << "]" << std::endl;
+			
+			_mainLabeled.insert(_mainLabeled.begin() + idxM + 1, _pendLabeled[idxP]); // insertion de l'elem courant a la position a droite de l'elem comparé (dans _mainLabeled)
 			toErase = idxP;
 			idxP--; // elem suivant du _pendLabeled a inserer
 			_pendLabeled.erase(_pendLabeled. begin() + toErase);
+
 			recalculateRange(&idxP, &idxM);
-			//std::cout << std::endl << "--- Jacob Range" << std::endl << "Range _pendLabeled -> " << _pendLabeled[idxP].getIdL() <<  _pendLabeled[idxP].getIdV() << std::endl << "Range _mainLabeled -> " << _mainLabeled[idxM].getIdL() << _mainLabeled[idxM].getIdV();
+
 			std::cout << std::endl << "MAIN-LABELED: " << _mainLabeled << std::endl << "PEND-LABELED: " << _pendLabeled << std::endl;
 		}
 	}
@@ -243,7 +247,7 @@ void	SortDeque::recursion()
 	_depth++; // pour chaque appelle  de recursion -> 1 nouveau niveau de recursion
 	size_t	sizePair = static_cast<size_t>(pow(2, _depth)); // taille de la paire par rapport a la profondeur (1er appel -> _depth = 1(init. constructeur))
 		
-	if (_depth <= _depthMax)
+	if (_depth < _depthMax)
 	{
 		std::cout << std::endl << std::endl << "--------------*SIZE PAIR " << sizePair << "*-----------------" << std::endl;
 		std::cout << std::endl << "sizePair: " << sizePair << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
@@ -258,7 +262,7 @@ void	SortDeque::recursion()
 	
 	pushPendToMain();
 
-	if (sizePair <=  _main.size()) // si on peut pas avoir au moins deux paires, le proccessus d'insertion ne fera aucun changement
+	if (sizePair <= _main.size()) // si on peut pas avoir au moins deux paires, le proccessus d'insertion ne fera aucun changement
 	{
 		std::cout << "BEFORE ISOLATION"<< std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 
@@ -279,7 +283,7 @@ void	SortDeque::recursion()
 		pushPendToMain();
 	}
 	else
-		std::cout << std::endl << "no need to insertion: not enough Elem to sort"<< std::endl;
+		std::cout << std::endl << "no need to insertion: not enough ElemD to sort"<< std::endl;
 	std::cout << std::endl << std::endl << "_main: " << _main << std::endl << "_pend: " << _pend << std::endl;
 	std::cout << std::endl << "------------------*END*---------------------" << std::endl;
 }

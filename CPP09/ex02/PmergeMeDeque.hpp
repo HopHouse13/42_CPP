@@ -3,42 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeDeque.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:00:29 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/05 19:55:01 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 14:34:17 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <deque>
-
 #include "./PmergeMeCommon.hpp"
 
-	class Elem
-		{
-			public:
-				Elem();
-				~Elem();
-				Elem(Elem const & copy);
-				Elem const &		operator=(Elem const & rhs);
+class ElemD
+{
+	public:
+		ElemD();
+		~ElemD();
+		ElemD(ElemD const & copy);
+		ElemD const &		operator=(ElemD const & rhs);
 
-				std::deque<int> const &	getSequence() const;
-				void					setSequence(int value);
-				char const &			getIdL() const;
-				void					setIdL(char IdL);
-				size_t const &			getIdV() const;
-				void					setIdV(size_t idV);
-				int						getLastValue() const;
-				
-				
-			private:
-				std::deque<int>	_sequence;
-				char			_IdL; // a -> true ; b -> false
-				size_t			_idV;
-		};
+		std::deque<int> const &	getSequence() const;
+		void					setSequence(int value);
+		char const &			getIdL() const;
+		void					setIdL(char IdL);
+		size_t const &			getIdV() const;
+		void					setIdV(size_t idV);
+		int						getLastValue() const;
+		
+		
+	private:
+		std::deque<int>	_sequence;
+		char			_IdL;
+		size_t			_idV;
+};
 
 class SortDeque
 {
@@ -68,9 +66,9 @@ class SortDeque
 
 		std::deque<int>					_main;
 		std::deque<int>					_pend;
-		std::deque<Elem>				_labels;
-		std::deque<Elem>				_mainLabeled;
-		std::deque<Elem>				_pendLabeled;
+		std::deque<ElemD>				_labels;
+		std::deque<ElemD>				_mainLabeled;
+		std::deque<ElemD>				_pendLabeled;
 		int								_nbElem;
 		int								_depthMax;
 		int								_depth;
@@ -79,7 +77,7 @@ class SortDeque
 };
 
 std::ostream& operator<<(std::ostream& os, std::deque<int> const & list);
-std::ostream& operator<<(std::ostream& os, std::deque<Elem> const & list);
+std::ostream& operator<<(std::ostream& os, std::deque<ElemD> const & list);
 
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Elem.cpp                                           :+:      :+:    :+:   */
+/*   ElemV.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMeDeque.hpp"
+#include "PmergeMeVector.hpp"
 
-Elem::Elem() : _IdL(true), _idV(0)
+ElemV::ElemV() : _IdL(true), _idV(0)
 {
-	//std::cout << "Default constructor Elem called" << std::endl;
+	//std::cout << "Default constructor ElemV called" << std::endl;
 }
 
-Elem::~Elem()
+ElemV::~ElemV()
 {
-	//std::cout << "Destructor Elem called" << std::endl;
+	//std::cout << "Destructor ElemV called" << std::endl;
 }
 
-Elem::Elem(Elem const & copy) : _sequence(copy._sequence), _IdL(copy._IdL) , _idV(copy._idV)
+ElemV::ElemV(ElemV const & copy) : _sequence(copy._sequence), _IdL(copy._IdL) , _idV(copy._idV)
 {
-	//std::cout << "Copy constructor Elem called" << std::endl;
+	//std::cout << "Copy constructor ElemV called" << std::endl;
 }
 
-Elem const &	Elem::operator=(Elem const & rhs)
+ElemV const &	ElemV::operator=(ElemV const & rhs)
 {
-	//std::cout << "Assignment operator overload Elem called" << std::endl;
+	//std::cout << "Assignment operator overload ElemV called" << std::endl;
 	if (this != &rhs)
 	{
 		_sequence = rhs._sequence;
@@ -39,37 +39,37 @@ Elem const &	Elem::operator=(Elem const & rhs)
 	return (*this);
 }
 
-std::deque<int> const &	Elem::getSequence() const
+std::vector<int> const &	ElemV::getSequence() const
 {
 	return (_sequence);
 }
 
-void	Elem::setSequence(int value)
+void	ElemV::setSequence(int value)
 {
 	_sequence.push_back(value);
 }
 
-char const &	Elem::getIdL() const
+char const &	ElemV::getIdL() const
 {
 	return (_IdL);
 }
 
-void	Elem::setIdL(char IdL)
+void	ElemV::setIdL(char IdL)
 {
 	_IdL = IdL;
 }
 
-size_t const &	Elem::getIdV() const
+size_t const &	ElemV::getIdV() const
 {
 	return (_idV);
 }
 
-void	Elem::setIdV(size_t idV)
+void	ElemV::setIdV(size_t idV)
 {
 	_idV = idV;
 }
 
-int	Elem::getLastValue() const
+int	ElemV::getLastValue() const
 {
 	return (_sequence.back());
 }
