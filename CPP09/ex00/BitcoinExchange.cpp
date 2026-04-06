@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pab <pab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/03/29 20:55:14 by pab              ###   ########.fr       */
+/*   Updated: 2026/04/06 18:31:08 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,11 +171,11 @@ void	btcExchange::_calculate()
 
 	if (it == _data.end())
 		it--;
-	else if ((it != _data.begin() && it->first != _date))
+	else if ((it != _data.begin() && it->first != _date)) // fist donne la cle (date) de l 'element <map> : cle(fisrt) -> valeur(second)
 		it--;
 
 	std::ostringstream oss; // oss est un flux de sortie
-	oss /*<< std::fixed << std::setprecision(2)*/ << (_value * it->second); // le produit de la multiplication est traité avec différents "filtres" pour le formater correctement
+	oss << std::fixed << std::setprecision(2) << (_value * it->second); // le produit de la multiplication est traité avec différents "filtres" pour le formater correctement
 	std::string	product = oss.str(); // le flux de sortie est converti en string et stocké dans 'product'
 	std::replace(product.begin(), product.end(), '.', ','); // Puis dans la string, les '.' sont remplacés par ','
 
