@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/06 18:31:08 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/07 12:46:46 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	btcExchange::_checkValue(std::string value)
 			std::cout << "Error: invalid number [" << value << "]" << std::endl;
 			return (FAILURE);
 		}
-		if (tmpV[i] == ',')
-			tmpV[i] = '.'; // atof comprends uniquement '.'
+		//if (tmpV[i] == ',')
+		//	tmpV[i] = '.'; // atof comprends uniquement '.'
 	}
 
 	double	v = std::atof(tmpV.c_str());
@@ -132,7 +132,7 @@ int	btcExchange::_parsingLine(std::string line)
 
 	for (size_t i = 0; flag == true && i < line.size(); i++) //check si il y a le bon nombre d'element
 	{
-		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != ',')
+		if ((line[i] < '0' || line [i] > '9') && line[i] != ' ' && line[i] != '-' && line[i] != '|' && line[i] != '.')
 			flag = false;
 		if (line[i] == '|')
 		{
@@ -177,7 +177,7 @@ void	btcExchange::_calculate()
 	std::ostringstream oss; // oss est un flux de sortie
 	oss << std::fixed << std::setprecision(2) << (_value * it->second); // le produit de la multiplication est traité avec différents "filtres" pour le formater correctement
 	std::string	product = oss.str(); // le flux de sortie est converti en string et stocké dans 'product'
-	std::replace(product.begin(), product.end(), '.', ','); // Puis dans la string, les '.' sont remplacés par ','
+	//std::replace(product.begin(), product.end(), '.', ','); // Puis dans la string, les '.' sont remplacés par ','
 
 	std::cout << _date << " => " << _value << " = " << product << std::endl;
 }
