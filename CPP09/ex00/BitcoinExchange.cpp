@@ -6,7 +6,7 @@
 /*   By: pbret <pbret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:08:07 by pbret             #+#    #+#             */
-/*   Updated: 2026/04/07 12:46:46 by pbret            ###   ########.fr       */
+/*   Updated: 2026/04/07 14:20:14 by pbret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	btcExchange::_checkDate(std::string date)
 	int	month = std::atoi(date.substr(5, 2).c_str());
 	int	day = std::atoi(date.substr(8).c_str());
 
-	if (year < 2009/* || year > 2022*/)
+	if (year < 2009)
 		flag = false;
 	if (month < 1 || month > 12)
 		flag = false;
